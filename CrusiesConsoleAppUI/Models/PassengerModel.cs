@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Models
 {
-    public class PassengerModel
+    public class PassengerModel : IPassengerModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -14,7 +14,12 @@ namespace CrusiesConsoleAppUI.Models
 
         public PassengerModel()
         {
-                
+
+        }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
         }
     }
 }

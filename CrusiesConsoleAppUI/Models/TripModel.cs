@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Models
 {
-    public class TripModel
+    public class TripModel : ITripModel
     {
         public string NameOfActivity { get; set; }
         public string ActivityId { get; set; }

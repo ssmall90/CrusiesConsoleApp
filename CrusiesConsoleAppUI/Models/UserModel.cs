@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Models
 {
-    public class UserModel
+    public class UserModel : IUserModel
     {
         public string Id { get; set; }
         public string DisplayName { get; set; }
@@ -15,13 +15,18 @@ namespace CrusiesConsoleAppUI.Models
         public UserModel(string displayName)
         {
             DisplayName = displayName;
-            Id = "User109";
+            Id = "123";
             Cruises = new List<CruiseModel>();
         }
 
         public void AddCruise(CruiseModel cruise)
         {
             Cruises.Add(cruise);
+        }
+
+        public void RemoveCruise(CruiseModel cruise)
+        {
+            Cruises.Remove(cruise);
         }
     }
 }
