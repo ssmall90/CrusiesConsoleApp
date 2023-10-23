@@ -12,11 +12,13 @@ namespace CrusiesConsoleAppUI.Pages
     {
         IUserModel _admin;
         IBasePage _page;
+        IPageStore _pageStore;
 
-        public ViewAllCruisesPage(IUserModel admin, IBasePage page)
+        public ViewAllCruisesPage(IUserModel admin, IBasePage page, IPageStore pageStore)
         {
             _admin = admin;
             _page = page;
+            _pageStore = pageStore;
         }
         public void DisplayContent()
         {
@@ -26,7 +28,7 @@ namespace CrusiesConsoleAppUI.Pages
 
             int selectedCruise = HelperMethods.HelperMethods.GetItemInRange(1, _admin.Cruises.Count) - 1;
 
-            _page = PageFactory.CreateEditCruisePage(_admin, _page, _admin.Cruises[selectedCruise]);
+            _page = PageFactory.CreateEditCruisePage(_admin, _page, _admin.Cruises[selectedCruise],_pageStore);
             _page.DisplayContent();
 
 

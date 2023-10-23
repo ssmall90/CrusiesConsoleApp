@@ -12,14 +12,18 @@ namespace CrusiesConsoleAppUI.Pages
     {
         IUserModel _admin;
         IBasePage _page;
+        IPageStore _pageStore;
 
-        public HomePage(IUserModel admin, IBasePage page)
+        public HomePage(IUserModel admin, IBasePage page, IPageStore pageStore)
         {
             _admin = admin;
             _page = page;
+            _pageStore = pageStore;
         }
         public void DisplayContent()
         {
+            _pageStore.CurrentPage = PageFactory.CreateHomePage(_admin, _page, _pageStore);
+
             Console.WriteLine("1: Add Cruise");
             Console.WriteLine("2: Edit Cruise");
             Console.WriteLine("3: Remove Cruise");
@@ -28,8 +32,10 @@ namespace CrusiesConsoleAppUI.Pages
             switch(HelperMethods.HelperMethods.GetItemInRange(1, _admin.Cruises.Count))
             {
                 case 1:
-                    _page = PageFactory.CreateAddCruisePage(_admin, _page);
+                    _pageStore.CurrentPage = this;
+                    _page = PageFactory.CreateAddCruisePage(_admin, _page, _pageStore);
                     _page.DisplayContent();
+
 
                     break; 
                 case 2: 
@@ -39,7 +45,7 @@ namespace CrusiesConsoleAppUI.Pages
                     Console.WriteLine();
                     break;
                 case 4:
-                    _page = PageFactory.CreateViewAllCruisesPage(_admin, _page);
+                    _page = PageFactory.CreateViewAllCruisesPage(_admin, _page, _pageStore);
                     _page.DisplayContent();
                     break;
             }
