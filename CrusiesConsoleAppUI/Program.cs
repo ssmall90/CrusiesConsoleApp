@@ -3,13 +3,16 @@ using CrusiesConsoleAppUI.Pages;
 using CrusiesConsoleAppUI.Services;
 using System.Xml.Serialization;
 
-UserModel admin = new UserModel("Sheldon");
-DataManager dataManager = new DataManager();
-HomePage homePAge = new HomePage(admin);
-PageManager pageManager = new PageManager(admin, homePAge)
-
-
-
+IUserModel admin =  ModelFactory.CreateUser("Sheldon");
+IDataManager dataManager = ModelFactory.CreateDataManager();
 admin.Cruises = dataManager.DeserializeCruiseFromXml("Cruises.xml");
+IBasePage basePage = new BasePage(admin);
 
-pageManager.BuildPage()
+
+IBasePage homepage = PageFactory.CreateHomePage(admin, basePage);
+homepage.DisplayContent();
+
+
+
+
+

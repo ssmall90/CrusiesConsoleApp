@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Pages
 {
-    public class RemovePortPage 
+    public class RemovePortPage : IBasePage
     {
-        private readonly UserModel _admin;
-
-        public RemovePortPage(UserModel admin)
+        IUserModel _admin;
+        public RemovePortPage(IUserModel admin)
         {
             _admin = admin;
+        }
+        public void DisplayContent()
+        {
+            throw new NotImplementedException();
         }
     }
 }

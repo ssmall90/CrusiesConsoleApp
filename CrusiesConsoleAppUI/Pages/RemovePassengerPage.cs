@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Pages
 {
-    public class RemovePassengerPage
+    public class RemovePassengerPage : IBasePage
     {
-        private readonly UserModel _admin;
-
-        public RemovePassengerPage(UserModel admin)
+        IUserModel _admin;
+        public RemovePassengerPage(IUserModel admin)
         {
             _admin = admin;
         }
-
+        public void DisplayContent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -7,16 +7,26 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Pages
 {
-    public class EditCruisePage 
+    public class EditCruisePage : IBasePage
     {
-        private readonly UserModel _admin;
-        private readonly CruiseModel _selectedCruise;
+        IUserModel _admin;
+        IBasePage _page;
+        CruiseModel _cruise;
 
-        public EditCruisePage(CruiseModel selectedCruise, UserModel admin)
+        public EditCruisePage(IUserModel admin,IBasePage page, CruiseModel cruise)
         {
-            _selectedCruise = selectedCruise;
             _admin = admin;
+            _cruise = cruise;
+            _page = page;
         }
-
+        public void DisplayContent()
+        {
+            Console.Clear();
+            HelperMethods.HelperMethods.DisplayPageHeader($"{_cruise}");
+            Console.WriteLine(_cruise.CruiseName); 
+            Console.WriteLine(_cruise.CruiseIdentifier);
+            HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
+            HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
+        }
     }
 }

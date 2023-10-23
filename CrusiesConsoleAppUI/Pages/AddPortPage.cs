@@ -7,14 +7,17 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Pages
 {
-    public class AddPortPage 
+    public class AddPortPage : IBasePage
     {
-        private readonly UserModel _admin;
+        IUserModel _admin;
 
-        public AddPortPage(UserModel admin)
+        public AddPortPage(IUserModel admin)
         {
             _admin = admin;
         }
-
+        public void DisplayContent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

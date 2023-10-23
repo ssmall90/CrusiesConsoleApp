@@ -1,4 +1,5 @@
 ﻿using CrusiesConsoleAppUI.Models;
+using CrusiesConsoleAppUI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,18 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Pages
 {
-    public class BasePage 
+    public class BasePage : IBasePage
     {
-        private readonly UserModel _admin;
+        IUserModel _admin;
 
-        public BasePage(UserModel admin)
+        public BasePage(IUserModel admin)
         {
             _admin = admin;
         }
 
-        public void DisplayPage()
+        public void DisplayContent()
         {
 
         }
-
     }
 }

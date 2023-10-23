@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace CrusiesConsoleAppUI.Services
 {
-    public class DataManager
+    public class DataManager : IDataManager
     {
         public List<CruiseModel> DeserializeCruiseFromXml(string filePath)
         {
