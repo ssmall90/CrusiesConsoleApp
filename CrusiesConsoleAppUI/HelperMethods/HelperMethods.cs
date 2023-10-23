@@ -78,7 +78,36 @@ namespace CrusiesConsoleAppUI.HelperMethods
             index = 1;
         }
 
-       
+        public static void DisplayEditingOptions(string options)
+        {
+            if(options == "editCruisePage")
+            {
+                List<string> editCruisePageOptions = new List<string>();
+                editCruisePageOptions.Add("1: Edit Ports");
+                editCruisePageOptions.Add("2: Edit Passengers");
+                editCruisePageOptions.Add("3: Go Back");
+                DisplayList(editCruisePageOptions, "Editing Options");
+            }
+            else if(options == "editPortPage")
+            {
+
+                List<string> addPortPageOptions = new List<string>();
+                addPortPageOptions.Add("1: Add New Port");
+                addPortPageOptions.Add("2: Remove Port");
+                DisplayList(addPortPageOptions, "Editing Options");
+            }
+
+
+
+
+
+
+        }
+
+        
+        
+
+
     }
 
 
