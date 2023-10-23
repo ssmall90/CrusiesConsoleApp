@@ -7,9 +7,10 @@ IUserModel admin =  ModelFactory.CreateUser("Sheldon");
 IDataManager dataManager = ModelFactory.CreateDataManager();
 admin.Cruises = dataManager.DeserializeCruiseFromXml("Cruises.xml");
 IBasePage basePage = new BasePage(admin);
+IPageStore pageStore = new PageStore(basePage);
 
+IBasePage homepage = PageFactory.CreateHomePage(admin, basePage, pageStore);
 
-IBasePage homepage = PageFactory.CreateHomePage(admin, basePage);
 homepage.DisplayContent();
 
 

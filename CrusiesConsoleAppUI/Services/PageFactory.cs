@@ -10,14 +10,14 @@ namespace CrusiesConsoleAppUI.Services
 {
     public static class PageFactory
     {
-        public static IBasePage CreateHomePage(IUserModel admin, IBasePage page)
+        public static IBasePage CreateHomePage(IUserModel admin, IBasePage page, IPageStore pageStore)
         {
-            return new HomePage(admin,page);
+            return new HomePage(admin,page,pageStore);
         }
 
-        public static IBasePage CreateAddCruisePage(IUserModel admin, IBasePage page)
+        public static IBasePage CreateAddCruisePage(IUserModel admin, IBasePage page, IPageStore pageStore)
         {
-            return new AddCruisePage(admin, page);
+            return new AddCruisePage(admin, page ,pageStore);
         }
 
         public static IBasePage CreateAddPassengerPage(IUserModel admin)
@@ -25,14 +25,19 @@ namespace CrusiesConsoleAppUI.Services
             return new AddPassengerPage(admin);
         }
 
-        public static IBasePage CreateAddPortPage(IUserModel admin)
+        public static IBasePage CreateAddPortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore)
         {
-            return new AddPortPage(admin);
+            return new AddPortPage(admin, page, cruise, pageStore );
         }
 
-        public static IBasePage CreateEditCruisePage(IUserModel admin, IBasePage page ,CruiseModel cruise)
+        public static IBasePage CreateEditPortsPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore)
         {
-            return new EditCruisePage(admin, page, cruise);
+            return new EditPortsPage(admin, page, cruise, pageStore);
+        }
+
+        public static IBasePage CreateEditCruisePage(IUserModel admin, IBasePage page ,CruiseModel cruise , IPageStore pageStore)
+        {
+            return new EditCruisePage(admin, page, cruise, pageStore);
         }
 
         public static IBasePage CreateRemoveCruisePage(IUserModel admin)
@@ -45,14 +50,14 @@ namespace CrusiesConsoleAppUI.Services
             return new RemovePassengerPage(admin);
         }
 
-        public static IBasePage CreateRemovePortPage(IUserModel admin)
+        public static IBasePage CreateRemovePortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore)
         {
-            return new RemovePortPage(admin);
+            return new RemovePortPage(admin, page, cruise, pageStore);
         }
 
-        public static IBasePage CreateViewAllCruisesPage(IUserModel admin, IBasePage page)
+        public static IBasePage CreateViewAllCruisesPage(IUserModel admin, IBasePage page, IPageStore pageStore)
         {
-            return new ViewAllCruisesPage(admin, page);
+            return new ViewAllCruisesPage(admin, page, pageStore);
         }
     }
 }
