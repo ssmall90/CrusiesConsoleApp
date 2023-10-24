@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Cruises>
+  <CruiseModel>
+    <CruiseName>Cruise X</CruiseName>
+    <CruiseIdentifier>3</CruiseIdentifier>
+    <Ports>
+      <PortModel>
+        <Name>Port 1</Name>
+        <PortId>104</PortId>
+        <LengthOfStay>3</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion A</NameOfActivity>
+            <ActivityId>301</ActivityId>
+            <Cost>50</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion B</NameOfActivity>
+            <ActivityId>302</ActivityId>
+            <Cost>60</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Port 2</Name>
+        <PortId>105</PortId>
+        <LengthOfStay>2</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion C</NameOfActivity>
+            <ActivityId>303</ActivityId>
+            <Cost>75</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion D</NameOfActivity>
+            <ActivityId>304</ActivityId>
+            <Cost>40</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Port 3</Name>
+        <PortId>106</PortId>
+        <LengthOfStay>4</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion E</NameOfActivity>
+            <ActivityId>305</ActivityId>
+            <Cost>55</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion F</NameOfActivity>
+            <ActivityId>306</ActivityId>
+            <Cost>70</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+    </Ports>
+    <Passengers>
+      <PassengerModel>
+        <FirstName>Alice</FirstName>
+        <LastName>Smith</LastName>
+        <PassportNumber>PS12345</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Bob</FirstName>
+        <LastName>Johnson</LastName>
+        <PassportNumber>PS67890</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Carol</FirstName>
+        <LastName>Williams</LastName>
+        <PassportNumber>PS78901</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>David</FirstName>
+        <LastName>Anderson</LastName>
+        <PassportNumber>PS23456</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Eve</FirstName>
+        <LastName>Davis</LastName>
+        <PassportNumber>PS54321</PassportNumber>
+      </PassengerModel>
+    </Passengers>
+    <PortModel>
+      <PortName>Alicante</PortName>
+      <PortId>0</PortId>
+      <LengthOfStay>0</LengthOfStay>
+      <Trips />
+    </PortModel>
+  </CruiseModel>
+  <CruiseModel>
+    <CruiseName>Cruise Y</CruiseName>
+    <CruiseIdentifier>4</CruiseIdentifier>
+    <Ports>
+      <PortModel>
+        <Name>Port 4</Name>
+        <PortId>107</PortId>
+        <LengthOfStay>2</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion G</NameOfActivity>
+            <ActivityId>307</ActivityId>
+            <Cost>65</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion H</NameOfActivity>
+            <ActivityId>308</ActivityId>
+            <Cost>80</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Port 5</Name>
+        <PortId>108</PortId>
+        <LengthOfStay>5</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion I</NameOfActivity>
+            <ActivityId>309</ActivityId>
+            <Cost>90</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion J</NameOfActivity>
+            <ActivityId>310</ActivityId>
+            <Cost>52</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Port 6</Name>
+        <PortId>109</PortId>
+        <LengthOfStay>3</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion K</NameOfActivity>
+            <ActivityId>311</ActivityId>
+            <Cost>68</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion L</NameOfActivity>
+            <ActivityId>312</ActivityId>
+            <Cost>79</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+    </Ports>
+    <Passengers>
+      <PassengerModel>
+        <FirstName>Jane</FirstName>
+        <LastName>Clarke</LastName>
+        <PassportNumber>PS16645</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Adam</FirstName>
+        <LastName>Rowe</LastName>
+        <PassportNumber>PS61930</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>James</FirstName>
+        <LastName>Anderson</LastName>
+        <PassportNumber>PS01901</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Laura</FirstName>
+        <LastName>Fenwick</LastName>
+        <PassportNumber>PS23111</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Amanda</FirstName>
+        <LastName>Roberts</LastName>
+        <PassportNumber>PS50001</PassportNumber>
+      </PassengerModel>
+    </Passengers>
+  </CruiseModel>
+  <CruiseModel>
+    <CruiseName>Cruise Z</CruiseName>
+    <CruiseIdentifier>5</CruiseIdentifier>
+    <Ports>
+      <PortModel>
+        <Name>Port 7</Name>
+        <PortId>110</PortId>
+        <LengthOfStay>4</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion M</NameOfActivity>
+            <ActivityId>313</ActivityId>
+            <Cost>140</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion N</NameOfActivity>
+            <ActivityId>314</ActivityId>
+            <Cost>95</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Port 8</Name>
+        <PortId>111</PortId>
+        <LengthOfStay>3</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion O</NameOfActivity>
+            <ActivityId>315</ActivityId>
+            <Cost>56</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion P</NameOfActivity>
+            <ActivityId>316</ActivityId>
+            <Cost>66</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Port 9</Name>
+        <PortId>112</PortId>
+        <LengthOfStay>5</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Excursion Q</NameOfActivity>
+            <ActivityId>317</ActivityId>
+            <Cost>80</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Excursion R</NameOfActivity>
+            <ActivityId>318</ActivityId>
+            <Cost>100</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+    </Ports>
+    <Passengers>
+      <PassengerModel>
+        <FirstName>Phil</FirstName>
+        <LastName>James</LastName>
+        <PassportNumber>PS13645</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Hayden</FirstName>
+        <LastName>Smith</LastName>
+        <PassportNumber>PS69950</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Linzi</FirstName>
+        <LastName>Small</LastName>
+        <PassportNumber>PS33301</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Tim</FirstName>
+        <LastName>Grey</LastName>
+        <PassportNumber>PS20911</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Sully</FirstName>
+        <LastName>Lawrence</LastName>
+        <PassportNumber>PS99981</PassportNumber>
+      </PassengerModel>
+    </Passengers>
+  </CruiseModel>
+</Cruises>

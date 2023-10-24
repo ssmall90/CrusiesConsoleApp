@@ -31,10 +31,7 @@ namespace CrusiesConsoleAppUI.Pages
             int selectedPort =  HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Ports.Count - 1);
             _cruise.RemovePort(_cruise.Ports[selectedPort]);
 
-            foreach ( var port in _cruise.Ports ) { Console.WriteLine(port.ToString()); }
-
-
-            
+            foreach ( var port in _cruise.Ports ) { Console.WriteLine(port.ToString()); }        
             
 
         }

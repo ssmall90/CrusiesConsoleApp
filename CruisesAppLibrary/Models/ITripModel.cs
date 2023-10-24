@@ -1,4 +1,6 @@
-﻿namespace CrusiesConsoleAppUI.Models
+﻿using System.Collections.Generic;
+
+namespace CrusiesConsoleAppUI.Models
 {
     public interface ITripModel
     {

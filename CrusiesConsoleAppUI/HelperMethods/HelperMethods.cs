@@ -75,27 +75,35 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 index++;
             }
 
-            index = 1;
         }
 
-        public static void DisplayEditingOptions(string options)
+        public static int DisplayEditingOptions(string options)
         {
-            if(options == "editCruisePage")
+            if (options == "editCruisePage")
             {
                 List<string> editCruisePageOptions = new List<string>();
                 editCruisePageOptions.Add("1: Edit Ports");
                 editCruisePageOptions.Add("2: Edit Passengers");
                 editCruisePageOptions.Add("3: Go Back");
                 DisplayList(editCruisePageOptions, "Editing Options");
+                return editCruisePageOptions.Count();
             }
-            else if(options == "editPortPage")
+            else if (options == "editPortPage")
             {
 
                 List<string> addPortPageOptions = new List<string>();
                 addPortPageOptions.Add("1: Add New Port");
                 addPortPageOptions.Add("2: Remove Port");
+                addPortPageOptions.Add("3: Edit Exisiting Port");
+                addPortPageOptions.Add("3: Go Back");
                 DisplayList(addPortPageOptions, "Editing Options");
+                return addPortPageOptions.Count();
             }
+            else
+            {
+                return 0;
+            }
+
 
 
 
@@ -104,13 +112,79 @@ namespace CrusiesConsoleAppUI.HelperMethods
 
         }
 
-        
-        
+        public static string GetValidName(string model)
+        {
+            bool isValid = false;
 
+            string result = string.Empty;
+
+            do
+            {
+
+                Console.WriteLine($"Please Enter a Name for the {model} You Would Like to Add");
+
+                string userInput = Console.ReadLine();
+
+                Console.WriteLine("");
+
+                if (userInput.Length > 0)
+                {
+                    isValid = true;
+                    result = userInput;
+                }
+
+            } while (!isValid);
+
+            return result;
+        }
+
+        public static int ConfirmAction()
+        {
+            bool isValid = false;
+            int response = 3;
+
+            do
+
+            {
+                Console.WriteLine("Press Y to confirm or N to cancel");
+
+                string userInput = Console.ReadLine().ToLower();
+
+                Console.WriteLine("");
+
+                if (userInput.Length > 0)
+                {
+                    if(userInput == "Y".ToLower())
+                    {
+                        isValid = true;
+                        response = 1;
+
+                    }
+                    else if(userInput == "N".ToLower())
+                    {
+                        isValid = true;
+                        response = 0;
+                        return 0;
+                    }
+                    else
+                    {
+                        isValid = false; 
+                    }
+                }
+
+                else
+                {
+                    return 0;
+                }
+
+            } while (!isValid);
+
+            return response;
+        }
 
     }
-
-
 }
+
+
 
 

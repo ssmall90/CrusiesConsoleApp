@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Cruises>
+	<CruiseModel>
+		<CruiseName>Cruise X</CruiseName>
+		<CruiseIdentifier>3</CruiseIdentifier>
+		<Ports>
+			<PortModel>
+				<Name>Port 1</Name>
+				<PortId>104</PortId>
+				<LengthOfStay>3</LengthOfStay>
+			</PortModel>
+			<PortModel>
+				<Name>Port 2</Name>
+				<PortId>105</PortId>
+				<LengthOfStay>2</LengthOfStay>
+			</PortModel>
+			<PortModel>
+				<Name>Port 3</Name>
+				<PortId>106</PortId>
+				<LengthOfStay>4</LengthOfStay>
+			</PortModel>
+		</Ports>
+		<Passengers>
+			<PassengerModel>
+				<FirstName>Alice</FirstName>
+				<LastName>Smith</LastName>
+				<PassportNumber>PS12345</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Bob</FirstName>
+				<LastName>Johnson</LastName>
+				<PassportNumber>PS67890</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Carol</FirstName>
+				<LastName>Williams</LastName>
+				<PassportNumber>PS78901</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>David</FirstName>
+				<LastName>Anderson</LastName>
+				<PassportNumber>PS23456</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Eve</FirstName>
+				<LastName>Davis</LastName>
+				<PassportNumber>PS54321</PassportNumber>
+			</PassengerModel>
+		</Passengers>
+	</CruiseModel>
+	<CruiseModel>
+		<CruiseName>Cruise Y</CruiseName>
+		<CruiseIdentifier>4</CruiseIdentifier>
+		<Ports>
+			<PortModel>
+				<Name>Port 4</Name>
+				<PortId>107</PortId>
+				<LengthOfStay>2</LengthOfStay>
+			</PortModel>
+			<PortModel>
+				<Name>Port 5</Name>
+				<PortId>108</PortId>
+				<LengthOfStay>5</LengthOfStay>
+			</PortModel>
+			<PortModel>
+				<Name>Port 6</Name>
+				<PortId>109</PortId>
+				<LengthOfStay>3</LengthOfStay>
+			</PortModel>
+		</Ports>
+		<Passengers>
+			<PassengerModel>
+				<FirstName>Jane</FirstName>
+				<LastName>Clarke</LastName>
+				<PassportNumber>PS16645</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Adam</FirstName>
+				<LastName>Rowe</LastName>
+				<PassportNumber>PS61930</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>James</FirstName>
+				<LastName>Anderson</LastName>
+				<PassportNumber>PS01901</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Laura</FirstName>
+				<LastName>Fenwick</LastName>
+				<PassportNumber>PS23111</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Amanda</FirstName>
+				<LastName>Roberts</LastName>
+				<PassportNumber>PS50001</PassportNumber>
+			</PassengerModel>
+		</Passengers>
+	</CruiseModel>
+	<CruiseModel>
+		<CruiseName>Cruise Z</CruiseName>
+		<CruiseIdentifier>5</CruiseIdentifier>
+		<Ports>
+			<PortModel>
+				<Name>Port 7</Name>
+				<PortId>110</PortId>
+				<LengthOfStay>4</LengthOfStay>
+			</PortModel>
+			<PortModel>
+				<Name>Port 8</Name>
+				<PortId>111</PortId>
+				<LengthOfStay>3</LengthOfStay>
+			</PortModel>
+			<PortModel>
+				<Name>Port 9</Name>
+				<PortId>112</PortId>
+				<LengthOfStay>5</LengthOfStay>
+			</PortModel>
+		</Ports>
+		<Passengers>
+			<PassengerModel>
+				<FirstName>Phil</FirstName>
+				<LastName>James</LastName>
+				<PassportNumber>PS13645</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Hayden</FirstName>
+				<LastName>Smith</LastName>
+				<PassportNumber>PS69950</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Linzi</FirstName>
+				<LastName>Small</LastName>
+				<PassportNumber>PS33301</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Tim</FirstName>
+				<LastName>Grey</LastName>
+				<PassportNumber>PS20911</PassportNumber>
+			</PassengerModel>
+			<PassengerModel>
+				<FirstName>Sully</FirstName>
+				<LastName>Lawrence</LastName>
+				<PassportNumber>PS99981</PassportNumber>
+			</PassengerModel>
+		</Passengers>
+	</CruiseModel>
+	<CruiseModel>
+		<CruiseName>Cruise T</CruiseName>
+		<CruiseIdentifier>20</CruiseIdentifier>
+		<Trips />
+		<Passengers />
+	</CruiseModel>
+	<CruiseModel>
+		<CruiseName>scvxfbgcb</CruiseName>
+		<CruiseIdentifier>344644</CruiseIdentifier>
+		<Trips />
+		<Passengers />
+	</CruiseModel>
+</Cruises>

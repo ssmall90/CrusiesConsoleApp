@@ -1,4 +1,5 @@
-﻿using CrusiesConsoleAppUI.Models;
+﻿using CrusiesConsoleAppUI.Factory;
+using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
 using System;
 using System.Collections.Generic;
@@ -13,14 +14,16 @@ namespace CrusiesConsoleAppUI.Pages
         IUserModel _admin;
         IBasePage _page;
         IPageStore _pageStore;
+        IDataManager _dataManager;
         CruiseModel _cruise;
 
-        public EditCruisePage(IUserModel admin,IBasePage page, CruiseModel cruise, IPageStore pageStore)
+        public EditCruisePage(IUserModel admin,IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
         {
             _admin = admin;
             _cruise = cruise;
             _page = page;
             _pageStore = pageStore;
+            _dataManager = dataManager;
         }
         public void DisplayContent()
         {
@@ -38,7 +41,7 @@ namespace CrusiesConsoleAppUI.Pages
             {
                 case 1:
                     _pageStore.CurrentPage = this;
-                    _page = PageFactory.CreateEditPortsPage(_admin, _page, _cruise, _pageStore);
+                    _page = PageFactory.CreateEditPortsPage(_admin, _page, _cruise, _pageStore, _dataManager);
                     _page.DisplayContent();
                      break;
 
