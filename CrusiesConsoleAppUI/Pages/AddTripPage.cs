@@ -10,48 +10,49 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Pages
 {
-    public class AddPortPage : IBasePage
+    public class AddTripPage : IBasePage
     {
+
         IUserModel _admin;
         IBasePage _page;
         IPageStore _pageStore;
         IDataManager _dataManager;
+        PortModel _port;
         CruiseModel _cruise;
 
-
-        public AddPortPage (IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
+        public AddTripPage(IUserModel admin, IBasePage page, CruiseModel cruise, PortModel port, IPageStore pageStore, IDataManager dataManager)
         {
             _admin = admin;
             _page = page;
             _cruise = cruise;
+            _port = port;
             _pageStore = pageStore;
             _dataManager = dataManager;
         }
+
         public void DisplayContent()
         {
-
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Port");
+            HelperMethods.HelperMethods.DisplayPageHeader("Add Trip");
 
-            string portName = HelperMethods.HelperMethods.GetValidName("Name", "Port");
-            int lengthOfStay = HelperMethods.HelperMethods.GetValidInt("Enter the Duration of the Stay at This Port");
+            string tripName = HelperMethods.HelperMethods.GetValidName("Name", "Trip");
+            int costOfTrip = HelperMethods.HelperMethods.GetValidInt("Enter the Cost of the Trip");
 
             HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
 
-
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you would like to add {portName} to {_cruise.CruiseName}?"))
+            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you would like to add {tripName} to {_port.Name}?"))
             {
                 case 1:
 
-                    _cruise.AddPort(ModelFactory.CreatePort(portName, lengthOfStay));
-                    PortModel newPort = _cruise.Ports.Where(p => p.Name == portName).FirstOrDefault()!;
+                    _port.AddTrip(ModelFactory.CreateTrip(tripName, costOfTrip));
+                    TripModel newTrip = _port.Trips.Where(t => t.NameOfActivity == tripName).FirstOrDefault()!;
 
-                    _dataManager.AddPortToCruise(
+                    _dataManager.AddTripToPort(
                         "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml",
-                        "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\TestOutputs.xml",
-                        _cruise, newPort);
+                        _cruise.CruiseIdentifier,
+                        _port.Name, newTrip);
 
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Port Has Been Successfully Added to {_cruise.CruiseName}");
+                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Trip Has Been Successfully Added to {_port.Name}");
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;
@@ -63,11 +64,6 @@ namespace CrusiesConsoleAppUI.Pages
                     break;
 
             }
-
-            //Console.WriteLine($"Enter the Name of The Port You Would Like to Add to {_cruise.CruiseName}");
-            //Console.ReadLine();
         }
-        
-
     }
 }

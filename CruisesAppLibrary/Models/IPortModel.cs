@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CrusiesConsoleAppUI.Models
+﻿namespace CrusiesConsoleAppUI.Models
 {
     public interface IPortModel
     {
@@ -8,5 +6,9 @@ namespace CrusiesConsoleAppUI.Models
         string Name { get; set; }
         int PortId { get; set; }
         List<TripModel> Trips { get; set; }
+
+        void AddTrip(TripModel trip);
+        void RemoveTrip(TripModel trip);
+        string ToString();
     }
 }

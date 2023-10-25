@@ -42,7 +42,11 @@ namespace CrusiesConsoleAppUI.Pages
                     _page = PageFactory.CreateRemovePortPage(_admin, _page, _cruise, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;
-
+                case 3:
+                    _pageStore.CurrentPage = this;
+                    _page = PageFactory.CreateSelectPortToEditPage(_admin, _page, _cruise, _pageStore, _dataManager);
+                    _page.DisplayContent();
+                    break;
             }
 
             Console.ReadLine();

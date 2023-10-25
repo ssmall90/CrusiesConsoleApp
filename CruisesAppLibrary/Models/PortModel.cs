@@ -8,7 +8,7 @@ namespace CrusiesConsoleAppUI.Models
 {
     public class PortModel : IPortModel
     {
-        private static int _nextId = 0; 
+        private static int _nextId;
         public static int NextId { get { return _nextId; } set { NextId = value; } }
         public string Name { get; set; }
         public int PortId { get; set; }
@@ -32,11 +32,22 @@ namespace CrusiesConsoleAppUI.Models
 
         public PortModel()
         {
+
+        }
+
+        public void AddTrip(TripModel trip)
+        {
+            Trips.Add(trip);
+        }
+
+        public void RemoveTrip(TripModel trip)
+        {
+            Trips.Remove(trip);
         }
 
         public override string ToString()
         {
-            return $"{PortId } + { Name}";
+            return $"{PortId} + {Name}";
         }
     }
 }

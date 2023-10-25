@@ -14,6 +14,7 @@ namespace CrusiesAppDataAccess.Factory
         {
             CruiseModel cruise = new CruiseModel();
             cruise.CruiseName = cruiseName;
+        
             return cruise;
         }
 
@@ -27,9 +28,9 @@ namespace CrusiesAppDataAccess.Factory
             return new PortModel(portName,lengthOfStay);
         }
 
-        public static TripModel CreateTrip()
+        public static TripModel CreateTrip(string tripName, int costOfTrip)
         {
-            return new TripModel();
+            return new TripModel(tripName,costOfTrip);
         }
 
         public static IUserModel CreateUser(string name)

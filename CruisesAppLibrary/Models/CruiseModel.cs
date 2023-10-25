@@ -27,7 +27,7 @@ namespace CrusiesConsoleAppUI.Models
         {
             CruiseName = cruiseName;
             CruiseIdentifier =$"CI-{_nextId++}";
-            Ports = Ports ?? new List<PortModel>();
+            Ports =  new List<PortModel>();
             Passengers = new List<PassengerModel>
             {
                 {

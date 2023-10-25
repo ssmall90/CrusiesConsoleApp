@@ -105,6 +105,18 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 DisplayList(editCruisePageOptions, "Editing Options");
                 return editCruisePageOptions.Count();
             }
+
+            if (options == "editTrip")
+            {
+                List<string> editTripOptions = new List<string>();
+                editTripOptions.Add("1: Add Trip");
+                editTripOptions.Add("2: Remove Trip");
+                editTripOptions.Add("3: Return To Main Menu");
+                DisplayList(editTripOptions, "Editing Options");
+                return editTripOptions.Count();
+            }
+
+
             else if (options == "editPortPage")
             {
 
@@ -155,7 +167,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
 
                 Console.WriteLine("");
 
-                if (userInput.Length > 3)
+                if (userInput.Length >= 3)
                 {
                     isValid = true;
                     result = userInput;
@@ -195,14 +207,14 @@ namespace CrusiesConsoleAppUI.HelperMethods
                     continue;
                 }
 
-                if (result > 0 && result < 7)
+                if (result > 0 && result < 365)
                 {
                     isValid = true;
                     return result;
                 }
                 else
                 {
-                    Console.WriteLine("You must enter a number between 1 & 7 to continue");
+                    Console.WriteLine("You must enter a number between 1 & 365 to continue");
                     continue;
                 }
 

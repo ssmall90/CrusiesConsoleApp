@@ -34,22 +34,10 @@ namespace CrusiesConsoleAppUI.Pages
 
             string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");
 
-            string portName = HelperMethods.HelperMethods.GetValidName("Name","Port");
-            int lengthOfStay = HelperMethods.HelperMethods.GetValidInt("Enter the duration of the stay at this port");
-
-            PortModel newPort = ModelFactory.CreatePort(portName, lengthOfStay);
-
-            string passengerFirstName = HelperMethods.HelperMethods.GetValidName("First Name","Passenger");
-            string passengerLastName = HelperMethods.HelperMethods.GetValidName("Last Name", "Passenger");
-
-            PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName);
-
-
             CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
 
-            newCruise.AddPort(newPort);
-            newCruise.AddPassenger(newPassenger);
             _admin.AddCruise(newCruise);
+            _dataManager.AppendCruiseToXml("C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\TestOutputs.xml", newCruise);
             HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List od Cruises");
             _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
             _page.DisplayContent();

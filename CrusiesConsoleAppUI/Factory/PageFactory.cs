@@ -76,9 +76,23 @@ namespace CrusiesConsoleAppUI.Factory
             return new EditPortsPage(admin, page, cruise, pageStore, dataManager);
         }
 
+        public static IBasePage CreateSelectPortToEditPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new SelectPortToEditPage(admin, page, cruise, pageStore, dataManager);
+        }
 
-  
 
 
+
+
+        public static IBasePage CreateAddTripPage(IUserModel admin, IBasePage page, CruiseModel cruise, PortModel port, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new AddTripPage(admin, page, cruise, port, pageStore, dataManager);
+        }
+
+        internal static IBasePage CreateRemoveTripPage(IUserModel admin, IBasePage page, CruiseModel cruise, PortModel port, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new RemoveTripPage(admin, page, cruise, port, pageStore, dataManager);
+        }
     }
 }

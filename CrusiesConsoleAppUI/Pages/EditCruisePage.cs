@@ -57,9 +57,6 @@ namespace CrusiesConsoleAppUI.Pages
             
             }
 
-
-
-            Console.ReadLine();
         }
     }
 }

@@ -10,9 +10,7 @@ namespace CrusiesConsoleAppUI.Models
     public class PassengerModel : IPassengerModel
     {
         private static int _nextPassportNumber = 0;
-        private readonly string _firstName;
-        private readonly string _lastName;
-        private readonly string _passportNumber;
+
 
         public static int NextPassportNumber { get { return _nextPassportNumber; } set { NextPassportNumber = value; } }
         public string FirstName { get; set; } 

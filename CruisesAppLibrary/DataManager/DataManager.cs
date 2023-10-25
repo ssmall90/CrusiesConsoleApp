@@ -55,7 +55,7 @@ namespace CrusiesConsoleAppUI.Services
                     new XElement("CruiseModel",
                     new XElement("CruiseName", cruise.CruiseName),
                     new XElement("CruiseIdentifier", cruise.CruiseIdentifier),
-                    new XElement("Trips", cruise.Ports),
+                    new XElement("Ports", cruise.Ports),
                     new XElement("Passengers", cruise.Passengers)
 
                 ); ;
@@ -104,7 +104,93 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public void AddPortToCruise(string filePath, CruiseModel cruise, PortModel port)
+        public void AddTripToPort(string filePath, string cruiseIdentifier, string portName, TripModel trip)
+        {
+            try
+            {
+                XDocument doc = XDocument.Load(filePath);
+
+                XElement cruiseElement = doc.Root!.Elements("CruiseModel")
+                    .FirstOrDefault(c => c.Element("CruiseIdentifier")!.Value == cruiseIdentifier)!;
+
+                if (cruiseElement != null)
+                {
+                    XElement portsElement = cruiseElement.Element("Ports")!;
+
+                    if (portsElement != null)
+                    {
+                        XElement portElement = portsElement.Elements("PortModel")
+                            .FirstOrDefault(p => p.Element("Name")?.Value == portName)!;
+
+                        if (portElement != null)
+                        {
+                            XElement tripsElement = portElement.Element("Trips")!;
+
+                            if (tripsElement == null)
+                            {
+                                // If <Trips> element does not exist, create it
+                                tripsElement = new XElement("Trips");
+                                portElement.Add(tripsElement);
+                            }
+
+                            // Create a new <TripModel> element and add it to <Trips>
+                            XElement newTripElement = new XElement("TripModel",
+                                new XElement("NameOfActivity", trip.NameOfActivity),
+                                new XElement("ActivityId", trip.ActivityId),
+                                new XElement("Cost", trip.Cost));
+
+                            tripsElement.Add(newTripElement);
+
+                            doc.Save(filePath);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Port with the specified name not found.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Ports element found in the specified cruise.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Cruise with the specified identifier not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                // Handle the error as needed
+            }
+        }
+
+        public void RemoveTripFromPort(string filePath, string tripId)
+        {
+            try
+            {
+                XDocument doc = XDocument.Load(filePath);
+
+                XElement tripToDelete = doc.Descendants("TripModel").FirstOrDefault(trip => trip.Element("ActivityId")?.Value == tripId)!;
+
+                if (tripToDelete != null)
+                {
+                    tripToDelete.Remove(); // Remove the found <TripModel> element
+                    doc.Save(filePath);     // Save the updated XML
+                }
+                else
+                {
+                    Console.WriteLine("Trip with the specified ID not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                // Handle the error as needed
+            }
+        }
+
+        public void AddPortToCruise(string filePath, string outputFilePath, CruiseModel cruise, PortModel port)
         {
 
             try
@@ -131,7 +217,7 @@ namespace CrusiesConsoleAppUI.Services
 
                     portsElement.Add(newPortElement);
 
-                    doc.Save(filePath);
+                    doc.Save(outputFilePath);
 
                 }
 
