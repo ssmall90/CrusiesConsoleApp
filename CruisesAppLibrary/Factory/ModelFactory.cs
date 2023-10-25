@@ -12,10 +12,8 @@ namespace CrusiesAppDataAccess.Factory
     {
         public static CruiseModel CreateCruise(string cruiseName)
         {
-            CruiseModel cruise = new CruiseModel();
-            cruise.CruiseName = cruiseName;
         
-            return cruise;
+            return new CruiseModel(cruiseName);
         }
 
         public static PassengerModel CreatePassenger(string firstName, string LastName)

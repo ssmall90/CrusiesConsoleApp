@@ -252,4 +252,35 @@
       </PassengerModel>
     </Passengers>
   </CruiseModel>
+  <CruiseModel>
+    <CruiseName>DreamLiner</CruiseName>
+    <CruiseIdentifier />
+    <Ports />
+    <Passengers />
+  </CruiseModel>
+  <CruiseModel>
+    <CruiseName>Mary Rose</CruiseName>
+    <CruiseIdentifier>CI-501249</CruiseIdentifier>
+    <Ports>
+      <PortModel>
+        <PortName>Port 309</PortName>
+        <PortId>113</PortId>
+        <LengthOfStay>2</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>all out</NameOfActivity>
+            <ActivityId>AI-7093</ActivityId>
+            <Cost>12</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
+      <PortModel>
+        <PortName>Alicante</PortName>
+        <PortId>114</PortId>
+        <LengthOfStay>7</LengthOfStay>
+        <Trips />
+      </PortModel>
+    </Ports>
+    <Passengers />
+  </CruiseModel>
 </Cruises>

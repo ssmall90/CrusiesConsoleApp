@@ -48,7 +48,7 @@ namespace CrusiesConsoleAppUI.Pages
 
                     _dataManager.AddPortToCruise(
                         "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml",
-                        "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\TestOutputs.xml",
+                        "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml",
                         _cruise, newPort);
 
                     HelperMethods.HelperMethods.ReturnToMainMenu($"Your Port Has Been Successfully Added to {_cruise.CruiseName}");

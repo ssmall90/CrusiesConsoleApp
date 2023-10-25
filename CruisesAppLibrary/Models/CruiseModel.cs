@@ -7,9 +7,9 @@ namespace CrusiesConsoleAppUI.Models
 {
     public class CruiseModel : ICruiseModel
     {
-        private static int _nextId = 0;
+        private static int _nextId;
 
-        public static int NextId { get { return _nextId; } set { NextId = value; } }
+        public static int NextCruiseIdentifier { get { return _nextId; } set { NextCruiseIdentifier = value; } }
         public string CruiseName {  get; set; }   
         public string CruiseIdentifier { get; set; }
         public List<PortModel> Ports { get; set; }
@@ -23,17 +23,13 @@ namespace CrusiesConsoleAppUI.Models
         {
 
         }
-        public CruiseModel(string cruiseName, string cruiseIdentifier, PortModel startPort, PassengerModel firstPassenger)
+        public CruiseModel(string cruiseName)
         {
             CruiseName = cruiseName;
-            CruiseIdentifier =$"CI-{_nextId++}";
+            CruiseIdentifier = $"CI-{_nextId++}";
             Ports =  new List<PortModel>();
-            Passengers = new List<PassengerModel>
-            {
-                {
-                    firstPassenger
-                }
-            };
+            Passengers = new List<PassengerModel>();
+
         }
 
         public void AddPassenger(PassengerModel passenger)
