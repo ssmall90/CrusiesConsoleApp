@@ -138,6 +138,48 @@ namespace CrusiesConsoleAppUI.HelperMethods
             return result;
         }
 
+        public static int GetValidInt(string message)
+        {
+            bool isValid = false;
+
+            int result = 0;
+
+            do
+            {
+
+                Console.WriteLine($"{message}");
+
+                string userInput = Console.ReadLine();
+
+                Console.WriteLine("");
+
+                try
+                {
+                    result = int.Parse(userInput);
+                }
+                catch
+                {
+                    Console.WriteLine($"{userInput} Is Not A Number");
+                    continue;
+                }
+
+                if (result > 0 && result < 7)
+                {
+                    isValid = true;
+                    return result;
+                }
+                else
+                {
+                    Console.WriteLine("You must enter a number between 1 & 7 to continue");
+                    continue;
+                }
+
+
+            } while (!isValid);
+
+            return result;
+        }
+
         public static int ConfirmAction()
         {
             bool isValid = false;

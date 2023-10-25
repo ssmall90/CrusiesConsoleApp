@@ -1,4 +1,5 @@
-﻿using CrusiesConsoleAppUI.Factory;
+﻿using CrusiesAppDataAccess.Factory;
+using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
 using System;
@@ -12,11 +13,10 @@ namespace CrusiesConsoleAppUI.Pages
     public class AddPortPage : IBasePage
     {
         IUserModel _admin;
-        CruiseModel _cruise;
-        PortModel _port;
         IBasePage _page;
         IPageStore _pageStore;
         IDataManager _dataManager;
+        CruiseModel _cruise;
 
 
         public AddPortPage (IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
@@ -32,6 +32,7 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader($"Add A Port to {_cruise.CruiseName}");
             string portName = HelperMethods.HelperMethods.GetValidName("Port");
+            int lengthOfStay = HelperMethods.HelperMethods.GetValidInt("Please enter the duration of the stay at this port");
 
             switch (HelperMethods.HelperMethods.ConfirmAction())
             {
@@ -42,7 +43,7 @@ namespace CrusiesConsoleAppUI.Pages
                     break;
 
                 case 1:
-                    _cruise.AddPort(ModelFactory.CreatePort(portName));
+                    _cruise.AddPort(ModelFactory.CreatePort(portName,lengthOfStay));
                     PortModel newPort = _cruise.Ports.Where(p =>  p.Name == portName).FirstOrDefault()!;
                     _dataManager.AddPortToCruise("C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml",_cruise, newPort);
                     Console.WriteLine("Your Port Has Been Succesfully Added");

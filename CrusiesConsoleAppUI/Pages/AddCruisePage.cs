@@ -1,4 +1,5 @@
-﻿using CrusiesConsoleAppUI.Factory;
+﻿using CrusiesAppDataAccess.Factory;
+using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
 using System;

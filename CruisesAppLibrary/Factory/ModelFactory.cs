@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CrusiesConsoleAppUI.Factory
+namespace CrusiesAppDataAccess.Factory
 {
     public static class ModelFactory
     {
@@ -22,9 +22,9 @@ namespace CrusiesConsoleAppUI.Factory
             return new PassengerModel();
         }
 
-        public static PortModel CreatePort(string portName)
+        public static PortModel CreatePort(string portName, int lengthOfStay)
         {
-            return new PortModel(portName);
+            return new PortModel(portName,lengthOfStay);
         }
 
         public static TripModel CreateTrip()

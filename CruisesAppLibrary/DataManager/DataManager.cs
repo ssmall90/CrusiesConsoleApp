@@ -115,6 +115,13 @@ namespace CrusiesConsoleAppUI.Services
 
                 if (cruiseElement != null)
                 {
+                    XElement portsElement = cruiseElement.Element("Ports")!;
+
+                    if (portsElement == null)
+                    {
+                        portsElement = new XElement("Ports");
+                        cruiseElement.Add(portsElement);
+                    }
 
                     XElement newPortElement = new XElement("PortModel",
                         new XElement("PortName", port.Name),
@@ -122,7 +129,7 @@ namespace CrusiesConsoleAppUI.Services
                         new XElement("LengthOfStay", port.LengthOfStay),
                         new XElement("Trips", port.Trips));
 
-                    cruiseElement.Add(newPortElement);
+                    portsElement.Add(newPortElement);
 
                     doc.Save(filePath);
 
