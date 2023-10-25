@@ -8,10 +8,11 @@ namespace CrusiesConsoleAppUI.Models
 {
     public class PortModel : IPortModel
     {
+
         private static int _nextId;
         public static int NextId { get { return _nextId; } set { NextId = value; } }
         public string Name { get; set; }
-        public int PortId { get; set; }
+        public string PortId { get; set; }
         public int LengthOfStay { get; set; }
         public List<TripModel> Trips { get; set; }
 
@@ -24,7 +25,7 @@ namespace CrusiesConsoleAppUI.Models
         public PortModel(string portName, int lengthOfStay)
         {
             Name = portName;
-            PortId = _nextId++;
+            PortId = $"PI-{_nextId++}";
             LengthOfStay = lengthOfStay;
             Trips = new List<TripModel>();
 

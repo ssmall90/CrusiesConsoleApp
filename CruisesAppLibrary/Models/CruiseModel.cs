@@ -29,6 +29,7 @@ namespace CrusiesConsoleAppUI.Models
             CruiseIdentifier = $"CI-{_nextId++}";
             Ports =  new List<PortModel>();
             Passengers = new List<PassengerModel>();
+            _nextId = _nextId++;
 
         }
 

@@ -50,7 +50,7 @@ namespace CrusiesConsoleAppUI.Pages
                     _dataManager.AddTripToPort(
                         "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml",
                         _cruise.CruiseIdentifier,
-                        _port.Name, newTrip);
+                        _port.PortId.ToString(), newTrip) ;
 
                     HelperMethods.HelperMethods.ReturnToMainMenu($"Your Trip Has Been Successfully Added to {_port.Name}");
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);

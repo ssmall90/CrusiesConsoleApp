@@ -4,7 +4,7 @@
     {
         int LengthOfStay { get; set; }
         string Name { get; set; }
-        int PortId { get; set; }
+        string PortId { get; set; }
         List<TripModel> Trips { get; set; }
 
         void AddTrip(TripModel trip);

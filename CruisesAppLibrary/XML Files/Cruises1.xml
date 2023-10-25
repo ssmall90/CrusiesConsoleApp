@@ -253,32 +253,37 @@
     </Passengers>
   </CruiseModel>
   <CruiseModel>
-    <CruiseName>DreamLiner</CruiseName>
-    <CruiseIdentifier />
-    <Ports />
-    <Passengers />
-  </CruiseModel>
-  <CruiseModel>
-    <CruiseName>Mary Rose</CruiseName>
+    <CruiseName>Titanic</CruiseName>
     <CruiseIdentifier>CI-501249</CruiseIdentifier>
     <Ports>
       <PortModel>
-        <PortName>Port 309</PortName>
-        <PortId>113</PortId>
-        <LengthOfStay>2</LengthOfStay>
+        <Name>Iceberg</Name>
+        <PortId>PI-113</PortId>
+        <LengthOfStay>1</LengthOfStay>
         <Trips>
           <TripModel>
-            <NameOfActivity>all out</NameOfActivity>
+            <NameOfActivity>Sinking</NameOfActivity>
             <ActivityId>AI-7093</ActivityId>
-            <Cost>12</Cost>
+            <Cost>1</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Bayside</NameOfActivity>
+            <ActivityId>AI-7094</ActivityId>
+            <Cost>123</Cost>
           </TripModel>
         </Trips>
       </PortModel>
       <PortModel>
-        <PortName>Alicante</PortName>
-        <PortId>114</PortId>
-        <LengthOfStay>7</LengthOfStay>
-        <Trips />
+        <Name>America</Name>
+        <PortId>PI-114</PortId>
+        <LengthOfStay>12</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Beach</NameOfActivity>
+            <ActivityId>AI-7095</ActivityId>
+            <Cost>34</Cost>
+          </TripModel>
+        </Trips>
       </PortModel>
     </Ports>
     <Passengers />

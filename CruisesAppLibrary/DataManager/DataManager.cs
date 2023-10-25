@@ -104,7 +104,7 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public void AddTripToPort(string filePath, string cruiseIdentifier, string portName, TripModel trip)
+        public void AddTripToPort(string filePath, string cruiseIdentifier, string portId, TripModel trip)
         {
             try
             {
@@ -120,7 +120,7 @@ namespace CrusiesConsoleAppUI.Services
                     if (portsElement != null)
                     {
                         XElement portElement = portsElement.Elements("PortModel")
-                            .FirstOrDefault(p => p.Element("Name")?.Value == portName)!;
+                            .FirstOrDefault(p => p.Element("PortId")?.Value == portId)!;
 
                         if (portElement != null)
                         {
@@ -190,7 +190,7 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public void AddPortToCruise(string filePath, string outputFilePath, CruiseModel cruise, PortModel port)
+        public void AddPortToCruise(string filePath, CruiseModel cruise, PortModel port)
         {
 
             try
@@ -210,14 +210,14 @@ namespace CrusiesConsoleAppUI.Services
                     }
 
                     XElement newPortElement = new XElement("PortModel",
-                        new XElement("PortName", port.Name),
+                        new XElement("Name", port.Name),
                         new XElement("PortId", port.PortId),
                         new XElement("LengthOfStay", port.LengthOfStay),
                         new XElement("Trips", port.Trips));
 
                     portsElement.Add(newPortElement);
 
-                    doc.Save(outputFilePath);
+                    doc.Save(filePath);
 
                 }
 

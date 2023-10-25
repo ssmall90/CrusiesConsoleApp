@@ -27,6 +27,7 @@ namespace CrusiesConsoleAppUI.Models
             FirstName = firstName;
             LastName = lastName;
             PassportNumber = $"PN-{_nextPassportNumber++}";
+            _nextPassportNumber = _nextPassportNumber++;
 
         }
 

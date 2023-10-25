@@ -4,8 +4,8 @@ namespace CrusiesConsoleAppUI.Services
 {
     public interface IDataManager
     {
-        void AddPortToCruise(string filePath, string outputFilePath, CruiseModel cruise, PortModel port);
-        void AddTripToPort(string filePath, string cruiseIdentifier, string portName, TripModel trip);
+        void AddPortToCruise(string filePath, CruiseModel cruise, PortModel port);
+        void AddTripToPort(string filePath, string cruiseIdentifier, string portId, TripModel trip);
         void AppendCruiseToXml(string filePath, CruiseModel cruise);
         List<CruiseModel> DeserializeCruiseFromXml(string filePath);
         PassengerModel DeserializePassengerFromXml(string filePath);
