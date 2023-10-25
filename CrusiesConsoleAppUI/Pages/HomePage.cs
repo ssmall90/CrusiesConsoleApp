@@ -29,25 +29,18 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
 
             Console.WriteLine("1: Add Cruise");
-            Console.WriteLine("2: Edit Cruise");
-            Console.WriteLine("3: Remove Cruise");
-            Console.WriteLine("4: View All Cruises");
+            Console.WriteLine("2: View All Cruises");
 
-            switch(HelperMethods.HelperMethods.GetItemInRange(1, 4))
+
+            switch(HelperMethods.HelperMethods.GetItemInRange(1, 2,""))
             {
                 case 1:
                     _pageStore.CurrentPage = this;
                     _page = PageFactory.CreateAddCruisePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
+                    break;
 
-                    break; 
-                case 2: 
-                    Console.WriteLine();
-                    break;
-                case 3:
-                    Console.WriteLine();
-                    break;
-                case 4:
+                case 2:
                     _page = PageFactory.CreateViewAllCruisesPage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;

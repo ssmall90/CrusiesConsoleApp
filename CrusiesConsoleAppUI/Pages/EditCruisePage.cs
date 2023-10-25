@@ -37,7 +37,7 @@ namespace CrusiesConsoleAppUI.Pages
             HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
             HelperMethods.HelperMethods.DisplayEditingOptions("editCruisePage");
 
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 3))
+            switch (HelperMethods.HelperMethods.GetItemInRange(1, 3, "Select An Action From The Options Above"))
             {
                 case 1:
                     _pageStore.CurrentPage = this;
@@ -45,7 +45,16 @@ namespace CrusiesConsoleAppUI.Pages
                     _page.DisplayContent();
                      break;
 
-                    
+                case 2:
+                    _pageStore.CurrentPage = this;
+                    _page = PageFactory.CreateAddPassengerPage(_admin, _page, _cruise, _pageStore, _dataManager);
+                    _page.DisplayContent();
+                    break; 
+
+                case 3:
+                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                    _page.DisplayContent(); break;
+            
             }
 
 

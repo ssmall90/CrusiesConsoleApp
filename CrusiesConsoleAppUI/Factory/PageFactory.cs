@@ -21,9 +21,9 @@ namespace CrusiesConsoleAppUI.Factory
             return new AddCruisePage(admin, page, pageStore);
         }
 
-        public static IBasePage CreateAddPassengerPage(IUserModel admin, IDataManager dataManager)
+        public static IBasePage CreateAddPassengerPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore,  IDataManager dataManager)
         {
-            return new AddPassengerPage(admin);
+            return new AddPassengerPage(admin ,page, cruise, pageStore, dataManager);
         }
 
         public static IBasePage CreateAddPortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
@@ -53,7 +53,7 @@ namespace CrusiesConsoleAppUI.Factory
 
         public static IBasePage CreateRemovePortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
         {
-            return new RemovePortPage(admin, page, cruise, pageStore);
+            return new RemovePortPage(admin, page, cruise, pageStore, dataManager);
         }
 
         public static IBasePage CreateViewAllCruisesPage(IUserModel admin, IBasePage page, IPageStore pageStore, IDataManager dataManager)

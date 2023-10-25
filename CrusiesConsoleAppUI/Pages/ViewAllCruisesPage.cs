@@ -28,13 +28,21 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader("View All Cruises");
             HelperMethods.HelperMethods.DisplayList(_admin.Cruises,"Cruises");
+            Console.WriteLine($"{_admin.Cruises.Count + 1}: Return To Main Menu");
 
-            int selectedCruise = HelperMethods.HelperMethods.GetItemInRange(1, _admin.Cruises.Count) - 1;
+            int selectedCruise = HelperMethods.HelperMethods.GetItemInRange(1, _admin.Cruises.Count + 1, "Which Cruise Would You Like To View/Edit?");
 
-            _pageStore.CurrentPage = this;
-            _page = PageFactory.CreateEditCruisePage(_admin, _page, _admin.Cruises[selectedCruise],_pageStore, _dataManager);
-            _page.DisplayContent();
-
+            if (selectedCruise > 0 && selectedCruise <= _admin.Cruises.Count)
+            {
+                _pageStore.CurrentPage = this;
+                _page = PageFactory.CreateEditCruisePage(_admin, _page, _admin.Cruises[selectedCruise - 1], _pageStore, _dataManager);
+                _page.DisplayContent();
+            }
+            else
+            {
+                _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                _page.DisplayContent();
+            }
 
         }
     }

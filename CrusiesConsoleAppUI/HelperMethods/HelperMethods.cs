@@ -1,14 +1,17 @@
-﻿using System;
+﻿using CrusiesConsoleAppUI.Factory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CrusiesConsoleAppUI.HelperMethods
 {
     public class HelperMethods
     {
-        public static int GetItemInRange(int pMin, int pMax) // Get User Inputs For Menus
+        public static int GetItemInRange(int pMin, int pMax, string message) // Get User Inputs For Menus
         {
 
             Console.WriteLine();
@@ -25,7 +28,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
             do
             {
 
-                Console.WriteLine($"To Select A Menu Option Please Enter A Number Between {pMin} And {pMax} Inclusive.");
+                Console.WriteLine($"{message}\r\n\r\nPlease Enter A Number Between {pMin} And {pMax} Inclusive.");
 
                 string userInput = Console.ReadLine();
 
@@ -79,6 +82,17 @@ namespace CrusiesConsoleAppUI.HelperMethods
 
         public static int DisplayEditingOptions(string options)
         {
+
+            if(options == "confirmOrCancel")
+            {
+                List<string> createOrCancelOptions = new List<string>();
+                createOrCancelOptions.Add("1: Confirm");
+                createOrCancelOptions.Add("2: Cancel");
+                DisplayList(createOrCancelOptions, " Confirm or Cancel");
+                return createOrCancelOptions.Count();
+
+            }
+
             if (options == "editCruisePage")
             {
                 List<string> editCruisePageOptions = new List<string>();
@@ -95,7 +109,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 addPortPageOptions.Add("1: Add New Port");
                 addPortPageOptions.Add("2: Remove Port");
                 addPortPageOptions.Add("3: Edit Exisiting Port");
-                addPortPageOptions.Add("3: Go Back");
+                addPortPageOptions.Add("4: Go Back");
                 DisplayList(addPortPageOptions, "Editing Options");
                 return addPortPageOptions.Count();
             }
@@ -196,13 +210,13 @@ namespace CrusiesConsoleAppUI.HelperMethods
 
                 if (userInput.Length > 0)
                 {
-                    if(userInput == "Y".ToLower())
+                    if (userInput == "Y".ToLower())
                     {
                         isValid = true;
                         response = 1;
 
                     }
-                    else if(userInput == "N".ToLower())
+                    else if (userInput == "N".ToLower())
                     {
                         isValid = true;
                         response = 0;
@@ -210,7 +224,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
                     }
                     else
                     {
-                        isValid = false; 
+                        isValid = false;
                     }
                 }
 
@@ -224,8 +238,22 @@ namespace CrusiesConsoleAppUI.HelperMethods
             return response;
         }
 
+        public static void ReturnToMainMenu(string pMessage) // Exit Option Back To Main Menu View
+        {
+
+            Console.SetCursorPosition(Console.WindowLeft, Console.CursorTop + 3);
+            Console.WriteLine(pMessage);
+            Console.SetCursorPosition(Console.WindowLeft, Console.CursorTop + 1);
+            Console.WriteLine("Press Any Key To Return To The Main Menu");
+            Console.ReadKey();
+
+        }
     }
 }
+
+         
+        
+
 
 
 

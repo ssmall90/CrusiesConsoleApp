@@ -30,7 +30,7 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader("Edit Ports");
             HelperMethods.HelperMethods.DisplayList(_cruise.Ports, $"{_cruise.CruiseName} Ports");
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, HelperMethods.HelperMethods.DisplayEditingOptions("editPortPage")))
+            switch (HelperMethods.HelperMethods.GetItemInRange(1, HelperMethods.HelperMethods.DisplayEditingOptions("editPortPage"), "Select An Action for the Options Above"))
             {
                 case 1:
                     _pageStore.CurrentPage = this;
