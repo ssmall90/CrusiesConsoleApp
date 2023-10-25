@@ -60,27 +60,27 @@
       <PassengerModel>
         <FirstName>Alice</FirstName>
         <LastName>Smith</LastName>
-        <PassportNumber>PS12345</PassportNumber>
+        <PassportNumber>PN-12345</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Bob</FirstName>
         <LastName>Johnson</LastName>
-        <PassportNumber>PS67890</PassportNumber>
+        <PassportNumber>PN-67890</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Carol</FirstName>
         <LastName>Williams</LastName>
-        <PassportNumber>PS78901</PassportNumber>
+        <PassportNumber>PN-78901</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>David</FirstName>
         <LastName>Anderson</LastName>
-        <PassportNumber>PS23456</PassportNumber>
+        <PassportNumber>PN-23456</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Eve</FirstName>
         <LastName>Davis</LastName>
-        <PassportNumber>PS54321</PassportNumber>
+        <PassportNumber>PN-54321</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
@@ -149,22 +149,22 @@
       <PassengerModel>
         <FirstName>Adam</FirstName>
         <LastName>Rowe</LastName>
-        <PassportNumber>PS61930</PassportNumber>
+        <PassportNumber>PN-61930</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>James</FirstName>
         <LastName>Anderson</LastName>
-        <PassportNumber>PS01901</PassportNumber>
+        <PassportNumber>PN-01901</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Laura</FirstName>
         <LastName>Fenwick</LastName>
-        <PassportNumber>PS23111</PassportNumber>
+        <PassportNumber>PN-23111</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Amanda</FirstName>
         <LastName>Roberts</LastName>
-        <PassportNumber>PS50001</PassportNumber>
+        <PassportNumber>PN-50001</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
@@ -228,27 +228,27 @@
       <PassengerModel>
         <FirstName>Phil</FirstName>
         <LastName>James</LastName>
-        <PassportNumber>PS13645</PassportNumber>
+        <PassportNumber>PN-13645</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Hayden</FirstName>
         <LastName>Smith</LastName>
-        <PassportNumber>PS69950</PassportNumber>
+        <PassportNumber>PN-69950</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Linzi</FirstName>
         <LastName>Small</LastName>
-        <PassportNumber>PS33301</PassportNumber>
+        <PassportNumber>PN-33301</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Tim</FirstName>
         <LastName>Grey</LastName>
-        <PassportNumber>PS20911</PassportNumber>
+        <PassportNumber>PN-20911</PassportNumber>
       </PassengerModel>
       <PassengerModel>
         <FirstName>Sully</FirstName>
         <LastName>Lawrence</LastName>
-        <PassportNumber>PS99981</PassportNumber>
+        <PassportNumber>PN-99981</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
