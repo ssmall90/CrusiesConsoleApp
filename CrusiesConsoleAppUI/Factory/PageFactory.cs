@@ -16,24 +16,20 @@ namespace CrusiesConsoleAppUI.Factory
             return new HomePage(admin, page, pageStore, dataManager);
         }
 
+
+        public static IBasePage CreateViewAllCruisesPage(IUserModel admin, IBasePage page, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new ViewAllCruisesPage(admin, page, pageStore, dataManager);
+        }
+
         public static IBasePage CreateAddCruisePage(IUserModel admin, IBasePage page, IPageStore pageStore, IDataManager dataManager)
         {
-            return new AddCruisePage(admin, page, pageStore);
+            return new AddCruisePage(admin, page, pageStore, dataManager);
         }
 
-        public static IBasePage CreateAddPassengerPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore,  IDataManager dataManager)
+        public static IBasePage CreateRemoveCruisePage(IUserModel admin, IDataManager dataManager)
         {
-            return new AddPassengerPage(admin ,page, cruise, pageStore, dataManager);
-        }
-
-        public static IBasePage CreateAddPortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
-        {
-            return new AddPortPage(admin, page, cruise, pageStore, dataManager);
-        }
-
-        public static IBasePage CreateEditPortsPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
-        {
-            return new EditPortsPage(admin, page, cruise, pageStore, dataManager);
+            return new RemoveCruisePage(admin);
         }
 
         public static IBasePage CreateEditCruisePage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
@@ -41,14 +37,33 @@ namespace CrusiesConsoleAppUI.Factory
             return new EditCruisePage(admin, page, cruise, pageStore, dataManager);
         }
 
-        public static IBasePage CreateRemoveCruisePage(IUserModel admin , IDataManager dataManager)
+
+
+
+
+        public static IBasePage CreateAddPassengerPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore,  IDataManager dataManager)
         {
-            return new RemoveCruisePage(admin);
+            return new AddPassengerPage(admin ,page, cruise, pageStore, dataManager);
+        }
+        public static IBasePage CreateRemovePassengerPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new RemovePassengerPage (admin, page, cruise, pageStore, dataManager);
+
         }
 
-        public static IBasePage CreateRemovePassngerPage(IUserModel admin , IDataManager dataManager)
+        public static IBasePage CreateEditPassengerPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
         {
-            return new RemovePassengerPage(admin);
+            return new EditPassengerPage (admin, page, cruise, pageStore, dataManager);
+
+        }
+
+
+
+
+
+        public static IBasePage CreateAddPortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new AddPortPage(admin, page, cruise, pageStore, dataManager);
         }
 
         public static IBasePage CreateRemovePortPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
@@ -56,9 +71,14 @@ namespace CrusiesConsoleAppUI.Factory
             return new RemovePortPage(admin, page, cruise, pageStore, dataManager);
         }
 
-        public static IBasePage CreateViewAllCruisesPage(IUserModel admin, IBasePage page, IPageStore pageStore, IDataManager dataManager)
+        public static IBasePage CreateEditPortsPage(IUserModel admin, IBasePage page, CruiseModel cruise, IPageStore pageStore, IDataManager dataManager)
         {
-            return new ViewAllCruisesPage(admin, page, pageStore, dataManager);
+            return new EditPortsPage(admin, page, cruise, pageStore, dataManager);
         }
+
+
+  
+
+
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CrusiesConsoleAppUI.Models
 {
@@ -14,7 +15,7 @@ namespace CrusiesConsoleAppUI.Models
         private readonly string _passportNumber;
 
         public static int NextPassportNumber { get { return _nextPassportNumber; } set { NextPassportNumber = value; } }
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } 
         public string LastName { get; set; }
         public string PassportNumber { get; set; }
 
@@ -27,7 +28,7 @@ namespace CrusiesConsoleAppUI.Models
         {
             FirstName = firstName;
             LastName = lastName;
-            PassportNumber = $"PN-{_nextPassportNumber + 1}";
+            PassportNumber = $"PN-{_nextPassportNumber++}";
 
         }
 

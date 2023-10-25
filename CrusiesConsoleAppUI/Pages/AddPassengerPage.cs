@@ -29,9 +29,9 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Cruise");
-            string passengerFirstName = HelperMethods.HelperMethods.GetValidName("First Name");
-            string passengerLastName =  HelperMethods.HelperMethods.GetValidName("Last Name");
+            HelperMethods.HelperMethods.DisplayPageHeader("Add Passenger");
+            string passengerFirstName = HelperMethods.HelperMethods.GetValidName("First Name", "Passenger");
+            string passengerLastName =  HelperMethods.HelperMethods.GetValidName("Last Name", "Passenger");
             HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel"); 
 
             switch (HelperMethods.HelperMethods.GetItemInRange(1,2,$"Are you sure you would like to add {passengerFirstName} {passengerLastName} to this cruise?"))
@@ -39,7 +39,7 @@ namespace CrusiesConsoleAppUI.Pages
                 case 1:
                     _cruise.AddPassenger(ModelFactory.CreatePassenger(passengerFirstName, passengerLastName));
                     HelperMethods.HelperMethods.ReturnToMainMenu("The passenger has been added to the cruise");
-                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                    _page = _pageStore.CurrentPage;
                     _page.DisplayContent();
                     break;
 

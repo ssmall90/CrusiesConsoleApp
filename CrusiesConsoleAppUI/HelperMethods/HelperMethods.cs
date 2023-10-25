@@ -71,11 +71,14 @@ namespace CrusiesConsoleAppUI.HelperMethods
             Console.WriteLine($"--------------------");
             Console.WriteLine($"{listName}");
             Console.WriteLine($"--------------------");
-
-            foreach (var item in list)
+            
+            if (list != null)
             {
-                Console.WriteLine($"{index}: {item}");
-                index++;
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"{index}: {item}");
+                    index++;
+                }
             }
 
         }
@@ -98,7 +101,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 List<string> editCruisePageOptions = new List<string>();
                 editCruisePageOptions.Add("1: Edit Ports");
                 editCruisePageOptions.Add("2: Edit Passengers");
-                editCruisePageOptions.Add("3: Go Back");
+                editCruisePageOptions.Add("3: Return To Main Menu");
                 DisplayList(editCruisePageOptions, "Editing Options");
                 return editCruisePageOptions.Count();
             }
@@ -109,7 +112,18 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 addPortPageOptions.Add("1: Add New Port");
                 addPortPageOptions.Add("2: Remove Port");
                 addPortPageOptions.Add("3: Edit Exisiting Port");
-                addPortPageOptions.Add("4: Go Back");
+                addPortPageOptions.Add("4: Return To Main Menu");
+                DisplayList(addPortPageOptions, "Editing Options");
+                return addPortPageOptions.Count();
+            }
+            else if (options == "editPassengerPage")
+            {
+
+                List<string> addPortPageOptions = new List<string>();
+                addPortPageOptions.Add("1: Add New Passenger");
+                addPortPageOptions.Add("2: Remove Passenger");
+                addPortPageOptions.Add("3: Edit Exisiting Passenger");
+                addPortPageOptions.Add("4: Return To Main Menu");
                 DisplayList(addPortPageOptions, "Editing Options");
                 return addPortPageOptions.Count();
             }
@@ -126,7 +140,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
 
         }
 
-        public static string GetValidName(string model)
+        public static string GetValidName(string nameType, string model )
         {
             bool isValid = false;
 
@@ -135,16 +149,20 @@ namespace CrusiesConsoleAppUI.HelperMethods
             do
             {
 
-                Console.WriteLine($"Please Enter a Name for the {model} You Would Like to Add");
+                Console.WriteLine($"Please Enter the {nameType} for the {model} You Would Like to Add");
 
                 string userInput = Console.ReadLine();
 
                 Console.WriteLine("");
 
-                if (userInput.Length > 0)
+                if (userInput.Length > 3)
                 {
                     isValid = true;
                     result = userInput;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a Name at Least 3 Characters In Length.");
                 }
 
             } while (!isValid);

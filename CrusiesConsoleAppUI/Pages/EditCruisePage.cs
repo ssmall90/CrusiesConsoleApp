@@ -47,7 +47,7 @@ namespace CrusiesConsoleAppUI.Pages
 
                 case 2:
                     _pageStore.CurrentPage = this;
-                    _page = PageFactory.CreateAddPassengerPage(_admin, _page, _cruise, _pageStore, _dataManager);
+                    _page = PageFactory.CreateEditPassengerPage(_admin, _page, _cruise, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break; 
 

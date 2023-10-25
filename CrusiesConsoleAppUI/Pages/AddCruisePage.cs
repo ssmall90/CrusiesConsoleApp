@@ -17,50 +17,44 @@ namespace CrusiesConsoleAppUI.Pages
         IUserModel _admin;
         IBasePage _page;
         IPageStore _pageStore;
+        IDataManager _dataManager;
+        
 
-        public AddCruisePage(IUserModel admin, IBasePage page, IPageStore pageStore)
+        public AddCruisePage(IUserModel admin, IBasePage page, IPageStore pageStore, IDataManager dataManager)
         {
             _admin = admin;
             _page = page;
             _pageStore = pageStore;   
+            _dataManager = dataManager;
         }
         public void DisplayContent()
         {
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader("Add Cruise");
-            Console.WriteLine("Enter The Name of Your Cruise or Press '0' to Go Back" );
 
-            string cruiseName = Console.ReadLine();
+            string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");
 
-            Console.WriteLine("Press '0' to Go Back");
+            string portName = HelperMethods.HelperMethods.GetValidName("Name","Port");
+            int lengthOfStay = HelperMethods.HelperMethods.GetValidInt("Enter the duration of the stay at this port");
 
-            while (true)
-            {
-                if (cruiseName == "0")
-                {
-                    Console.Clear();
-                    _page = _pageStore.CurrentPage;
-                    _page.DisplayContent();
-                }
-                else if (string.IsNullOrEmpty(cruiseName) || cruiseName.Length < 3)
-                {
-                    Console.WriteLine("Enter A valid name for your cruise. \n\r" +
-                        "Please ensure your cruise name has more than 3 characters");
-                    cruiseName = Console.ReadLine();
-                }
-                else
-                {
-                    _admin.AddCruise(ModelFactory.CreateCruise(cruiseName));
+            PortModel newPort = ModelFactory.CreatePort(portName, lengthOfStay);
 
-                    Console.WriteLine("Your Cruise Has been Created. Add Passengers, Ports, and Trips From the Main Menu");
-                    Console.WriteLine("Press Enter to Return To Main Menu");
-                    Console.ReadLine();
+            string passengerFirstName = HelperMethods.HelperMethods.GetValidName("First Name","Passenger");
+            string passengerLastName = HelperMethods.HelperMethods.GetValidName("Last Name", "Passenger");
 
-                    Console.Clear();
-                    _page = _pageStore.CurrentPage;
-                    _page.DisplayContent();
-                }
-            }
+            PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName);
+
+
+            CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
+
+            newCruise.AddPort(newPort);
+            newCruise.AddPassenger(newPassenger);
+            _admin.AddCruise(newCruise);
+            HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List od Cruises");
+            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+            _page.DisplayContent();
+
+
         }
     }
 }
