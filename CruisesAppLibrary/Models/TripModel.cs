@@ -26,10 +26,7 @@ namespace CrusiesConsoleAppUI.Models
 
         public int Cost { get; set; }
 
-        static TripModel()
-        {
 
-        }
         public TripModel(string tripName, int costOfTrip)
         {
             NameOfActivity = tripName;

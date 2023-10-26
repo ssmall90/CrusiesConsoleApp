@@ -23,10 +23,6 @@ using System.Xml.Linq;
         public string LastName { get; set; }
         public string PassportNumber { get; set; }
 
-        static PassengerModel()
-        {
-            // The constructor already initializes _nextPassportNumber.
-        }
 
         public PassengerModel(string firstName, string lastName)
         {
