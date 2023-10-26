@@ -16,17 +16,15 @@ namespace CrusiesConsoleAppUI.Services
 
             try
             {
-                // Create an instance of the XmlSerializer for the CruiseModel
                 XmlSerializer serializer = new XmlSerializer(typeof(CruiseModel));
 
-                // Create an XmlReader to read the XML file
                 using (XmlReader reader = XmlReader.Create(filePath))
                 {
                     while (reader.Read())
                     {
                         if (reader.NodeType == XmlNodeType.Element && reader.Name == "CruiseModel")
                         {
-                            // Deserialize the first CruiseModel element encountered in the XML
+
                             CruiseModel cruise = (CruiseModel)serializer.Deserialize(reader.ReadSubtree());
                             cruises.Add(cruise);
                         }
@@ -37,7 +35,7 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return null; // Handle the error as needed
+                return null; 
             }
 
             return cruises;
@@ -47,9 +45,8 @@ namespace CrusiesConsoleAppUI.Services
         {
             try
             {
-                // Load the existing XML document
-                XDocument doc = XDocument.Load(filePath);
 
+                XDocument doc = XDocument.Load(filePath);
 
                 XElement newCruiseElement =
                     new XElement("CruiseModel",
@@ -60,7 +57,6 @@ namespace CrusiesConsoleAppUI.Services
 
                 ); ;
 
-
                 doc.Root.Add(newCruiseElement);
 
                 doc.Save(filePath);
@@ -69,7 +65,6 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                // Handle the error as needed
             }
         }
 
@@ -88,12 +83,10 @@ namespace CrusiesConsoleAppUI.Services
 
                     if (passengersElement == null)
                     {
-                        // If <Passengers> element does not exist, create it
                         passengersElement = new XElement("Passengers");
                         cruiseElement.Add(passengersElement);
                     }
 
-                    // Add each passenger to the <Passengers> element
                     XElement passengerElement = new XElement("PassengerModel",
                     new XElement("FirstName", passenger.FirstName),
                     new XElement("LastName", passenger.LastName),
@@ -111,7 +104,6 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                // Handle the error as needed
             }
         }
 
@@ -139,12 +131,11 @@ namespace CrusiesConsoleAppUI.Services
 
                             if (tripsElement == null)
                             {
-                                // If <Trips> element does not exist, create it
+
                                 tripsElement = new XElement("Trips");
                                 portElement.Add(tripsElement);
                             }
 
-                            // Create a new <TripModel> element and add it to <Trips>
                             XElement newTripElement = new XElement("TripModel",
                                 new XElement("NameOfActivity", trip.NameOfActivity),
                                 new XElement("ActivityId", trip.ActivityId),
@@ -172,7 +163,6 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                // Handle the error as needed
             }
         }
 
@@ -186,8 +176,8 @@ namespace CrusiesConsoleAppUI.Services
 
                 if (tripToDelete != null)
                 {
-                    tripToDelete.Remove(); // Remove the found <TripModel> element
-                    doc.Save(filePath);     // Save the updated XML
+                    tripToDelete.Remove(); 
+                    doc.Save(filePath);    
                 }
                 else
                 {
@@ -236,7 +226,6 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                // Handle the error as needed
             }
         }
 
