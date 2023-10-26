@@ -111,7 +111,9 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 List<string> editTripOptions = new List<string>();
                 editTripOptions.Add("1: Add Trip");
                 editTripOptions.Add("2: Remove Trip");
-                editTripOptions.Add("3: Return To Main Menu");
+                editTripOptions.Add("3: Add Passenger To A Trip");
+                editTripOptions.Add("4: Remove Passenger From A Trip");
+                editTripOptions.Add("5: Return To Main Menu");
                 DisplayList(editTripOptions, "Editing Options");
                 return editTripOptions.Count();
             }

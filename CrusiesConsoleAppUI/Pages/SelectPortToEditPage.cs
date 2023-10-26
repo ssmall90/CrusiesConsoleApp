@@ -33,7 +33,7 @@ namespace CrusiesConsoleAppUI.Pages
             HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
             int selectedPort = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Ports.Count, "Which Port Do You Want to Edit?");
             HelperMethods.HelperMethods.DisplayEditingOptions("editTrip");
-            int selectedOption = HelperMethods.HelperMethods.GetItemInRange(1, 3, "Select An Action from the Menu Above");
+            int selectedOption = HelperMethods.HelperMethods.GetItemInRange(1, 5, "Select An Action from the Menu Above");
 
             switch(selectedOption)
 
@@ -57,6 +57,8 @@ namespace CrusiesConsoleAppUI.Pages
                         _page.DisplayContent();
                         break;
                     }
+                case 3: _page = PageFactory.AddPassengerToTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
+                    _page.DisplayContent(); break;
             }
 
         }
