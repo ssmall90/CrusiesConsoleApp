@@ -73,34 +73,45 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public PortModel DeserializePortFromXml(string filePath)
+        public void AddPassengersToCruise(string filePath, string cruiseIdentifier, PassengerModel passenger)
         {
             try
             {
-                // Create an instance of the XmlSerializer for the CruiseModel
-                XmlSerializer serializer = new XmlSerializer(typeof(PortModel));
+                XDocument doc = XDocument.Load(filePath);
 
-                // Create an XmlReader to read the XML file
-                using (XmlReader reader = XmlReader.Create(filePath))
+                XElement cruiseElement = doc.Root!.Elements("CruiseModel")
+                    .FirstOrDefault(c => c.Element("CruiseIdentifier")!.Value == cruiseIdentifier)!;
+
+                if (cruiseElement != null)
                 {
-                    while (reader.Read())
-                    {
-                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "PortModel")
-                        {
-                            // Deserialize the first CruiseModel element encountered in the XML
-                            PortModel port = (PortModel)serializer.Deserialize(reader.ReadSubtree());
-                            return port;
-                        }
-                    }
-                }
+                    XElement passengersElement = cruiseElement.Element("Passengers");
 
-                // If no Port element is found, return null
-                return null;
+                    if (passengersElement == null)
+                    {
+                        // If <Passengers> element does not exist, create it
+                        passengersElement = new XElement("Passengers");
+                        cruiseElement.Add(passengersElement);
+                    }
+
+                    // Add each passenger to the <Passengers> element
+                    XElement passengerElement = new XElement("PassengerModel",
+                    new XElement("FirstName", passenger.FirstName),
+                    new XElement("LastName", passenger.LastName),
+                    new XElement("PassportNumber", passenger.PassportNumber));
+                    passengersElement.Add(passengerElement);
+
+
+                    doc.Save(filePath);
+                }
+                else
+                {
+                    Console.WriteLine("Cruise with the specified identifier not found.");
+                }
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return null; // Handle the error as needed
+                // Handle the error as needed
             }
         }
 
@@ -229,66 +240,6 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public TripModel DeserializeTripFromXml(string filePath)
-        {
-            try
-            {
-                // Create an instance of the XmlSerializer for the CruiseModel
-                XmlSerializer serializer = new XmlSerializer(typeof(TripModel));
 
-                // Create an XmlReader to read the XML file
-                using (XmlReader reader = XmlReader.Create(filePath))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "TripModel")
-                        {
-                            // Deserialize the first CruiseModel element encountered in the XML
-                            TripModel trip = (TripModel)serializer.Deserialize(reader.ReadSubtree());
-                            return trip;
-                        }
-                    }
-                }
-
-                // If no Port element is found, return null
-                return null;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return null; // Handle the error as needed
-            }
-        }
-
-        public PassengerModel DeserializePassengerFromXml(string filePath)
-        {
-            try
-            {
-                // Create an instance of the XmlSerializer for the CruiseModel
-                XmlSerializer serializer = new XmlSerializer(typeof(PassengerModel));
-
-                // Create an XmlReader to read the XML file
-                using (XmlReader reader = XmlReader.Create(filePath))
-                {
-                    while (reader.Read())
-                    {
-                        if (reader.NodeType == XmlNodeType.Element && reader.Name == "PassengerModel")
-                        {
-                            // Deserialize the first CruiseModel element encountered in the XML
-                            PassengerModel passenger = (PassengerModel)serializer.Deserialize(reader.ReadSubtree());
-                            return passenger;
-                        }
-                    }
-                }
-
-                // If no Port element is found, return null
-                return null;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                return null; // Handle the error as needed
-            }
-        }
     }
 }

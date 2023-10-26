@@ -286,6 +286,22 @@
         </Trips>
       </PortModel>
     </Ports>
-    <Passengers />
+    <Passengers>
+      <PassengerModel>
+        <FirstName>Dean</FirstName>
+        <LastName>Anderson</LastName>
+        <PassportNumber>PN-103113</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Sean</FirstName>
+        <LastName>Lenny</LastName>
+        <PassportNumber>PN-103113</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Ian</FirstName>
+        <LastName>Wyndam</LastName>
+        <PassportNumber>PN-103114</PassportNumber>
+      </PassengerModel>
+    </Passengers>
   </CruiseModel>
 </Cruises>
