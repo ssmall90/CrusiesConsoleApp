@@ -271,6 +271,36 @@
             <ActivityId>AI-7094</ActivityId>
             <Cost>123</Cost>
           </TripModel>
+          <TripModel>
+            <NameOfActivity>Giggs</NameOfActivity>
+            <ActivityId>AI-7093</ActivityId>
+            <Cost>10</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>gogo</NameOfActivity>
+            <ActivityId>AI-7093</ActivityId>
+            <Cost>123</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>adjfdAFSA</NameOfActivity>
+            <ActivityId>AI-7093</ActivityId>
+            <Cost>23</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>SAJGFUDAda</NameOfActivity>
+            <ActivityId>AI-7093</ActivityId>
+            <Cost>14</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>DandyLion</NameOfActivity>
+            <ActivityId>AI-7094</ActivityId>
+            <Cost>299</Cost>
+          </TripModel>
+          <TripModel>
+            <NameOfActivity>Field day</NameOfActivity>
+            <ActivityId>AI-7095</ActivityId>
+            <Cost>100</Cost>
+          </TripModel>
         </Trips>
       </PortModel>
       <PortModel>
@@ -284,6 +314,12 @@
             <Cost>34</Cost>
           </TripModel>
         </Trips>
+      </PortModel>
+      <PortModel>
+        <Name>Heyya</Name>
+        <PortId>PI-113</PortId>
+        <LengthOfStay>1</LengthOfStay>
+        <Trips />
       </PortModel>
     </Ports>
     <Passengers>
@@ -301,6 +337,31 @@
         <FirstName>Ian</FirstName>
         <LastName>Wyndam</LastName>
         <PassportNumber>PN-103114</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Wendy</FirstName>
+        <LastName>Alan</LastName>
+        <PassportNumber>PN-103113</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Cindy</FirstName>
+        <LastName>Lime</LastName>
+        <PassportNumber>PN-103113</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Craig</FirstName>
+        <LastName>Bellamy</LastName>
+        <PassportNumber>PN-103113</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Shaun</FirstName>
+        <LastName>Window</LastName>
+        <PassportNumber>PN-103114</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Eddy</FirstName>
+        <LastName>Smith</LastName>
+        <PassportNumber>PN-103115</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>

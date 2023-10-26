@@ -9,16 +9,16 @@ namespace CrusiesConsoleAppUI.Models
 {
     public class TripModel
     {
-        private static int _nextId;
-        private readonly string _nameOfActivity;
-        private readonly string _activityId;
-        private readonly int _cost;
-        private readonly List<PassengerModel> _attendingPassengers;
+        private static int _nextId = LoadNextIdNumber();
 
+        private const string ConfigFilePath = "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\TextFiles\\LastTripNumber.txt";
+
+        public static int NextTripNumber
+        {
+            get { return _nextId; }
+        }
 
         public List<PassengerModel> AttendingPassengers { get; set; }
-
-        public static int NextId1 { get => _nextId; set => _nextId = value; }
 
         public string NameOfActivity { get; set; }
 
@@ -28,15 +28,16 @@ namespace CrusiesConsoleAppUI.Models
 
         static TripModel()
         {
-            _nextId = 7093;
+
         }
         public TripModel(string tripName, int costOfTrip)
         {
             NameOfActivity = tripName;
-            ActivityId = $"AI-{NextId1++}";
             Cost = costOfTrip;
+            ActivityId = $"AI-{_nextId++}";
             AttendingPassengers = new List<PassengerModel>();
-            _nextId = _nextId++;
+
+            SaveLastIdNumber(_nextId);
 
         }
         public TripModel()
@@ -49,6 +50,24 @@ namespace CrusiesConsoleAppUI.Models
             return $"Id: {ActivityId}" +
                    $" {NameOfActivity} " +
                    $"Price: £{Cost}";
+        }
+
+        private static int LoadNextIdNumber()
+        {
+            if (File.Exists(ConfigFilePath))
+            {
+                string content = File.ReadAllText(ConfigFilePath);
+                if (int.TryParse(content, out int number))
+                {
+                    return number;
+                }
+            }
+            return 7093;
+        }
+
+        private static void SaveLastIdNumber(int number)
+        {
+            File.WriteAllText(ConfigFilePath, number.ToString());
         }
     }
 }
