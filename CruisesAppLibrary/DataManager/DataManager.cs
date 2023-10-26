@@ -35,7 +35,7 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return null; 
+                return null;
             }
 
             return cruises;
@@ -107,6 +107,31 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
+        public void RemovePassengerFromCruise(string filePath, string cruiseIdentifier, string passportNumber)
+        {
+            try
+            {
+                XDocument doc = XDocument.Load(filePath);
+
+                XElement passengerToRemove = doc.Descendants("PassengerModel").FirstOrDefault(p => p.Element("PassportNumber")?.Value == passportNumber)!;
+
+                if (passengerToRemove != null)
+                {
+                    passengerToRemove.Remove();
+                    doc.Save(filePath);
+                }
+                else
+                {
+                    Console.WriteLine("Passenger with the specified passport number not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+
+        }
+
         public void AddTripToPort(string filePath, string cruiseIdentifier, string portId, TripModel trip)
         {
             try
@@ -176,8 +201,8 @@ namespace CrusiesConsoleAppUI.Services
 
                 if (tripToDelete != null)
                 {
-                    tripToDelete.Remove(); 
-                    doc.Save(filePath);    
+                    tripToDelete.Remove();
+                    doc.Save(filePath);
                 }
                 else
                 {
@@ -187,7 +212,6 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                // Handle the error as needed
             }
         }
 

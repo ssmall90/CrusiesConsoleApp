@@ -37,6 +37,7 @@ namespace CrusiesConsoleAppUI.Pages
             switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to remove {_cruise.Passengers[selectedPassenger - 1]}"))
             {
                 case 1:
+                    _dataManager.RemovePassengerFromCruise("C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", _cruise.CruiseIdentifier, _cruise.Passengers[selectedPassenger -1].PassportNumber);
                     _cruise.RemovePassenger(_cruise.Passengers[selectedPassenger - 1]);
                     HelperMethods.HelperMethods.ReturnToMainMenu("The selected Passenger has been removed from the cruise");
                     _page = _pageStore.CurrentPage;

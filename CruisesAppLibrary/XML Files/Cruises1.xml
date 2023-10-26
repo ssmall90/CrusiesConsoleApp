@@ -19,6 +19,11 @@
             <ActivityId>302</ActivityId>
             <Cost>60</Cost>
           </TripModel>
+          <TripModel>
+            <NameOfActivity>lunaworld</NameOfActivity>
+            <ActivityId>AI-7096</ActivityId>
+            <Cost>123</Cost>
+          </TripModel>
         </Trips>
       </PortModel>
       <PortModel>
@@ -357,11 +362,6 @@
         <FirstName>Shaun</FirstName>
         <LastName>Window</LastName>
         <PassportNumber>PN-103114</PassportNumber>
-      </PassengerModel>
-      <PassengerModel>
-        <FirstName>Eddy</FirstName>
-        <LastName>Smith</LastName>
-        <PassportNumber>PN-103115</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
