@@ -306,6 +306,11 @@
             <ActivityId>AI-7095</ActivityId>
             <Cost>100</Cost>
           </TripModel>
+          <TripModel>
+            <NameOfActivity>Heaven</NameOfActivity>
+            <ActivityId>AI-7097</ActivityId>
+            <Cost>100</Cost>
+          </TripModel>
         </Trips>
       </PortModel>
       <PortModel>

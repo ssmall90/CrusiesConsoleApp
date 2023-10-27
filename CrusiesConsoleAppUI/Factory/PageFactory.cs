@@ -102,5 +102,10 @@ namespace CrusiesConsoleAppUI.Factory
         {
             return new AddPassengerToTripPage(admin, page, cruise, port, pageStore, dataManager);
         }
+        public static IBasePage RemovePassengerFromTripPage(IUserModel admin, IBasePage page, CruiseModel cruise, PortModel port, IPageStore pageStore, IDataManager dataManager)
+        {
+            return new RemovePassengerFromTripPage(admin, page, cruise, port, pageStore, dataManager);
+        }
+
     }
 }

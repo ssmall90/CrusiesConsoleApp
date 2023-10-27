@@ -58,7 +58,16 @@ namespace CrusiesConsoleAppUI.Pages
                         break;
                     }
                 case 3: _page = PageFactory.AddPassengerToTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
-                    _page.DisplayContent(); break;
+                    _page.DisplayContent(); 
+                    break;
+
+                case 4:
+                    _page = PageFactory.RemovePassengerFromTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
+                    _page.DisplayContent();
+                    break;
+
+
+
             }
 
         }

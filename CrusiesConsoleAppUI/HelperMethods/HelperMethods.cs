@@ -83,6 +83,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
 
         }
 
+
         public static int DisplayEditingOptions(string options)
         {
 

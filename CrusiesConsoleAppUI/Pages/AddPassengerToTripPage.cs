@@ -1,4 +1,5 @@
-﻿using CrusiesConsoleAppUI.Models;
+﻿using CrusiesConsoleAppUI.Factory;
+using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
 using System;
 using System.Collections.Generic;
@@ -49,14 +50,13 @@ namespace CrusiesConsoleAppUI.Pages
 
             }
 
-            if(alreadyOnTrip == false)
+            if(!alreadyOnTrip)
             {
                 _port.Trips[selectedTrip - 1].AttendingPassengers.Add(_cruise.Passengers[selectedPassenger - 1]);
-                HelperMethods.HelperMethods.ReturnToMainMenu("passenger has been added to trip");
-                foreach(var passenger in _port.Trips[selectedTrip - 1].AttendingPassengers)
-                {
-                    Console.WriteLine(passenger.FirstName + passenger.PassportNumber);
-                }
+                HelperMethods.HelperMethods.ReturnToMainMenu("Passenger Has Been Added To Trip");
+                _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                _page.DisplayContent();
+
             }
 
 
