@@ -38,7 +38,7 @@ namespace CrusiesConsoleAppUI.Pages
 
             _admin.AddCruise(newCruise);
             _dataManager.AppendCruiseToXml("C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", newCruise);
-            HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List od Cruises");
+            HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises");
             _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
             _page.DisplayContent();
 

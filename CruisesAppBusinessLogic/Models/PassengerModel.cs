@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
     namespace CrusiesConsoleAppUI.Models
     {
-    public class PassengerModel : IPassengerModel
+    public class PassengerModel
     {
         private static int _nextPassportNumber = LoadNextIdNumber();
 

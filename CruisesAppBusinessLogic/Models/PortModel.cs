@@ -6,20 +6,22 @@ using System.Threading.Tasks;
 
 namespace CrusiesConsoleAppUI.Models
 {
-    public class PortModel : IPortModel
+    public class PortModel 
     {
 
-        private static int _nextId;
-        public static int NextId { get { return _nextId; } set { NextId = value; } }
+        private static int _nextId = LoadNextIdNumber();
+
+        private const string ConfigFilePath = "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\TextFiles\\LastPortNumber.txt";
+        
+        public static int NextPortId
+        {
+            get { return _nextId; }
+        }
+
         public string Name { get; set; }
         public string PortId { get; set; }
         public int LengthOfStay { get; set; }
         public List<TripModel> Trips { get; set; }
-
-        static PortModel()
-        {
-            _nextId = 113;
-        }
 
 
         public PortModel(string portName, int lengthOfStay)
@@ -28,6 +30,9 @@ namespace CrusiesConsoleAppUI.Models
             PortId = $"PI-{_nextId++}";
             LengthOfStay = lengthOfStay;
             Trips = new List<TripModel>();
+            _nextId = _nextId++;
+
+            SaveLastIdNumber(_nextId);
 
         }
 
@@ -50,5 +55,26 @@ namespace CrusiesConsoleAppUI.Models
         {
             return $"{PortId} + {Name}";
         }
+
+        private static int LoadNextIdNumber()
+        {
+            if (File.Exists(ConfigFilePath))
+            {
+                string content = File.ReadAllText(ConfigFilePath);
+
+                if (int.TryParse(content, out int number))
+                {
+                    return number;
+                }
+            }
+            return 0;
+        }
+
+        private static void SaveLastIdNumber(int number)
+        {
+            File.WriteAllText(ConfigFilePath, number.ToString());
+        }
+
+
     }
 }
