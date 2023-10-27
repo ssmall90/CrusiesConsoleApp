@@ -49,7 +49,7 @@ namespace CrusiesConsoleAppUI.Pages
                 HelperMethods.HelperMethods.DisplayList(_port.Trips[selectedTrip - 1].AttendingPassengers, "Passengers");
                 int selectedPassenger = HelperMethods.HelperMethods.GetItemInRange(1, _port.Trips[selectedTrip - 1].AttendingPassengers.Count, "Which Passenger Would you Like to Remove From This Trip?");
 
-                _dataManager.RemovePassengerFromTrip("C:\\Users\\ssmal\\Source\\Repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", _cruise.CruiseIdentifier, _port.Name, _port.Trips[selectedTrip - 1].ActivityId, _port.Trips[selectedTrip - 1].AttendingPassengers[selectedPassenger - 1].PassportNumber);
+                _dataManager.RemovePassengerFromTrip("C:\\Users\\ssmal\\Source\\Repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", _cruise.CruiseIdentifier, _port.PortId, _port.Trips[selectedTrip - 1].ActivityId, _port.Trips[selectedTrip - 1].AttendingPassengers[selectedPassenger - 1].PassportNumber);
                 _port.Trips[selectedTrip - 1].AttendingPassengers.RemoveAt(selectedPassenger-1);
 
                 HelperMethods.HelperMethods.ReturnToMainMenu("Passenger Has Been Removed From Trip");

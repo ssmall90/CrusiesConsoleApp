@@ -253,7 +253,7 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public void AddPassengerToTrip(string filePath, string cruiseIdentifier, string portName, string tripName, PassengerModel passenger)
+        public void AddPassengerToTrip(string filePath, string cruiseIdentifier, string portId, string tripId, PassengerModel passenger)
         {
             try
             {
@@ -269,7 +269,7 @@ namespace CrusiesConsoleAppUI.Services
                     if (portsElement != null)
                     {
                         XElement portElement = portsElement.Elements("PortModel")
-                            .FirstOrDefault(p => p.Element("Name")?.Value == portName)!;
+                            .FirstOrDefault(p => p.Element("PortId")?.Value == portId)!;
 
                         if (portElement != null)
                         {
@@ -278,7 +278,7 @@ namespace CrusiesConsoleAppUI.Services
                             if (tripsElement != null)
                             {
                                 XElement tripElement = tripsElement.Elements("TripModel")
-                                    .FirstOrDefault(t => t.Element("NameOfActivity")?.Value == tripName)!;
+                                    .FirstOrDefault(t => t.Element("ActivityId")?.Value == tripId)!;
 
                                 if (tripElement != null)
                                 {
@@ -330,7 +330,7 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
-        public void RemovePassengerFromTrip(string filePath, string cruiseIdentifier, string portName, string tripId, string passportNumber)
+        public void RemovePassengerFromTrip(string filePath, string cruiseIdentifier, string portId, string tripId, string passportNumber)
         {
             try
             {
@@ -346,7 +346,7 @@ namespace CrusiesConsoleAppUI.Services
                     if (portsElement != null)
                     {
                         XElement portElement = portsElement.Elements("PortModel")
-                            .FirstOrDefault(p => p.Element("Name")?.Value == portName)!;
+                            .FirstOrDefault(p => p.Element("PortId")?.Value == portId)!;
 
                         if (portElement != null)
                         {
