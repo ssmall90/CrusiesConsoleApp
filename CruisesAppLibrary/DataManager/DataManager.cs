@@ -25,7 +25,7 @@ namespace CrusiesConsoleAppUI.Services
                         if (reader.NodeType == XmlNodeType.Element && reader.Name == "CruiseModel")
                         {
 
-                            CruiseModel cruise = (CruiseModel)serializer.Deserialize(reader.ReadSubtree());
+                            CruiseModel cruise = (CruiseModel)serializer.Deserialize(reader.ReadSubtree())!;
                             cruises.Add(cruise);
                         }
                     }
@@ -35,7 +35,7 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return null;
+                return null!;
             }
 
             return cruises;
@@ -57,7 +57,7 @@ namespace CrusiesConsoleAppUI.Services
 
                 ); ;
 
-                doc.Root.Add(newCruiseElement);
+                doc.Root!.Add(newCruiseElement);
 
                 doc.Save(filePath);
 
@@ -79,7 +79,7 @@ namespace CrusiesConsoleAppUI.Services
 
                 if (cruiseElement != null)
                 {
-                    XElement passengersElement = cruiseElement.Element("Passengers");
+                    XElement passengersElement = cruiseElement.Element("Passengers")!;
 
                     if (passengersElement == null)
                     {
@@ -98,7 +98,7 @@ namespace CrusiesConsoleAppUI.Services
                 }
                 else
                 {
-                    Console.WriteLine("Cruise with the specified identifier not found.");
+                    Console.WriteLine("A Cruise With the Specified Identifier Not Be Found.");
                 }
             }
             catch (Exception ex)
@@ -122,7 +122,7 @@ namespace CrusiesConsoleAppUI.Services
                 }
                 else
                 {
-                    Console.WriteLine("Passenger with the specified passport number not found.");
+                    Console.WriteLine("A Passenger With the Specified Passport Number Could Not Be Found.");
                 }
             }
             catch (Exception ex)
@@ -172,17 +172,17 @@ namespace CrusiesConsoleAppUI.Services
                         }
                         else
                         {
-                            Console.WriteLine("Port with the specified name not found.");
+                            Console.WriteLine("A Port With the Specified Name Could Not Be Found.");
                         }
                     }
                     else
                     {
-                        Console.WriteLine("No Ports element found in the specified cruise.");
+                        Console.WriteLine("No Ports Found on The Specified Cruise.");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Cruise with the specified identifier not found.");
+                    Console.WriteLine("A Cruise With the Specified Identifier Could Not Be Found.");
                 }
             }
             catch (Exception ex)
@@ -206,7 +206,7 @@ namespace CrusiesConsoleAppUI.Services
                 }
                 else
                 {
-                    Console.WriteLine("Trip with the specified ID not found.");
+                    Console.WriteLine("A Trip With the Specified ID Could Not Be Found.");
                 }
             }
             catch (Exception ex)
@@ -253,6 +253,165 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
+        public void AddPassengerToTrip(string filePath, string cruiseIdentifier, string portName, string tripName, PassengerModel passenger)
+        {
+            try
+            {
+                XDocument doc = XDocument.Load(filePath);
 
+                XElement cruiseElement = doc.Root!.Elements("CruiseModel")
+                    .FirstOrDefault(c => c.Element("CruiseIdentifier")!.Value == cruiseIdentifier)!;
+
+                if (cruiseElement != null)
+                {
+                    XElement portsElement = cruiseElement.Element("Ports")!;
+
+                    if (portsElement != null)
+                    {
+                        XElement portElement = portsElement.Elements("PortModel")
+                            .FirstOrDefault(p => p.Element("Name")?.Value == portName)!;
+
+                        if (portElement != null)
+                        {
+                            XElement tripsElement = portElement.Element("Trips")!;
+
+                            if (tripsElement != null)
+                            {
+                                XElement tripElement = tripsElement.Elements("TripModel")
+                                    .FirstOrDefault(t => t.Element("NameOfActivity")?.Value == tripName)!;
+
+                                if (tripElement != null)
+                                {
+                                    XElement attendingPassengersElement = tripElement.Element("AttendingPassengers")!;
+
+                                    if (attendingPassengersElement == null)
+                                    {
+                                        attendingPassengersElement = new XElement("AttendingPassengers");
+                                        tripElement.Add(attendingPassengersElement);
+                                    }
+
+                                    XElement passengerElement = new XElement("PassengerModel",
+                                    new XElement("FirstName", passenger.FirstName),
+                                    new XElement("LastName", passenger.LastName),
+                                    new XElement("PassportNumber", passenger.PassportNumber));
+
+                                    attendingPassengersElement.Add(passengerElement);
+
+                                    doc.Save(filePath);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("A Trip With The Specified Name Could Not Be Found.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("No Trips Element Found in the Specified Port.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("A Port With the Specified Name Could Not Be Found.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Ports Element Found in The Specified Cruise.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("A Cruise With the Specified Identifier Could Not Be Found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        public void RemovePassengerFromTrip(string filePath, string cruiseIdentifier, string portName, string tripId, string passportNumber)
+        {
+            try
+            {
+                XDocument doc = XDocument.Load(filePath);
+
+                XElement cruiseElement = doc.Root!.Elements("CruiseModel")
+                    .FirstOrDefault(c => c.Element("CruiseIdentifier")!.Value == cruiseIdentifier)!;
+
+                if (cruiseElement != null)
+                {
+                    XElement portsElement = cruiseElement.Element("Ports")!;
+
+                    if (portsElement != null)
+                    {
+                        XElement portElement = portsElement.Elements("PortModel")
+                            .FirstOrDefault(p => p.Element("Name")?.Value == portName)!;
+
+                        if (portElement != null)
+                        {
+                            XElement tripsElement = portElement.Element("Trips")!;
+
+                            if (tripsElement != null)
+                            {
+                                XElement tripElement = tripsElement.Elements("TripModel")
+                                    .FirstOrDefault(t => t.Element("ActivityId")?.Value == tripId)!;
+
+                                if (tripElement != null)
+                                {
+                                    XElement attendingPassengersElement = tripElement.Element("AttendingPassengers")!;
+
+                                    if (attendingPassengersElement != null)
+                                    {
+                                        XElement passengerToRemove = attendingPassengersElement.Elements("PassengerModel")
+                                            .FirstOrDefault(p => p.Element("PassportNumber")?.Value == passportNumber)!;
+
+                                        if (passengerToRemove != null)
+                                        {
+                                            passengerToRemove.Remove();
+
+                                            doc.Save(filePath);
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("A Passenger With the Specified PassportNumber Could Not Be Found On The Attending Passengers.");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No AttendingPassengers Element Found On the Specified Trip.");
+                                    }
+                                }
+                                else
+                                {
+                                    Console.WriteLine("A Trip With the Specified Name Could Not Be Found.");
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("No Trips Element Found On the Specified Port.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("A Port With the Specified Name Could Not Be Found.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No Ports Element Found On the Specified Cruise.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("A Cruise With the Specified Identifier Could Not Be found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                // Handle the error as needed
+            }
+        }
     }
 }

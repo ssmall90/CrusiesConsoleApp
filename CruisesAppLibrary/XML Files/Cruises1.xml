@@ -270,6 +270,13 @@
             <NameOfActivity>Sinking</NameOfActivity>
             <ActivityId>AI-7093</ActivityId>
             <Cost>1</Cost>
+            <AttendingPassengers>
+              <PassengerModel>
+                <FirstName>Sean</FirstName>
+                <LastName>Lenny</LastName>
+                <PassportNumber>PN-103113</PassportNumber>
+              </PassengerModel>
+            </AttendingPassengers>
           </TripModel>
           <TripModel>
             <NameOfActivity>Bayside</NameOfActivity>

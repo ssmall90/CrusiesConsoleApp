@@ -52,6 +52,7 @@ namespace CrusiesConsoleAppUI.Pages
 
             if(!alreadyOnTrip)
             {
+                _dataManager.AddPassengerToTrip("C:\\Users\\ssmal\\Source\\Repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", _cruise.CruiseIdentifier, _port.Name, _port.Trips[selectedTrip - 1].NameOfActivity, _cruise.Passengers[selectedPassenger - 1]);
                 _port.Trips[selectedTrip - 1].AttendingPassengers.Add(_cruise.Passengers[selectedPassenger - 1]);
                 HelperMethods.HelperMethods.ReturnToMainMenu("Passenger Has Been Added To Trip");
                 _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
