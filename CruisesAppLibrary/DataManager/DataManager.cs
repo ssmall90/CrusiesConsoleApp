@@ -68,6 +68,8 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
+
+
         public void AddPassengersToCruise(string filePath, string cruiseIdentifier, PassengerModel passenger)
         {
             try
@@ -131,6 +133,8 @@ namespace CrusiesConsoleAppUI.Services
             }
 
         }
+
+
 
         public void AddTripToPort(string filePath, string cruiseIdentifier, string portId, TripModel trip)
         {
@@ -215,6 +219,8 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
+
+
         public void AddPortToCruise(string filePath, CruiseModel cruise, PortModel port)
         {
 
@@ -252,6 +258,9 @@ namespace CrusiesConsoleAppUI.Services
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
+
+
+
 
         public void AddPassengerToTrip(string filePath, string cruiseIdentifier, string portId, string tripId, PassengerModel passenger)
         {

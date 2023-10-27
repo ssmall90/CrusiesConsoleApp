@@ -1,5 +1,4 @@
 ﻿using CrusiesConsoleAppUI.Models;
-using CrusiesConsoleAppUI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,10 +35,10 @@ namespace CrusiesAppDataAccess.Factory
             return new UserModel(name);
         }
 
-        public static IDataManager CreateDataManager()
-        {
-            return new DataManager();
-        }
+        //public static IDataManager CreateDataManager()
+        //{
+        //    return new DataManager();
+        //}
 
     }
 }
