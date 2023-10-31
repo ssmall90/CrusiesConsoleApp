@@ -48,7 +48,7 @@ namespace CrusiesConsoleAppUI.Pages
                     TripModel newTrip = _port.Trips.Where(t => t.NameOfActivity == tripName).FirstOrDefault()!;
 
                     _dataManager.AddTripToPort(
-                        "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml",
+                        "XML Files\\Cruises1.xml",
                         _cruise.CruiseIdentifier,
                         _port.PortId.ToString(), newTrip) ;
 

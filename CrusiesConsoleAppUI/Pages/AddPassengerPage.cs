@@ -47,7 +47,7 @@ namespace CrusiesConsoleAppUI.Pages
 
                         PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName);
                         _cruise.AddPassenger(newPassenger);
-                        _dataManager.AddPassengersToCruise("C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", _cruise.CruiseIdentifier, newPassenger);
+                        _dataManager.AddPassengersToCruise("XML Files\\Cruises1.xml", _cruise.CruiseIdentifier, newPassenger);
                         HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
                         switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, "Would You Like to Add Another Passenger?"))
                         {

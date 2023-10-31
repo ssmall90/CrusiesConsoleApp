@@ -12,7 +12,7 @@ using System.Xml.Linq;
     {
         private static int _nextPassportNumber = LoadNextIdNumber();
 
-        private const string ConfigFilePath = "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\TextFiles\\LastPassportNumber.txt";
+        private const string ConfigFilePath = "TextFiles\\LastPassportNumber.txt";
 
         public static int NextPassportNumber
         {

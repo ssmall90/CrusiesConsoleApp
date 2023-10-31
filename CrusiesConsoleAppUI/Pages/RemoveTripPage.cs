@@ -35,7 +35,7 @@ namespace CrusiesConsoleAppUI.Pages
             switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to delete {_port.Trips[selectedTrip - 1]}"))
             {
                 case 1:
-                    _dataManager.RemoveTripFromPort("C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\XML Files\\Cruises1.xml", _port.Trips[selectedTrip - 1].ActivityId);
+                    _dataManager.RemoveTripFromPort("XML Files\\Cruises1.xml", _port.Trips[selectedTrip - 1].ActivityId);
                     _port.RemoveTrip(_port.Trips[selectedTrip - 1]);
                     HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Trip Has Been Removed From the Port");
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);

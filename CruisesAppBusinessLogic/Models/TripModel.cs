@@ -11,7 +11,7 @@ namespace CrusiesConsoleAppUI.Models
     {
         private static int _nextId = LoadNextIdNumber();
 
-        private const string ConfigFilePath = "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\TextFiles\\LastTripNumber.txt";
+        private const string ConfigFilePath = "TextFiles\\LastTripNumber.txt";
 
         public static int NextTripNumber
         {

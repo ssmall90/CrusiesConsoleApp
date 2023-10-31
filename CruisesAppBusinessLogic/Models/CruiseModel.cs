@@ -4,7 +4,7 @@
     {
         private static int _nextId = LoadNextIdNumber();
 
-        private const string ConfigFilePath = "C:\\Users\\ssmal\\source\\repos\\CrusiesConsoleApp\\CruisesAppLibrary\\TextFiles\\LastCruiseId.txt";
+        private const string ConfigFilePath = "TextFiles\\LastCruiseId.txt";
 
         public static int NextCruiseId
         {
