@@ -25,11 +25,6 @@ namespace CrusiesConsoleAppUI.Models
             }
         }
 
-        public static int NextTripNumber
-        {
-            get { return _nextId; }
-        }
-
         public List<PassengerModel> AttendingPassengers { get; set; }
 
         public string NameOfActivity { get; set; }
