@@ -15,7 +15,7 @@ namespace CrusiesAppDataAccess.Factory
             return new CruiseModel(cruiseName);
         }
 
-        public static PassengerModel CreatePassenger(string firstName, string LastName)
+        public static PassengerModel CreatePassenger(string firstName, string LastName, int passportNumber)
         {
             return new PassengerModel(firstName, LastName);
         }

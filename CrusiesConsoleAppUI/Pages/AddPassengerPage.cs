@@ -32,7 +32,7 @@ namespace CrusiesConsoleAppUI.Pages
             bool addAnotherPassenger = true;
             string passengerFirstName = string.Empty;
             string passengerLastName = string.Empty;
-
+            int passengerPassportNumber = 0;
 
             while (addAnotherPassenger)
             {
@@ -40,13 +40,14 @@ namespace CrusiesConsoleAppUI.Pages
                 HelperMethods.HelperMethods.DisplayPageHeader("Add Passenger");
                 passengerFirstName = HelperMethods.HelperMethods.GetValidName("First Name", "Passenger");
                 passengerLastName = HelperMethods.HelperMethods.GetValidName("Last Name", "Passenger");
+                passengerPassportNumber = HelperMethods.HelperMethods.GetItemInRange(1, 999999999,"Please Enter Your Passport Number. This can be no longer than 9 digits");
                 HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
 
-                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you would like to add {passengerFirstName} {passengerLastName} to this cruise?"))
+                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are You Sure You Would Like To Add {passengerFirstName} {passengerLastName} To This Cruise?"))
                 {
                     case 1:
 
-                        PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName);
+                        PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName, passengerPassportNumber);
                         _cruise.AddPassenger(newPassenger);
                         _dataManager.AddPassengersToCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, newPassenger);
                         HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
@@ -54,7 +55,7 @@ namespace CrusiesConsoleAppUI.Pages
                         {
                             case 1: break;
                             case 2:
-                                HelperMethods.HelperMethods.ReturnToMainMenu("The passenger/s have been added to the cruise");
+                                HelperMethods.HelperMethods.ReturnToMainMenu("The Passenger/s Have Been Added To The Cruise");
                                 _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager); ;
                                 _page.DisplayContent();
                                 addAnotherPassenger = false;

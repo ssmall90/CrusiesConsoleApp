@@ -35,13 +35,29 @@ namespace CrusiesConsoleAppUI.Pages
 
             string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");
 
-            CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
+            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
 
-            _admin.AddCruise(newCruise);
-            _dataManager.AppendCruiseToXml(FilePathConstants.ConstructPath(), newCruise);
-            HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises");
-            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
-            _page.DisplayContent();
+            switch(HelperMethods.HelperMethods.GetItemInRange(1,2,"Are You Sure You Want To Add This Cruise?"))
+            {
+                case 1:
+                    CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
+                    _admin.AddCruise(newCruise);
+                    _dataManager.AppendCruiseToXml(FilePathConstants.ConstructPath(), newCruise);
+                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises");
+                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                    _page.DisplayContent();
+
+                    break;
+
+                case 2:
+                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Not Been Added to {_admin.DisplayName}'s List of Cruises");
+                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                    _page.DisplayContent();
+                    break;
+
+            }
+
+
 
 
         }
