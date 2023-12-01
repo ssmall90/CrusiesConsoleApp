@@ -50,6 +50,7 @@ namespace CrusiesConsoleAppUI.Pages
                         PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName, passengerPassportNumber);
                         _cruise.AddPassenger(newPassenger);
                         _dataManager.AddPassengersToCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, newPassenger);
+                        Console.Clear();
                         HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
                         switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, "Would You Like to Add Another Passenger?"))
                         {
@@ -63,9 +64,6 @@ namespace CrusiesConsoleAppUI.Pages
 
                         }
 
-                        //HelperMethods.HelperMethods.ReturnToMainMenu("The passenger has been added to the cruise");
-                        //_page = _pageStore.CurrentPage;
-                        //_page.DisplayContent();
                         break;
 
                     case 2:

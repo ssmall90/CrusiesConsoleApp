@@ -168,4 +168,41 @@
       </PassengerModel>
     </Passengers>
   </CruiseModel>
+  <CruiseModel>
+    <CruiseName>The Titanic</CruiseName>
+    <CruiseIdentifier>CI-197819</CruiseIdentifier>
+    <Ports />
+    <Passengers>
+      <PassengerModel>
+        <FirstName>Sheldon</FirstName>
+        <LastName>Small</LastName>
+        <PassportNumber>PN-103120</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>John Claude</FirstName>
+        <LastName>Van Damme</LastName>
+        <PassportNumber>PN-103121</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Jackie </FirstName>
+        <LastName>Chan</LastName>
+        <PassportNumber>PN-12345654</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>sdfg</FirstName>
+        <LastName>sdfg</LastName>
+        <PassportNumber>PN-345</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>sdfgh</FirstName>
+        <LastName>dfgh</LastName>
+        <PassportNumber>PN-45678</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>asdfgh</FirstName>
+        <LastName>asdfgh</LastName>
+        <PassportNumber>PN-3456</PassportNumber>
+      </PassengerModel>
+    </Passengers>
+  </CruiseModel>
 </Cruises>

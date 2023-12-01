@@ -17,7 +17,7 @@ namespace CrusiesAppDataAccess.Factory
 
         public static PassengerModel CreatePassenger(string firstName, string LastName, int passportNumber)
         {
-            return new PassengerModel(firstName, LastName);
+            return new PassengerModel(firstName, LastName, passportNumber);
         }
 
         public static PortModel CreatePort(string portName, int lengthOfStay)
