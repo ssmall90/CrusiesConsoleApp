@@ -11,7 +11,19 @@ namespace CrusiesConsoleAppUI.Models
     {
         private static int _nextId = LoadNextIdNumber();
 
-        private const string ConfigFilePath = "TextFiles\\LastTripNumber.txt";
+        private static string ConfigFilePath
+        {
+            get
+            {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string txtFileName = "LastTripNumber.txt";
+
+                string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
+                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);
+
+                return txtFilePath;
+            }
+        }
 
         public static int NextTripNumber
         {

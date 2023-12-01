@@ -12,7 +12,19 @@ using System.Xml.Linq;
     {
         private static int _nextPassportNumber = LoadNextIdNumber();
 
-        private const string ConfigFilePath = "TextFiles\\LastPassportNumber.txt";
+        private static string ConfigFilePath
+        {
+            get
+            {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string txtFileName = "LastPassportNumber.txt";
+
+                string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
+                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);
+
+                return txtFilePath;
+            }
+        }
 
         public static int NextPassportNumber
         {
