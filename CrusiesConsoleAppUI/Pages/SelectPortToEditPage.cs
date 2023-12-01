@@ -31,46 +31,57 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader($"Choose Port");
             HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
-            int selectedPort = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Ports.Count, "Which Port Do You Want to Edit?");
-            HelperMethods.HelperMethods.DisplayEditingOptions("editTrip");
-            int selectedOption = HelperMethods.HelperMethods.GetItemInRange(1, 5, "Select An Action from the Menu Above");
 
-            switch(selectedOption)
-
+            if(_cruise.Ports.Count > 0) 
             {
-                case 1:
-                    _page = PageFactory.CreateAddTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort -1], _pageStore, _dataManager);
-                    _page.DisplayContent();
-                    break;
+                int selectedPort = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Ports.Count, "Which Port Do You Want to Edit?");
+                HelperMethods.HelperMethods.DisplayEditingOptions("editTrip");
+                int selectedOption = HelperMethods.HelperMethods.GetItemInRange(1, 5, "Select An Action from the Menu Above");
 
-                case 2:
-                    if (_cruise.Ports[selectedPort - 1] != null)
-                    {
-                        _page = PageFactory.CreateRemoveTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
+                switch (selectedOption)
+
+                {
+                    case 1:
+                        _page = PageFactory.CreateAddTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
                         _page.DisplayContent();
                         break;
-                    }
-                    else
-                    {
-                        HelperMethods.HelperMethods.ReturnToMainMenu("This Port Has no Trips to Delete");
+
+                    case 2:
+                        if (_cruise.Ports[selectedPort - 1] != null)
+                        {
+                            _page = PageFactory.CreateRemoveTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
+                            _page.DisplayContent();
+                            break;
+                        }
+                        else
+                        {
+                            HelperMethods.HelperMethods.ReturnToMainMenu("This Port Has no Trips to Delete");
+                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                            _page.DisplayContent();
+                            break;
+                        }
+                    case 3:
+                        _page = PageFactory.AddPassengerToTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
+                        _page.DisplayContent();
+                        break;
+
+                    case 4:
+                        _page = PageFactory.RemovePassengerFromTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
+                        _page.DisplayContent();
+                        break;
+                    case 5:
                         _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                         _page.DisplayContent();
                         break;
-                    }
-                case 3: _page = PageFactory.AddPassengerToTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
-                    _page.DisplayContent(); 
-                    break;
-
-                case 4:
-                    _page = PageFactory.RemovePassengerFromTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
-                    _page.DisplayContent();
-                    break;
-                case 5:
-                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
-                    _page.DisplayContent();
-                    break;
+                }
             }
-
+            else
+            {
+                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Does Not Have Any Ports");
+                _page = _pageStore.CurrentPage;
+                _page.DisplayContent();
+            }
+           
         }
 
     }
