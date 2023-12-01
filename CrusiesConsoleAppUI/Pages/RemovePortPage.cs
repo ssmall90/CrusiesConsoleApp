@@ -1,4 +1,5 @@
-﻿using CrusiesAppDataAccess.Factory;
+﻿using CruisesAppDataAccess;
+using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
@@ -37,6 +38,7 @@ namespace CrusiesConsoleAppUI.Pages
             switch (HelperMethods.HelperMethods.GetItemInRange(1, 2,$"Are you sure you want to delete {_cruise.Ports[selectedPort -1]}"))
             {
                 case 1:
+                    _dataManager.RemovePortFromCruise(FilePathConstants.ConstructPath(), _cruise.Ports[selectedPort - 1].PortId);
                     _cruise.RemovePort(_cruise.Ports[selectedPort - 1]);
                     HelperMethods.HelperMethods.ReturnToMainMenu("The selected port has been  removed from the cruise");
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);

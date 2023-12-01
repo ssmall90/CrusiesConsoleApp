@@ -1,4 +1,5 @@
-﻿using CrusiesAppDataAccess.Factory;
+﻿using CruisesAppDataAccess;
+using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
@@ -37,7 +38,7 @@ namespace CrusiesConsoleAppUI.Pages
             CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
 
             _admin.AddCruise(newCruise);
-            _dataManager.AppendCruiseToXml("XML Files\\Cruises1.xml", newCruise);
+            _dataManager.AppendCruiseToXml(FilePathConstants.ConstructPath(), newCruise);
             HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises");
             _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
             _page.DisplayContent();

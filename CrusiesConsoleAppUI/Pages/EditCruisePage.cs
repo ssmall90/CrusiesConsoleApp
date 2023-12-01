@@ -1,4 +1,5 @@
-﻿using CrusiesConsoleAppUI.Factory;
+﻿using CruisesAppDataAccess;
+using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
 using System;
@@ -37,7 +38,7 @@ namespace CrusiesConsoleAppUI.Pages
             HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
             HelperMethods.HelperMethods.DisplayEditingOptions("editCruisePage");
 
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 3, "Select An Action From The Options Above"))
+            switch (HelperMethods.HelperMethods.GetItemInRange(1, 4, "Select An Action From The Options Above"))
             {
                 case 1:
                     _pageStore.CurrentPage = this;
@@ -49,9 +50,34 @@ namespace CrusiesConsoleAppUI.Pages
                     _pageStore.CurrentPage = this;
                     _page = PageFactory.CreateEditPassengerPage(_admin, _page, _cruise, _pageStore, _dataManager);
                     _page.DisplayContent();
-                    break; 
+                    break;
 
                 case 3:
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Are You Sure You Want To Delete This Cruise From The System");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+
+
+                    switch (HelperMethods.HelperMethods.GetItemInRange(1, 2,""))
+                    { 
+                        case 1:
+                            _dataManager.RemoveCruise(FilePathConstants.ConstructPath(),_cruise.CruiseIdentifier);
+                            _admin.RemoveCruise(_cruise);
+                            HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Has Been Deleted From The System");
+                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                            _page.DisplayContent();
+                            break;
+                        case 2:
+                            HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Has Not Been Deleted From The System");
+                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                            _page.DisplayContent();
+                            break;
+                    }
+                    break;
+
+                case 4:
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent(); break;
             

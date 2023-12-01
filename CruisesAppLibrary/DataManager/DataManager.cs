@@ -67,6 +67,32 @@ namespace CrusiesConsoleAppUI.Services
                 Console.WriteLine("Error: " + ex.Message);
             }
         }
+        public void RemoveCruise(string filePath, string cruiseIdentifier)
+        {
+            try
+            {
+
+                XDocument doc = XDocument.Load(filePath);
+
+                XElement cruiseToDelete = doc.Descendants("CruiseModel").FirstOrDefault(c => c.Element("CruiseIdentifier")?.Value == cruiseIdentifier)!;
+
+
+                if (cruiseToDelete != null)
+                {
+                    cruiseToDelete.Remove();
+                    doc.Save(filePath);
+                }
+                else
+                {
+                    Console.WriteLine("A Cruise With the Specified ID Could Not Be Found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
 
 
 
@@ -221,6 +247,7 @@ namespace CrusiesConsoleAppUI.Services
 
 
 
+
         public void AddPortToCruise(string filePath, CruiseModel cruise, PortModel port)
         {
 
@@ -252,6 +279,32 @@ namespace CrusiesConsoleAppUI.Services
 
                 }
 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
+
+        public void RemovePortFromCruise(string filePath, string portId)
+        {
+            try
+            {
+
+                XDocument doc = XDocument.Load(filePath);
+
+                XElement portToDelete = doc.Descendants("PortModel").FirstOrDefault(p => p.Element("PortId")?.Value == portId)!;
+
+
+                if (portToDelete != null)
+                {
+                    portToDelete.Remove();
+                    doc.Save(filePath);
+                }
+                else
+                {
+                    Console.WriteLine("A Port With the Specified ID Could Not Be Found.");
+                }
             }
             catch (Exception ex)
             {

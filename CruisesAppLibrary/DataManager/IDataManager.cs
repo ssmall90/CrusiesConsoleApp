@@ -10,8 +10,10 @@ namespace CrusiesConsoleAppUI.Services
         void AddTripToPort(string filePath, string cruiseIdentifier, string portId, TripModel trip);
         void AppendCruiseToXml(string filePath, CruiseModel cruise);
         List<CruiseModel> DeserializeCruiseFromXml(string filePath);
+        void RemoveCruise(string filePath, string cruiseIdentifier);
         void RemovePassengerFromCruise(string filePath, string cruiseIdentifier, string passportNumber);
         void RemovePassengerFromTrip(string filePath, string cruiseIdentifier, string portId, string tripId, string passportNumber);
+        void RemovePortFromCruise(string filePath, string portId);
         void RemoveTripFromPort(string filePath, string tripId);
     }
 }

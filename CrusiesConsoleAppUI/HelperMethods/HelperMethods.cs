@@ -102,7 +102,8 @@ namespace CrusiesConsoleAppUI.HelperMethods
                 List<string> editCruisePageOptions = new List<string>();
                 editCruisePageOptions.Add("1: Edit Ports");
                 editCruisePageOptions.Add("2: Edit Passengers");
-                editCruisePageOptions.Add("3: Return To Main Menu");
+                editCruisePageOptions.Add("3: Remove Cruise From System");
+                editCruisePageOptions.Add("4: Return To Main Menu");
                 DisplayList(editCruisePageOptions, "Editing Options");
                 return editCruisePageOptions.Count();
             }

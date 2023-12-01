@@ -1,4 +1,5 @@
-﻿using CrusiesAppDataAccess.Factory;
+﻿using CruisesAppDataAccess;
+using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
@@ -47,10 +48,7 @@ namespace CrusiesConsoleAppUI.Pages
                     _port.AddTrip(ModelFactory.CreateTrip(tripName, costOfTrip));
                     TripModel newTrip = _port.Trips.Where(t => t.NameOfActivity == tripName).FirstOrDefault()!;
 
-                    _dataManager.AddTripToPort(
-                        "XML Files\\Cruises1.xml",
-                        _cruise.CruiseIdentifier,
-                        _port.PortId.ToString(), newTrip) ;
+                    _dataManager.AddTripToPort(FilePathConstants.ConstructPath(),_cruise.CruiseIdentifier,_port.PortId.ToString(), newTrip) ;
 
                     HelperMethods.HelperMethods.ReturnToMainMenu($"Your Trip Has Been Successfully Added to {_port.Name}");
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
