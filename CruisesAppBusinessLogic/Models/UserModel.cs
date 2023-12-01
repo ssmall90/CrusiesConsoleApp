@@ -8,6 +8,27 @@ namespace CrusiesConsoleAppUI.Models
 {
     public class UserModel : IUserModel
     {
+        private static int _nextId = LoadNextIdNumber();
+        private static string ConfigFilePath
+        {
+            get
+            {
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string txtFileName = "LastUserNumber.txt";
+
+                string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
+                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);
+
+                return txtFilePath;
+            }
+        }
+
+
+        public static int NextUserId
+        {
+            get { return _nextId; }
+        }
+
         public string Id { get; set; }
         public string DisplayName { get; set; }
         public List<CruiseModel> Cruises { get; set; }
@@ -17,6 +38,8 @@ namespace CrusiesConsoleAppUI.Models
             DisplayName = displayName;
             Id = "123";
             Cruises = new List<CruiseModel>();
+            _nextId = _nextId++;
+            SaveLastIdNumber(_nextId);
         }
 
         public void AddCruise(CruiseModel cruise)
@@ -27,6 +50,25 @@ namespace CrusiesConsoleAppUI.Models
         public void RemoveCruise(CruiseModel cruise)
         {
             Cruises.Remove(cruise);
+        }
+
+        private static int LoadNextIdNumber()
+        {
+            if (File.Exists(ConfigFilePath))
+            {
+                string content = File.ReadAllText(ConfigFilePath);
+
+                if (int.TryParse(content, out int number))
+                {
+                    return number;
+                }
+            }
+            return 0;
+        }
+
+        private static void SaveLastIdNumber(int number)
+        {
+            File.WriteAllText(ConfigFilePath, number.ToString());
         }
     }
 }

@@ -18,10 +18,6 @@
             }
         }
 
-        public static int NextCruiseId
-        {
-            get { return _nextId; }
-        }
 
         public string CruiseName {  get; set; }   
         public string CruiseIdentifier { get; set; }

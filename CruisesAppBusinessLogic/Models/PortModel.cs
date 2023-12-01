@@ -24,10 +24,6 @@ namespace CrusiesConsoleAppUI.Models
             }
         }
 
-        public static int NextPortId
-        {
-            get { return _nextId; }
-        }
 
         public string Name { get; set; }
         public string PortId { get; set; }
