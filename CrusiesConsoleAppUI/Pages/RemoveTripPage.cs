@@ -29,26 +29,36 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader($"Choose Trip");
             HelperMethods.HelperMethods.DisplayList(_port.Trips, "Trips");
-            int selectedTrip = HelperMethods.HelperMethods.GetItemInRange(1, _port.Trips.Count, "Which Trip Do You Want to Remove?");
 
-            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
-
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to delete {_port.Trips[selectedTrip - 1]}"))
+            if(_port.Trips.Count > 0)
             {
-                case 1:
-                    _dataManager.RemoveTripFromPort(FilePathConstants.ConstructPath(), _port.Trips[selectedTrip - 1].ActivityId);
-                    _port.RemoveTrip(_port.Trips[selectedTrip - 1]);
-                    HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Trip Has Been Removed From the Port");
-                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
-                    _page.DisplayContent();
-                    break;
+                int selectedTrip = HelperMethods.HelperMethods.GetItemInRange(1, _port.Trips.Count, "Which Trip Do You Want to Remove?");
 
-                case 2:
-                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
-                    _page.DisplayContent();
-                    break;
+                HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+
+                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to delete {_port.Trips[selectedTrip - 1]}"))
+                {
+                    case 1:
+                        _dataManager.RemoveTripFromPort(FilePathConstants.ConstructPath(), _port.Trips[selectedTrip - 1].ActivityId);
+                        _port.RemoveTrip(_port.Trips[selectedTrip - 1]);
+                        HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Trip Has Been Removed From the Port");
+                        _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                        _page.DisplayContent();
+                        break;
+
+                    case 2:
+                        _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                        _page.DisplayContent();
+                        break;
+                }
             }
-      
+            else
+            {
+                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Port Does Not Have Any Trips");
+                _page = _pageStore.CurrentPage;
+                _page.DisplayContent();
+            }
+
         }
     }
 }

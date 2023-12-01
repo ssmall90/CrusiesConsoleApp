@@ -32,24 +32,35 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader($"Remove Passenger");
             HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passenger");
-            int selectedPassenger = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Passengers.Count, "Which Passenger Would You Like To Delete");
-            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
-
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to remove {_cruise.Passengers[selectedPassenger - 1]}"))
+            if(_cruise.Passengers.Count > 0)
             {
-                case 1:
-                    _dataManager.RemovePassengerFromCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, _cruise.Passengers[selectedPassenger -1].PassportNumber);
-                    _cruise.RemovePassenger(_cruise.Passengers[selectedPassenger - 1]);
-                    HelperMethods.HelperMethods.ReturnToMainMenu("The selected Passenger has been removed from the cruise");
-                    _page = _pageStore.CurrentPage;
-                    _page.DisplayContent();
-                    break;
+                int selectedPassenger = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Passengers.Count, "Which Passenger Would You Like To Delete");
+                HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
 
-                case 2:
-                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
-                    _page.DisplayContent();
-                    break;
+                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are You Sure You Want To Remove {_cruise.Passengers[selectedPassenger - 1]}"))
+                {
+                    case 1:
+                        _dataManager.RemovePassengerFromCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, _cruise.Passengers[selectedPassenger - 1].PassportNumber);
+                        _cruise.RemovePassenger(_cruise.Passengers[selectedPassenger - 1]);
+                        HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Passenger Has Been Removed From The Cruise");
+                        _page = _pageStore.CurrentPage;
+                        _page.DisplayContent();
+                        break;
+
+                    case 2:
+                        HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Passenger Has Not Been Removed From The Cruise");
+                        _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                        _page.DisplayContent();
+                        break;
+                }
             }
+            else
+            {
+                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Does Not Have Any Passengers");
+                _page = _pageStore.CurrentPage;
+                _page.DisplayContent();
+            }
+           
 
         }
     }

@@ -95,7 +95,6 @@ namespace CrusiesConsoleAppUI.Services
 
 
 
-
         public void AddPassengersToCruise(string filePath, string cruiseIdentifier, PassengerModel passenger)
         {
             try
@@ -141,11 +140,17 @@ namespace CrusiesConsoleAppUI.Services
             {
                 XDocument doc = XDocument.Load(filePath);
 
-                XElement passengerToRemove = doc.Descendants("PassengerModel").FirstOrDefault(p => p.Element("PassportNumber")?.Value == passportNumber)!;
+                var passengersToRemove = doc.Descendants("PassengerModel")
+                 .Where(p => (string)p.Element("PassportNumber")! == passportNumber)
+                 .ToList();
 
-                if (passengerToRemove != null)
+                if (passengersToRemove.Any())
                 {
-                    passengerToRemove.Remove();
+                    foreach (var passengerToRemove in passengersToRemove)
+                    {
+                        passengerToRemove.Remove();
+                    }
+
                     doc.Save(filePath);
                 }
                 else
@@ -472,7 +477,6 @@ namespace CrusiesConsoleAppUI.Services
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                // Handle the error as needed
             }
         }
     }

@@ -65,9 +65,10 @@ namespace CrusiesConsoleAppUI.Pages
                     _page = PageFactory.RemovePassengerFromTripPage(_admin, _page, _cruise, _cruise.Ports[selectedPort - 1], _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;
-
-
-
+                case 5:
+                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                    _page.DisplayContent();
+                    break;
             }
 
         }

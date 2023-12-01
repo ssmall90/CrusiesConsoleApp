@@ -252,4 +252,24 @@
       </PassengerModel>
     </Passengers>
   </CruiseModel>
+  <CruiseModel>
+    <CruiseName>The Titanic</CruiseName>
+    <CruiseIdentifier>CI-197817</CruiseIdentifier>
+    <Ports>
+      <PortModel>
+        <Name>Iceberg</Name>
+        <PortId>PI-212</PortId>
+        <LengthOfStay>12</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>Day Out</NameOfActivity>
+            <ActivityId>AI-7098</ActivityId>
+            <Cost>10</Cost>
+            <AttendingPassengers />
+          </TripModel>
+        </Trips>
+      </PortModel>
+    </Ports>
+    <Passengers />
+  </CruiseModel>
 </Cruises>

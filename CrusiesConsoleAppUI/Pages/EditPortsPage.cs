@@ -47,6 +47,10 @@ namespace CrusiesConsoleAppUI.Pages
                     _page = PageFactory.CreateSelectPortToEditPage(_admin, _page, _cruise, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;
+                case 4:
+                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+                    _page.DisplayContent();
+                    break;
             }
 
             Console.ReadLine();

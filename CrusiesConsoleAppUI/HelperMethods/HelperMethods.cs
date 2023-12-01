@@ -100,10 +100,10 @@ namespace CrusiesConsoleAppUI.HelperMethods
             if (options == "editCruisePage")
             {
                 List<string> editCruisePageOptions = new List<string>();
-                editCruisePageOptions.Add("1: Edit Ports");
-                editCruisePageOptions.Add("2: Edit Passengers");
-                editCruisePageOptions.Add("3: Remove Cruise From System");
-                editCruisePageOptions.Add("4: Return To Main Menu");
+                editCruisePageOptions.Add("Edit Ports");
+                editCruisePageOptions.Add("Edit Passengers");
+                editCruisePageOptions.Add("Remove Cruise From System");
+                editCruisePageOptions.Add("Return To Main Menu");
                 DisplayList(editCruisePageOptions, "Editing Options");
                 return editCruisePageOptions.Count();
             }
@@ -111,11 +111,11 @@ namespace CrusiesConsoleAppUI.HelperMethods
             if (options == "editTrip")
             {
                 List<string> editTripOptions = new List<string>();
-                editTripOptions.Add("1: Add Trip");
-                editTripOptions.Add("2: Remove Trip");
-                editTripOptions.Add("3: Add Passenger To A Trip");
-                editTripOptions.Add("4: Remove Passenger From A Trip");
-                editTripOptions.Add("5: Return To Main Menu");
+                editTripOptions.Add("Add Trip");
+                editTripOptions.Add("Remove Trip");
+                editTripOptions.Add("Add Passenger To A Trip");
+                editTripOptions.Add("Remove Passenger From A Trip");
+                editTripOptions.Add("Return To Main Menu");
                 DisplayList(editTripOptions, "Editing Options");
                 return editTripOptions.Count();
             }
@@ -125,10 +125,10 @@ namespace CrusiesConsoleAppUI.HelperMethods
             {
 
                 List<string> addPortPageOptions = new List<string>();
-                addPortPageOptions.Add("1: Add New Port");
-                addPortPageOptions.Add("2: Remove Port");
-                addPortPageOptions.Add("3: Edit Exisiting Port");
-                addPortPageOptions.Add("4: Return To Main Menu");
+                addPortPageOptions.Add("Add New Port");
+                addPortPageOptions.Add("Remove Port");
+                addPortPageOptions.Add("Edit Exisiting Port");
+                addPortPageOptions.Add("Return To Main Menu");
                 DisplayList(addPortPageOptions, "Editing Options");
                 return addPortPageOptions.Count();
             }
@@ -136,10 +136,9 @@ namespace CrusiesConsoleAppUI.HelperMethods
             {
 
                 List<string> addPortPageOptions = new List<string>();
-                addPortPageOptions.Add("1: Add New Passenger");
-                addPortPageOptions.Add("2: Remove Passenger");
-                addPortPageOptions.Add("3: Edit Exisiting Passenger");
-                addPortPageOptions.Add("4: Return To Main Menu");
+                addPortPageOptions.Add("Add New Passenger");
+                addPortPageOptions.Add("Remove Passenger");
+                addPortPageOptions.Add("Return To Main Menu");
                 DisplayList(addPortPageOptions, "Editing Options");
                 return addPortPageOptions.Count();
             }
