@@ -29,6 +29,8 @@ namespace CrusiesConsoleAppUI.Factory
 
         public static IBasePage CreateHomePage(IUserModel admin, IBasePage page, IPageStore pageStore ,IDataManager dataManager)
         {
+            ResetInstances();
+
             if(homePageInstance == null)
             {
                 homePageInstance = new HomePage(admin, page, pageStore, dataManager);
@@ -148,6 +150,26 @@ namespace CrusiesConsoleAppUI.Factory
                 removePassengerFromTripPageInstance = new RemovePassengerFromTripPage(admin, page, cruise, port, pageStore, dataManager);
             }
             return removePassengerFromTripPageInstance;
+        }
+
+        public static void ResetInstances()
+        {
+            addCruisePageInstance = null;
+            homePageInstance = null;
+            viewAllCruisesPageInstance = null;
+            editCruisePageInstance = null;
+            addPassengerPageInstance = null;
+            removePassengerPageInstance = null;
+            editPassengerPageInstance = null;
+            addPortPageInstance = null;
+            removePortPageInstance = null;
+            editPortsPageInstance = null;
+            selectPortToEditPageInstance = null;
+            addTripPageInstance = null;
+            removeTripPageInstance = null;
+            AddPassengerToTripPageInstance = null;
+            removePassengerFromTripPageInstance = null;
+
         }
 
     }

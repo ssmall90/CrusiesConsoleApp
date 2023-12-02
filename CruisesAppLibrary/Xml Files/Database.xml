@@ -13,6 +13,13 @@
             <NameOfActivity>Excursion A</NameOfActivity>
             <ActivityId>301</ActivityId>
             <Cost>50</Cost>
+            <AttendingPassengers>
+              <PassengerModel>
+                <FirstName>Bob</FirstName>
+                <LastName>Johnson</LastName>
+                <PassportNumber>PN-67890</PassportNumber>
+              </PassengerModel>
+            </AttendingPassengers>
           </TripModel>
           <TripModel>
             <NameOfActivity>Excursion B</NameOfActivity>
