@@ -46,25 +46,38 @@ namespace CrusiesConsoleAppUI.Pages
                 switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are You Sure You Would Like To Add {passengerFirstName} {passengerLastName} To This Cruise?"))
                 {
                     case 1:
-
-                        PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName, passengerPassportNumber);
-                        _cruise.AddPassenger(newPassenger);
-                        _dataManager.AddPassengersToCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, newPassenger);
-                        Console.Clear();
-                        HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
-                        switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, "Would You Like to Add Another Passenger?"))
+                        if (!_admin.PassportNumbers.Contains($"PN-{ passengerPassportNumber}"))
                         {
-                            case 1: break;
-                            case 2:
-                                HelperMethods.HelperMethods.ReturnToMainMenu("The Passenger/s Have Been Added To The Cruise");
-                                _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager); ;
-                                _page.DisplayContent();
-                                addAnotherPassenger = false;
-                                break;
+                            PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName, passengerPassportNumber);
+                            _cruise.AddPassenger(newPassenger);
+                            _dataManager.AddPassengersToCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, newPassenger);
+                            Console.Clear();
+                            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+                            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, "Would You Like to Add Another Passenger?"))
+                            {
+                                case 1: break;
+                                case 2:
+                                    HelperMethods.HelperMethods.ReturnToMainMenu("The Passenger/s Have Been Added To The Cruise");
+                                    _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager); ;
+                                    _page.DisplayContent();
+                                    addAnotherPassenger = false;
+                                    break;
 
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            HelperMethods.HelperMethods.ReturnToMainMenu("Passenger Cannot Be Added. A Passenger With This Passport Number Already Exists in The System.");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager); ;
+                            _page.DisplayContent();
+                            addAnotherPassenger = false;
+                            break;
                         }
 
-                        break;
 
                     case 2:
                         _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);

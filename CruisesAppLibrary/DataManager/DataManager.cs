@@ -93,6 +93,47 @@ namespace CrusiesConsoleAppUI.Services
             }
         }
 
+        public List<string> ReadPassportNumbersFromXml(string filePath)
+        {
+            List<string> passportNumbers = new List<string>();
+
+            try
+            {
+                XDocument doc = XDocument.Load(filePath);
+
+                // Assuming the passport numbers are stored under <Passenger> elements with a <PassportNumber> tag
+                IEnumerable<XElement> passengerElements = doc.Descendants("PassengerModel");
+
+                foreach (XElement passengerElement in passengerElements)
+                {
+                    XElement passportNumberElement = passengerElement.Element("PassportNumber");
+                    if (passportNumberElement != null)
+                    {
+                        string passportNumber = passportNumberElement.Value;
+                        passportNumbers.Add(passportNumber);
+                    }
+                }
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                // Handle file not found exception
+                // You may want to log this or handle it differently based on your application's needs
+                Console.WriteLine("File not found!");
+            }
+            catch (System.IO.IOException)
+            {
+                // Handle other IO exceptions
+                Console.WriteLine("Error reading the file!");
+            }
+            catch (System.Xml.XmlException)
+            {
+                // Handle XML parsing exceptions
+                Console.WriteLine("Error parsing XML!");
+            }
+
+            return passportNumbers;
+        }
+
 
 
         public void AddPassengersToCruise(string filePath, string cruiseIdentifier, PassengerModel passenger)

@@ -35,10 +35,6 @@ namespace CrusiesAppDataAccess.Factory
             return new UserModel(name);
         }
 
-        //public static IDataManager CreateDataManager()
-        //{
-        //    return new DataManager();
-        //}
 
     }
 }

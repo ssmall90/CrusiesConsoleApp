@@ -9,7 +9,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace CrusiesConsoleAppUI.HelperMethods
 {
-    public class HelperMethods
+    public static class HelperMethods
     {
         public static int GetItemInRange(int pMin, int pMax, string message) // Get User Inputs For Menus
         {
@@ -82,7 +82,6 @@ namespace CrusiesConsoleAppUI.HelperMethods
             }
 
         }
-
 
         public static int DisplayEditingOptions(string options)
         {

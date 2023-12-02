@@ -9,6 +9,7 @@ namespace CrusiesConsoleAppUI.Models
     public class UserModel : IUserModel
     {
         private static int _nextId = LoadNextIdNumber();
+
         private static string ConfigFilePath
         {
             get
@@ -32,6 +33,8 @@ namespace CrusiesConsoleAppUI.Models
         public string Id { get; set; }
         public string DisplayName { get; set; }
         public List<CruiseModel> Cruises { get; set; }
+        public List<string> PassportNumbers { get; set; }
+
 
         public UserModel(string displayName)
         {
@@ -39,6 +42,7 @@ namespace CrusiesConsoleAppUI.Models
             Id = "123";
             Cruises = new List<CruiseModel>();
             _nextId = _nextId++;
+            PassportNumbers = new List<string>();
             SaveLastIdNumber(_nextId);
         }
 

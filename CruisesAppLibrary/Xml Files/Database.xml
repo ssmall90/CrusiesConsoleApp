@@ -82,6 +82,11 @@
         <LastName>Davis</LastName>
         <PassportNumber>PN-54321</PassportNumber>
       </PassengerModel>
+      <PassengerModel>
+        <FirstName>tom</FirstName>
+        <LastName>tom</LastName>
+        <PassportNumber>PN-12345</PassportNumber>
+      </PassengerModel>
     </Passengers>
   </CruiseModel>
   <CruiseModel>
