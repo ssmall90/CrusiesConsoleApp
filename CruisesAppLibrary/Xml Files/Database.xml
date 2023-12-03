@@ -10,21 +10,14 @@
         <LengthOfStay>3</LengthOfStay>
         <Trips>
           <TripModel>
-            <NameOfActivity>Excursion A</NameOfActivity>
-            <ActivityId>301</ActivityId>
-            <Cost>50</Cost>
-            <AttendingPassengers>
-              <PassengerModel>
-                <FirstName>Bob</FirstName>
-                <LastName>Johnson</LastName>
-                <PassportNumber>PN-67890</PassportNumber>
-              </PassengerModel>
-            </AttendingPassengers>
+            <NameOfActivity>asdfg</NameOfActivity>
+            <ActivityId>AI-7099</ActivityId>
+            <Cost>123</Cost>
           </TripModel>
           <TripModel>
-            <NameOfActivity>Excursion B</NameOfActivity>
-            <ActivityId>302</ActivityId>
-            <Cost>60</Cost>
+            <NameOfActivity>Hiking</NameOfActivity>
+            <ActivityId>AI-7101</ActivityId>
+            <Cost>25</Cost>
           </TripModel>
         </Trips>
       </PortModel>
@@ -65,11 +58,6 @@
     </Ports>
     <Passengers>
       <PassengerModel>
-        <FirstName>Alice</FirstName>
-        <LastName>Smith</LastName>
-        <PassportNumber>PN-12345</PassportNumber>
-      </PassengerModel>
-      <PassengerModel>
         <FirstName>Bob</FirstName>
         <LastName>Johnson</LastName>
         <PassportNumber>PN-67890</PassportNumber>
@@ -80,19 +68,14 @@
         <PassportNumber>PN-78901</PassportNumber>
       </PassengerModel>
       <PassengerModel>
-        <FirstName>David</FirstName>
-        <LastName>Anderson</LastName>
-        <PassportNumber>PN-23456</PassportNumber>
+        <FirstName>asdfgh</FirstName>
+        <LastName>dsfgbn</LastName>
+        <PassportNumber>PN-1234532</PassportNumber>
       </PassengerModel>
       <PassengerModel>
-        <FirstName>Eve</FirstName>
-        <LastName>Davis</LastName>
-        <PassportNumber>PN-54321</PassportNumber>
-      </PassengerModel>
-      <PassengerModel>
-        <FirstName>tom</FirstName>
-        <LastName>tom</LastName>
-        <PassportNumber>PN-12345</PassportNumber>
+        <FirstName>wedfv</FirstName>
+        <LastName>rgb</LastName>
+        <PassportNumber>PN-432</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
@@ -151,6 +134,12 @@
           </TripModel>
         </Trips>
       </PortModel>
+      <PortModel>
+        <Name>sdfg</Name>
+        <PortId>PI-216</PortId>
+        <LengthOfStay>2</LengthOfStay>
+        <Trips />
+      </PortModel>
     </Ports>
     <Passengers>
       <PassengerModel>
@@ -177,6 +166,16 @@
         <FirstName>Amanda</FirstName>
         <LastName>Roberts</LastName>
         <PassportNumber>PN-50001</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>Frank</FirstName>
+        <LastName>Pauly</LastName>
+        <PassportNumber>PN-1234</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>wert</FirstName>
+        <LastName>sdfg</LastName>
+        <PassportNumber>PN-23456</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
@@ -210,11 +209,12 @@
         <LastName>dfgh</LastName>
         <PassportNumber>PN-45678</PassportNumber>
       </PassengerModel>
-      <PassengerModel>
-        <FirstName>asdfgh</FirstName>
-        <LastName>asdfgh</LastName>
-        <PassportNumber>PN-3456</PassportNumber>
-      </PassengerModel>
     </Passengers>
+  </CruiseModel>
+  <CruiseModel>
+    <CruiseName>The CruiseLiner</CruiseName>
+    <CruiseIdentifier>CI-197821</CruiseIdentifier>
+    <Ports />
+    <Passengers />
   </CruiseModel>
 </Cruises>

@@ -2,6 +2,7 @@
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -25,25 +26,35 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader($"Remove Passenger");
-            HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passenger");
-            if(_cruise.Passengers.Count > 0)
-            {
-                int selectedPassenger = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Passengers.Count, "Which Passenger Would You Like To Delete");
-                HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+            AnsiConsole.Write(SpectreHelper.DisplayHeader("Remove Passenger Page"));
 
-                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are You Sure You Want To Remove {_cruise.Passengers[selectedPassenger - 1]}"))
+            AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers, $"{_cruise.CruiseName} Passengers"));
+
+            if (_cruise.Passengers.Count > 0)
+            {
+                int selectedPassenger = SpectreHelper.GetSelection(_cruise.Passengers, "[Blue]Which Passenger Would You Like To Remove[/]");
+
+                Console.Clear();
+
+                AnsiConsole.Write(SpectreHelper.DisplayPassenger(_cruise.Passengers[selectedPassenger - 1]));
+
+                int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
+
+                switch (selectedOption)
                 {
                     case 1:
                         _dataManager.RemovePassengerFromCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, _cruise.Passengers[selectedPassenger - 1].PassportNumber);
                         _cruise.RemovePassenger(_cruise.Passengers[selectedPassenger - 1]);
-                        HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Passenger Has Been Removed From The Cruise");
-                        _page = _pageStore.CurrentPage;
+
+                        SpectreHelper.ReturnToMainMenu("The Selected Passenger Has Been Removed From The Cruise", "green");
+
+                        _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                         _page.DisplayContent();
                         break;
 
                     case 2:
-                        HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Passenger Has Not Been Removed From The Cruise");
+                        SpectreHelper.ReturnToMainMenu("The Selected Passenger Has Not Been Removed From The Cruise", "red3");
+
                         _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                         _page.DisplayContent();
                         break;
@@ -51,8 +62,9 @@ namespace CrusiesConsoleAppUI.Pages
             }
             else
             {
-                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Does Not Have Any Passengers");
-                _page = _pageStore.CurrentPage;
+                SpectreHelper.ReturnToMainMenu("The Selected Cruise Does Not Have Any Passengers", "red3");
+
+                _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                 _page.DisplayContent();
             }
            

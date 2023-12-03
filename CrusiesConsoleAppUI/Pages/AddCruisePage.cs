@@ -3,6 +3,7 @@ using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -26,27 +27,31 @@ namespace CrusiesConsoleAppUI.Pages
         {
             Console.Clear();
 
-            
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Cruise");
+
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add New Cruise Page"));
 
             string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");
 
-            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+            int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm", }, "Option");
 
-            switch(HelperMethods.HelperMethods.GetItemInRange(1,2,"Are You Sure You Want To Add This Cruise?"))
+            switch (selectedOption)
             {
                 case 1:
                     CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
                     _admin.AddCruise(newCruise);
+
                     _dataManager.AppendCruiseToXml(FilePathConstants.ConstructPath(), newCruise);
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises");
+
+                    SpectreHelper.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises", "green");
+                   
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
 
                     break;
 
                 case 2:
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Not Been Added to {_admin.DisplayName}'s List of Cruises");
+                    SpectreHelper.ReturnToMainMenu($"Your Cruise Has Not Been Added to {_admin.DisplayName}'s List of Cruises","red3");
+                   
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;

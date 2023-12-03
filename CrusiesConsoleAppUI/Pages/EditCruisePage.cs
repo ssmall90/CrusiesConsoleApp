@@ -28,13 +28,14 @@ namespace CrusiesConsoleAppUI.Pages
 
 
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader($"{_cruise}");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Cruise Page"));
+
             Console.WriteLine(_cruise.CruiseName); 
             Console.WriteLine(_cruise.CruiseIdentifier);
-            //HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
-            //HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
-            AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports));
-            AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers));
+
+            AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports, $"{_cruise.CruiseName} Ports"));
+            AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers, $"{_cruise.CruiseName} Passengers"));
+
 
             int selection = SpectreHelper.GetSelection(new List<string>{ "Edit Ports", "Edit Passengers", "Remove Cruise From System"}, "Option");
             HelperMethods.HelperMethods.DisplayEditingOptions("editCruisePage");
@@ -55,23 +56,31 @@ namespace CrusiesConsoleAppUI.Pages
 
                 case 3:
                     Console.Clear();
+                    AnsiConsole.Write(SpectreHelper.DisplayCruise(_cruise));
+                    Console.WriteLine();
+
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Are You Sure You Want To Delete This Cruise From The System");
+                    AnsiConsole.WriteLine("Are You Sure You Want To Delete This Cruise From The System");
                     Console.ForegroundColor = ConsoleColor.White;
-                    HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+                    Console.WriteLine();
 
+                    int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
+                    Console.WriteLine();
 
-                    switch (HelperMethods.HelperMethods.GetItemInRange(1, 2,""))
+                    switch (selectedOption)
                     { 
                         case 1:
                             _dataManager.RemoveCruise(FilePathConstants.ConstructPath(),_cruise.CruiseIdentifier);
                             _admin.RemoveCruise(_cruise);
-                            HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Has Been Deleted From The System");
+
+                            SpectreHelper.ReturnToMainMenu("The Selected Cruise Has Been Successfully Deleted From The System","green");
+                            
                             _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                             _page.DisplayContent();
                             break;
                         case 2:
-                            HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Has Not Been Deleted From The System");
+                            SpectreHelper.ReturnToMainMenu("The Selected Cruise Has Not Been Deleted From The System","red3");
+                           
                             _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                             _page.DisplayContent();
                             break;

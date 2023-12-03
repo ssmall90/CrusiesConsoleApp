@@ -3,6 +3,7 @@ using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -32,44 +33,60 @@ namespace CrusiesConsoleAppUI.Pages
             while (addAnotherPassenger)
             {
                 Console.Clear();
-                HelperMethods.HelperMethods.DisplayPageHeader("Add Passenger");
+                AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add New Passenger Page"));
+
                 passengerFirstName = HelperMethods.HelperMethods.GetValidName("First Name", "Passenger");
                 passengerLastName = HelperMethods.HelperMethods.GetValidName("Last Name", "Passenger");
                 passengerPassportNumber = HelperMethods.HelperMethods.GetItemInRange(1, 999999999,"Please Enter Your Passport Number. This can be no longer than 9 digits");
-                HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
 
-                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are You Sure You Would Like To Add {passengerFirstName} {passengerLastName} To This Cruise?"))
+
+                AnsiConsole.MarkupLine($"[blue]Would You Like To Add This Passenger To {_cruise.CruiseName}'s Itenary[/]");
+                int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
+
+                switch (selectedOption)
                 {
                     case 1:
                         if (!_admin.PassportNumbers.Contains($"PN-{ passengerPassportNumber}"))
                         {
                             PassengerModel newPassenger = ModelFactory.CreatePassenger(passengerFirstName, passengerLastName, passengerPassportNumber);
                             _cruise.AddPassenger(newPassenger);
+
                             _dataManager.AddPassengersToCruise(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, newPassenger);
+                            
                             Console.Clear();
-                            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
-                            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, "Would You Like to Add Another Passenger?"))
+                            AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers,$"{_cruise.CruiseName} Passengers"));
+
+                            AnsiConsole.MarkupLine($"[blue]Would You Like To Add [yellow]Another[/] Passenger To {_cruise.CruiseName}'s Itenary[/]");
+                            selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
+                            
+                            switch (selectedOption)
                             {
-                                case 1: break;
+                                case 1:
+                                    break;
                                 case 2:
-                                    HelperMethods.HelperMethods.ReturnToMainMenu("The Passenger/s Have Been Added To The Cruise");
+                                    SpectreHelper.ReturnToMainMenu("Action Aborted", "red3");
+
                                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager); ;
                                     _page.DisplayContent();
-                                    addAnotherPassenger = false;
-                                    break;
 
+                                    addAnotherPassenger = false;
+
+                                    break;
                             }
 
                             break;
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            HelperMethods.HelperMethods.ReturnToMainMenu("Passenger Cannot Be Added. A Passenger With This Passport Number Already Exists in The System.");
-                            Console.ForegroundColor = ConsoleColor.White;
-                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager); ;
+
+                            SpectreHelper.ReturnToMainMenu("Passenger Cannot Be Added. A Passenger With This Passport Number Already Exists in The System.", "red3");
+
+                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+
                             _page.DisplayContent();
+
                             addAnotherPassenger = false;
+
                             break;
                         }
 

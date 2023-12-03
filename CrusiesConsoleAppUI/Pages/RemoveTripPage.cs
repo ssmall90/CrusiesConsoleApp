@@ -2,6 +2,7 @@
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -27,21 +28,29 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader($"Choose Trip");
-            HelperMethods.HelperMethods.DisplayList(_port.Trips, "Trips");
+
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove A Trip Page"));
+
+            AnsiConsole.Write(SpectreHelper.DisplayTripTable(_port.Trips, $"{_port.Name} Trips"));
 
             if(_port.Trips.Count > 0)
             {
-                int selectedTrip = HelperMethods.HelperMethods.GetItemInRange(1, _port.Trips.Count, "Which Trip Do You Want to Remove?");
+                int selectedTrip = SpectreHelper.GetSelection(_port.Trips, "[Blue]Which Trip Would You Like To Remove[/]");
 
-                HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+                Console.Clear();
 
-                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to delete {_port.Trips[selectedTrip - 1]}"))
+                AnsiConsole.Write(SpectreHelper.DisplayTrip(_port.Trips[selectedTrip - 1]));
+
+                int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
+
+                switch (selectedOption)
                 {
                     case 1:
                         _dataManager.RemoveTripFromPort(FilePathConstants.ConstructPath(), _port.Trips[selectedTrip - 1].ActivityId);
                         _port.RemoveTrip(_port.Trips[selectedTrip - 1]);
-                        HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Trip Has Been Removed From the Port");
+
+                        SpectreHelper.ReturnToMainMenu("The Selected Trip Has Been Removed From the Port", "red3");
+
                         _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                         _page.DisplayContent();
                         break;
@@ -54,7 +63,8 @@ namespace CrusiesConsoleAppUI.Pages
             }
             else
             {
-                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Port Does Not Have Any Trips");
+                SpectreHelper.ReturnToMainMenu("The Selected Port Does Not Have Any Trips","red3");
+
                 _page = _pageStore.CurrentPage;
                 _page.DisplayContent();
             }

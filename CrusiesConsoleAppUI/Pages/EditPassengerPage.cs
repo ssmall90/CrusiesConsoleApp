@@ -1,6 +1,7 @@
 ﻿using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -24,9 +25,12 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Edit Passenger");
-            HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, $"{_cruise.CruiseName} Passengers");
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, HelperMethods.HelperMethods.DisplayEditingOptions("editPassengerPage"), "Select An Action for the Options Above"))
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Passengers Page"));
+
+            AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers, $"{_cruise.CruiseName} Passengers"));
+            
+            int selection = SpectreHelper.GetSelection(new List<string> { "Add Passenger", "Remove Passenger" }, "Option");
+            switch (selection)
             {
                 case 1:
                     _pageStore.CurrentPage = this;

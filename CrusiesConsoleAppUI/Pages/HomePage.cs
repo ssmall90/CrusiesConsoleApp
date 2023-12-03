@@ -1,6 +1,7 @@
 ﻿using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -21,13 +22,15 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             _pageStore.CurrentPage = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
+            
+
             Console.Clear();
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Home Page"));
 
-            Console.WriteLine("1: Add Cruise");
-            Console.WriteLine("2: View All Cruises");
+            int selectedOption = SpectreHelper.GetSelectionHomePage(new List<string> { "Add Cruise", "View All Cruises" }, "Option");
 
 
-            switch(HelperMethods.HelperMethods.GetItemInRange(1, 2,""))
+            switch (selectedOption)
             {
                 case 1:
                     _pageStore.CurrentPage = this;

@@ -3,6 +3,7 @@ using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -26,20 +27,26 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader($"Remove Port");
-            HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove Port Page"));
+
+            AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports , $"{_cruise.CruiseName} Ports"));
+
             if (_cruise.Ports.Count > 0)
             {
-                int selectedPort = HelperMethods.HelperMethods.GetItemInRange(1, _cruise.Ports.Count, "Which Port Would You Like To Delete");
+                int selectedPort = SpectreHelper.GetSelection(_cruise.Ports, "[Blue]Which Port Would You Like To Remove[/]");
 
-                HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+                Console.Clear();
 
-                switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you want to delete {_cruise.Ports[selectedPort - 1]}"))
+                AnsiConsole.Write(SpectreHelper.DisplayPort(_cruise.Ports[selectedPort - 1]));
+
+                int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
+
+                switch (selectedOption)
                 {
                     case 1:
                         _dataManager.RemovePortFromCruise(FilePathConstants.ConstructPath(), _cruise.Ports[selectedPort - 1].PortId);
                         _cruise.RemovePort(_cruise.Ports[selectedPort - 1]);
-                        HelperMethods.HelperMethods.ReturnToMainMenu("The selected port has been  removed from the cruise");
+                        SpectreHelper.ReturnToMainMenu("The Selected Port Has Been Removed From The Cruise", "green");
                         _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                         _page.DisplayContent();
                         break;
@@ -52,7 +59,7 @@ namespace CrusiesConsoleAppUI.Pages
             }
             else
             {
-                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Cruise Does Not Have Any Ports");
+                SpectreHelper.ReturnToMainMenu("The Selected Cruise Does Not Have Any Ports", "red3");
                 _page = _pageStore.CurrentPage;
                 _page.DisplayContent();
             }

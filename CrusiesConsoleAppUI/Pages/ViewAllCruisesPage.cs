@@ -24,18 +24,13 @@ namespace CrusiesConsoleAppUI.Pages
         {
             Console.Clear();
 
-            HelperMethods.HelperMethods.DisplayPageHeader("View All Cruises");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("View All Cruises"));
 
-            AnsiConsole.Write(SpectreHelper.DisplayCruiseTable(_admin.Cruises));
+            AnsiConsole.Write(SpectreHelper.DisplayCruiseTable(_admin.Cruises , "Cruises"));
 
-            //HelperMethods.HelperMethods.DisplayList(_admin.Cruises,"Cruises");
-            //AnsiConsole.Write(HelperMethods.HelperMethods.DisplayTable("Name", _admin.Cruises));
-
-            Console.WriteLine($"{_admin.Cruises.Count + 1}: Return To Main Menu");
 
             int selectedCruise = SpectreHelper.GetSelection(_admin.Cruises, "Cruise");
 
-            //HelperMethods.HelperMethods.GetItemInRange(1, _admin.Cruises.Count + 1, "Which Cruise Would You Like To View/Edit?");
 
             if (selectedCruise > 0 && selectedCruise <= _admin.Cruises.Count)
             {

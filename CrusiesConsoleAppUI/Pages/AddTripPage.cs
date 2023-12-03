@@ -3,6 +3,7 @@ using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -30,14 +31,14 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Trip");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Trip Page"));
 
             string tripName = HelperMethods.HelperMethods.GetValidName("Name", "Trip");
             int costOfTrip = HelperMethods.HelperMethods.GetValidInt("Enter the Cost of the Trip");
 
-            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+            int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm"}, "Option");
 
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you would like to add {tripName} to {_port.Name}?"))
+            switch (selectedOption)
             {
                 case 1:
 
@@ -46,16 +47,22 @@ namespace CrusiesConsoleAppUI.Pages
 
                     _dataManager.AddTripToPort(FilePathConstants.ConstructPath(),_cruise.CruiseIdentifier,_port.PortId.ToString(), newTrip) ;
 
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Trip Has Been Successfully Added to {_port.Name}");
+                    SpectreHelper.ReturnToMainMenu($"Your Trip Has Been Successfully Added to {_port.Name}", "green");
+                    
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
+
                     break;
 
                 case 2:
+                    SpectreHelper.ReturnToMainMenu($"Action Aborted", "red3");
+
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _pageStore.CurrentPage = _page;
                     _page.DisplayContent();
+
                     break;
+
 
             }
         }
