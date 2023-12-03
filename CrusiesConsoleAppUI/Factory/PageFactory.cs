@@ -1,11 +1,7 @@
 ﻿using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Pages;
 using CrusiesConsoleAppUI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CrusiesConsoleAppUI.Factory
 {

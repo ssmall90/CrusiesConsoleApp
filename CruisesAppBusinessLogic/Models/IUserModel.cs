@@ -1,5 +1,4 @@
-﻿
-namespace CrusiesConsoleAppUI.Models
+﻿namespace CrusiesConsoleAppUI.Models
 {
     public interface IUserModel
     {
