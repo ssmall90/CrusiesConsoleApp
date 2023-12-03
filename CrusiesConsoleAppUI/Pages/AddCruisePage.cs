@@ -25,6 +25,8 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
+
+            
             HelperMethods.HelperMethods.DisplayPageHeader("Add Cruise");
 
             string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");

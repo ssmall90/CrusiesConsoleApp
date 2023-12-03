@@ -2,6 +2,7 @@
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -30,11 +31,15 @@ namespace CrusiesConsoleAppUI.Pages
             HelperMethods.HelperMethods.DisplayPageHeader($"{_cruise}");
             Console.WriteLine(_cruise.CruiseName); 
             Console.WriteLine(_cruise.CruiseIdentifier);
-            HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
-            HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
+            //HelperMethods.HelperMethods.DisplayList(_cruise.Ports, "Ports");
+            //HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
+            AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports));
+            AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers));
+
+            int selection = SpectreHelper.GetSelection(new List<string>{ "Edit Ports", "Edit Passengers", "Remove Cruise From System"}, "Option");
             HelperMethods.HelperMethods.DisplayEditingOptions("editCruisePage");
 
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 4, "Select An Action From The Options Above"))
+            switch (selection)
             {
                 case 1:
                     _pageStore.CurrentPage = this;

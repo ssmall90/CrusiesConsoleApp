@@ -1,6 +1,7 @@
 ﻿using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -24,8 +25,10 @@ namespace CrusiesConsoleAppUI.Pages
         {
             Console.Clear();
             HelperMethods.HelperMethods.DisplayPageHeader("Edit Ports");
-            HelperMethods.HelperMethods.DisplayList(_cruise.Ports, $"{_cruise.CruiseName} Ports");
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, HelperMethods.HelperMethods.DisplayEditingOptions("editPortPage"), "Select An Action for the Options Above"))
+            //HelperMethods.HelperMethods.DisplayList(_cruise.Ports, $"{_cruise.CruiseName} Ports");
+            AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports));
+            int selection = SpectreHelper.GetSelection(new List<string> {"Add Port", "Remove Port","Edit Port" }, "Option");
+            switch (selection)
             {
                 case 1:
                     _pageStore.CurrentPage = this;

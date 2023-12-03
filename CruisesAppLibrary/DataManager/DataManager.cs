@@ -104,7 +104,7 @@ namespace CrusiesConsoleAppUI.Services
 
                 foreach (XElement passengerElement in passengerElements)
                 {
-                    XElement passportNumberElement = passengerElement.Element("PassportNumber");
+                    XElement passportNumberElement = passengerElement.Element("PassportNumber")!;
                     if (passportNumberElement != null)
                     {
                         string passportNumber = passportNumberElement.Value;
