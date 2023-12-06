@@ -18,12 +18,6 @@
             }
         }
 
-
-        public static int NextUserId
-        {
-            get { return _nextId; }
-        }
-
         public string Id { get; set; }
         public string DisplayName { get; set; }
         public List<CruiseModel> Cruises { get; set; }
