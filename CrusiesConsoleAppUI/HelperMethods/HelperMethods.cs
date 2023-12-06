@@ -180,7 +180,7 @@ namespace CrusiesConsoleAppUI.HelperMethods
             return result;
         }
 
-        public static int GetValidInt(string message)
+        public static int GetValidInt(string message, int range)
         {
             bool isValid = false;
 

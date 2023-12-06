@@ -29,15 +29,17 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove Passenger From Trip Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove Passenger From Trip"));
 
             AnsiConsole.Write(SpectreHelper.DisplayTripTable(_port.Trips,$"{_port.Name} Trips"));
+
+            AnsiConsole.WriteLine();
 
             if (_port.Trips.Count > 0)
             {
                 AnsiConsole.WriteLine();
 
-                int selectedTrip = SpectreHelper.GetSelection(_port.Trips, "[Blue]Which Trip Would You Like To Remove A Passenger From?[/]");
+                int selectedTrip = SpectreHelper.GetSelection(_port.Trips, "Which Trip Would You Like To Remove A Passenger From?");
 
                 if(selectedTrip <= _port.Trips.Count)
                 {
@@ -53,9 +55,13 @@ namespace CrusiesConsoleAppUI.Pages
 
                         Console.Clear();
 
+                        AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader($"{_port.Trips[selectedTrip - 1].NameOfActivity}"));
+
+                        AnsiConsole.WriteLine();
+
                         AnsiConsole.Write(SpectreHelper.DisplayTrip(_port.Trips[selectedTrip - 1]));
 
-                        int selectedPassenger = SpectreHelper.GetSelection(_port.Trips[selectedTrip - 1].AttendingPassengers, "[Blue]Which Passenger Would You Like To Remove From This Trip[/]");
+                        int selectedPassenger = SpectreHelper.GetSelection(_port.Trips[selectedTrip - 1].AttendingPassengers, "Which Passenger Would You Like To Remove From This Trip");
 
                         _dataManager.RemovePassengerFromTrip(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, _port.PortId, _port.Trips[selectedTrip - 1].ActivityId, _port.Trips[selectedTrip - 1].AttendingPassengers[selectedPassenger - 1].PassportNumber);
                         _port.Trips[selectedTrip - 1].AttendingPassengers.RemoveAt(selectedPassenger - 1);

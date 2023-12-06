@@ -39,6 +39,7 @@ namespace CrusiesConsoleAppUI.Services
             return cruises;
         }
 
+
         public void AppendCruiseToXml(string filePath, CruiseModel cruise)
         {
             try

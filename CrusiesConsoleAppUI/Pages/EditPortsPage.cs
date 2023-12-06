@@ -24,7 +24,7 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Ports Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Ports"));
 
             AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports,$"{_cruise.CruiseName} Ports"));
 

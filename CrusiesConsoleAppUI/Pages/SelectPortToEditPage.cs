@@ -31,7 +31,7 @@ namespace CrusiesConsoleAppUI.Pages
         {
             Console.Clear();
 
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Select A Exisiting Port Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Select A Port"));
 
             AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports, $"{_cruise.CruiseName} Ports"));
 
@@ -40,9 +40,12 @@ namespace CrusiesConsoleAppUI.Pages
                 int selectedPort = SpectreHelper.GetSelection(_cruise.Ports, "port");
 
                 Console.Clear();
+
+                AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader($"{_cruise.Ports[selectedPort-1].Name}"));
+
                 AnsiConsole.Write(SpectreHelper.DisplayPort(_cruise.Ports[selectedPort-1]));
 
-                int selectedOption = SpectreHelper.GetSelection(new List<string> { "Add Trip", "Remove Trip","Add Passenger", "Remove Passenger" }, "Option");
+                int selectedOption = SpectreHelper.GetSelection(new List<string> { "Add A Trip To This Port", "Remove A Trip From This Port", "Add A Passenger To A Trip On This Port", "Remove A Passenger From A Trip On This Port" }, "Option");
 
                 switch (selectedOption)
 

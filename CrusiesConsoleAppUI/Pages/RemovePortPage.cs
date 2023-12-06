@@ -27,17 +27,23 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove Port Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove Port"));
 
             AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports , $"{_cruise.CruiseName} Ports"));
 
             if (_cruise.Ports.Count > 0)
             {
-                int selectedPort = SpectreHelper.GetSelection(_cruise.Ports, "[Blue]Which Port Would You Like To Remove[/]");
+                int selectedPort = SpectreHelper.GetSelection(_cruise.Ports, "The Port You Would Like To Remove");
 
                 Console.Clear();
 
                 AnsiConsole.Write(SpectreHelper.DisplayPort(_cruise.Ports[selectedPort - 1]));
+
+                AnsiConsole.WriteLine();
+
+                AnsiConsole.MarkupLine("[red3]Are You Sure You Want To Remove This Port?[/]");
+
+                AnsiConsole.WriteLine();
 
                 int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
 

@@ -25,9 +25,10 @@ namespace CrusiesConsoleAppUI.Pages
             
 
             Console.Clear();
+
             AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Home Page"));
 
-            int selectedOption = SpectreHelper.GetSelectionHomePage(new List<string> { "Add Cruise", "View All Cruises" }, "Option");
+            int selectedOption = SpectreHelper.GetSelectionHomePage(new List<string> { "Add Cruise", "View All Cruises" });
 
 
             switch (selectedOption)

@@ -26,17 +26,21 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            AnsiConsole.Write(SpectreHelper.DisplayHeader("Remove Passenger Page"));
+            AnsiConsole.Write(SpectreHelper.DisplayHeader("Remove Passenger"));
 
             AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers, $"{_cruise.CruiseName} Passengers"));
 
             if (_cruise.Passengers.Count > 0)
             {
-                int selectedPassenger = SpectreHelper.GetSelection(_cruise.Passengers, "[Blue]Which Passenger Would You Like To Remove[/]");
+                int selectedPassenger = SpectreHelper.GetSelection(_cruise.Passengers, "Which Passenger Would You Like To Remove");
 
                 Console.Clear();
 
+                AnsiConsole.Write(SpectreHelper.DisplayHeader($"{_cruise.Passengers[selectedPassenger-1].FirstName} {_cruise.Passengers[selectedPassenger - 1].LastName}"));
+
                 AnsiConsole.Write(SpectreHelper.DisplayPassenger(_cruise.Passengers[selectedPassenger - 1]));
+
+                AnsiConsole.WriteLine();
 
                 int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
 

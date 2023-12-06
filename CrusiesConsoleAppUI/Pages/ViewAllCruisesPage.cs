@@ -28,6 +28,7 @@ namespace CrusiesConsoleAppUI.Pages
 
             AnsiConsole.Write(SpectreHelper.DisplayCruiseTable(_admin.Cruises , "Cruises"));
 
+            AnsiConsole.WriteLine();
 
             int selectedCruise = SpectreHelper.GetSelection(_admin.Cruises, "Cruise");
 

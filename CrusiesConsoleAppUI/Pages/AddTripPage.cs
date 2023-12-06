@@ -31,10 +31,10 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Trip Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Trip"));
 
-            string tripName = HelperMethods.HelperMethods.GetValidName("Name", "Trip");
-            int costOfTrip = HelperMethods.HelperMethods.GetValidInt("Enter the Cost of the Trip");
+            string tripName = SpectreHelper.GetValidName("Name", "Trip");
+            int costOfTrip = SpectreHelper.GetValidInt("Enter the Cost of the Trip In £", 500);
 
             int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm"}, "Option");
 

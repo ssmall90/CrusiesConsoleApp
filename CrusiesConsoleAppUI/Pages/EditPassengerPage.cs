@@ -25,7 +25,7 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Passengers Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Passengers"));
 
             AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers, $"{_cruise.CruiseName} Passengers"));
             

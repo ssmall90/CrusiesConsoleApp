@@ -1,14 +1,27 @@
 ﻿using CruisesAppDataAccess;
 using CrusiesAppDataAccess.Factory;
+using CrusiesConsoleAppUI;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Pages;
 using CrusiesConsoleAppUI.Services;
-using System.Xml.Serialization;
+
+
+
+IntPtr handle = ProgramSetup.GetConsoleWindow();
+
+IntPtr sysMenu = ProgramSetup.GetSystemMenu(handle, false);
+
+if (handle != IntPtr.Zero)
+{
+    ProgramSetup.DeleteMenu(sysMenu, ProgramSetup.SC_CLOSE, ProgramSetup.MF_BYCOMMAND);
+    ProgramSetup.DeleteMenu(sysMenu, ProgramSetup.SC_MINIMIZE, ProgramSetup.MF_BYCOMMAND);
+    ProgramSetup.DeleteMenu(sysMenu, ProgramSetup.SC_MAXIMIZE, ProgramSetup.MF_BYCOMMAND);
+    ProgramSetup.DeleteMenu(sysMenu, ProgramSetup.SC_SIZE, ProgramSetup.MF_BYCOMMAND);
+}
+
 
 string xmlFilePath = FilePathConstants.ConstructPath();
-
-
 
 IUserModel admin =  ModelFactory.CreateUser("Sheldon");
 

@@ -29,10 +29,10 @@ namespace CrusiesConsoleAppUI.Pages
         {
 
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Port Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Port"));
 
-            string portName = HelperMethods.HelperMethods.GetValidName("Name", "Port");
-            int lengthOfStay = HelperMethods.HelperMethods.GetValidInt("Enter the Duration of the Stay at This Port");
+            string portName = SpectreHelper.GetValidName("Name", "Port");
+            int lengthOfStay = SpectreHelper.GetValidInt("Enter the Duration of the Stay at This Port", 14);
 
             int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
 

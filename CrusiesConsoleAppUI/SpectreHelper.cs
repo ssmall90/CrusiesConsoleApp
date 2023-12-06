@@ -13,7 +13,15 @@ namespace CrusiesConsoleAppUI
 
         public static string DisplayHeader(string title)
         {
-           return $"\r\n[underline dodgerblue2]{title}[/]\r\n";
+            var titlefiglet = new FigletText(title)
+            .Color(Color.DodgerBlue1);
+
+            titlefiglet.Justify(Justify.Center);
+
+            AnsiConsole.WriteLine();
+            AnsiConsole.Write(titlefiglet);
+            AnsiConsole.WriteLine();
+            return $"";
         }
 
         public static Table DisplayPortTable(List<PortModel> ports, string title)
@@ -22,10 +30,10 @@ namespace CrusiesConsoleAppUI
 
             table.Title(title);
 
-            table.Centered().Expand().Width(100);
+            table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
-            table.BorderColor(Color.Red); 
-            
+            table.BorderColor(Color.DodgerBlue1);
+
 
             table.AddColumn("Port Id");
             table.AddColumn("Port Name");
@@ -46,8 +54,6 @@ namespace CrusiesConsoleAppUI
         {
             var table = new Table();
 
-            table.Title(port.Name);
-
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
 
@@ -67,8 +73,10 @@ namespace CrusiesConsoleAppUI
 
             table.Title(title);
 
+
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
+            table.BorderColor(Color.DodgerBlue1);
 
             table.AddColumn("First Name");
             table.AddColumn("Last Name");
@@ -86,7 +94,6 @@ namespace CrusiesConsoleAppUI
         {
             var table = new Table();
 
-            table.Title("Passenger");
 
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
@@ -107,8 +114,11 @@ namespace CrusiesConsoleAppUI
 
             table.Title(title);
 
+
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
+            table.BorderColor(Color.DodgerBlue1);
+
 
             table.AddColumn("Cruise Id");
             table.AddColumn("Cruise Name");
@@ -126,8 +136,6 @@ namespace CrusiesConsoleAppUI
         public static Table DisplayCruise(CruiseModel cruise)
         {
             var table = new Table();
-
-            table.Title(cruise.CruiseName);
 
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
@@ -150,6 +158,8 @@ namespace CrusiesConsoleAppUI
 
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
+            table.BorderColor(Color.DodgerBlue1);
+
             table.AddColumn("Trip Id");
             table.AddColumn("Trip Name");
             table.AddColumn("Cost");
@@ -167,8 +177,6 @@ namespace CrusiesConsoleAppUI
         {
             var table = new Table();
 
-            table.Title(trip.NameOfActivity);
-
             table.Expand().Centered().Width(100);
             table.Border(TableBorder.Rounded);
 
@@ -184,7 +192,7 @@ namespace CrusiesConsoleAppUI
 
         public static int GetSelection<T>(List<T> list, string option)
         {
-            AnsiConsole.MarkupLine($"Please select a [bold yellow]{option}[/]");
+            AnsiConsole.MarkupLine($"[bold yellow]Please Select {option}[/]");
 
             var prompt = new SelectionPrompt<string>();
 
@@ -215,9 +223,9 @@ namespace CrusiesConsoleAppUI
 
         }
 
-        public static int GetSelectionHomePage<T>(List<T> list, string option)
+        public static int GetSelectionHomePage<T>(List<T> list)
         {
-            AnsiConsole.MarkupLine($"Please select a [bold yellow]{option}[/]");
+            AnsiConsole.MarkupLine($"[bold yellow] Please select an option from the menu below [/]");
 
             var prompt = new SelectionPrompt<string>();
 
@@ -251,12 +259,85 @@ namespace CrusiesConsoleAppUI
         public static void ReturnToMainMenu(string pMessage, string colour) 
         {
 
-            AnsiConsole.MarkupLine(DisplayHeader($"[{colour}]{pMessage}[/]"));
             AnsiConsole.WriteLine();
-            AnsiConsole.MarkupLine("Press Any Key To Return To The Main Menu");
+            AnsiConsole.MarkupLine($"[invert {colour}]{pMessage}[/]");
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine("[bold yellow]Press Any Key To Return To The Main Menu[/]");
             Console.ReadKey();
             
 
+        }
+
+        public static string GetValidName(string nameType, string model)
+        {
+            bool isValid = false;
+
+            string result = string.Empty;
+
+            do
+            {
+
+                AnsiConsole.MarkupLine($"[bold yellow]Please Enter the {nameType} for the {model} You Would Like to Add[/]");
+
+                string userInput = Console.ReadLine()!;
+
+                Console.WriteLine("");
+
+                if (userInput.Length >= 3)
+                {
+                    isValid = true;
+                    result = userInput;
+                }
+                else
+                {
+                    Console.WriteLine("Enter a Name at Least 3 Characters In Length.");
+                }
+
+            } while (!isValid);
+
+            return result;
+        }
+
+        public static int GetValidInt(string message, int range)
+        {
+            bool isValid = false;
+
+            int result = 0;
+
+            do
+            {
+
+                AnsiConsole.MarkupLine($"[bold yellow]{message}[/]");
+
+                string userInput = Console.ReadLine()!;
+
+                AnsiConsole.WriteLine("");
+
+                try
+                {
+                    result = int.Parse(userInput);
+                }
+                catch
+                {
+                    AnsiConsole.MarkupLine($"[red3]{userInput} Is Not A Number[/]");
+                    continue;
+                }
+
+                if (result > 0 && result < range)
+                {
+                    isValid = true;
+                    return result;
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine($"[red3]You must enter a number between 1 & {range} to continue[/]");
+                    continue;
+                }
+
+
+            } while (!isValid);
+
+            return result;
         }
 
     }

@@ -29,17 +29,26 @@ namespace CrusiesConsoleAppUI.Pages
         {
             Console.Clear();
 
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove A Trip Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Remove Trip"));
 
             AnsiConsole.Write(SpectreHelper.DisplayTripTable(_port.Trips, $"{_port.Name} Trips"));
 
             if(_port.Trips.Count > 0)
             {
-                int selectedTrip = SpectreHelper.GetSelection(_port.Trips, "[Blue]Which Trip Would You Like To Remove[/]");
+                int selectedTrip = SpectreHelper.GetSelection(_port.Trips, "Which Trip Would You Like To Remove");
 
                 Console.Clear();
 
+                AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader($"{_port.Trips[selectedTrip-1].NameOfActivity}"));
+
+                AnsiConsole.WriteLine();
+
                 AnsiConsole.Write(SpectreHelper.DisplayTrip(_port.Trips[selectedTrip - 1]));
+
+                AnsiConsole.WriteLine();
+
+                AnsiConsole.MarkupLine("[red3]Are You Sure You Want To Remove This Trip[/]");
+
 
                 int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
 

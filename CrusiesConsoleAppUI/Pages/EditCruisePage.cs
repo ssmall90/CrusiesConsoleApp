@@ -28,14 +28,18 @@ namespace CrusiesConsoleAppUI.Pages
 
 
             Console.Clear();
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Cruise Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Edit Cruise"));
 
-            Console.WriteLine(_cruise.CruiseName); 
-            Console.WriteLine(_cruise.CruiseIdentifier);
+            AnsiConsole.MarkupLine($"Cruise Name: {_cruise.CruiseName}");
+            AnsiConsole.WriteLine();
+            AnsiConsole.MarkupLine($"Cruise ID: {_cruise.CruiseIdentifier}");
+            AnsiConsole.WriteLine();
+
 
             AnsiConsole.Write(SpectreHelper.DisplayPortTable(_cruise.Ports, $"{_cruise.CruiseName} Ports"));
+            AnsiConsole.WriteLine();
             AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_cruise.Passengers, $"{_cruise.CruiseName} Passengers"));
-
+            AnsiConsole.WriteLine();
 
             int selection = SpectreHelper.GetSelection(new List<string>{ "Edit Ports", "Edit Passengers", "Remove Cruise From System"}, "Option");
             HelperMethods.HelperMethods.DisplayEditingOptions("editCruisePage");

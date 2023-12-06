@@ -55,6 +55,30 @@
           </TripModel>
         </Trips>
       </PortModel>
+      <PortModel>
+        <Name>sunny</Name>
+        <PortId>PI-218</PortId>
+        <LengthOfStay>1</LengthOfStay>
+        <Trips />
+      </PortModel>
+      <PortModel>
+        <Name>232</Name>
+        <PortId>PI-220</PortId>
+        <LengthOfStay>12</LengthOfStay>
+        <Trips />
+      </PortModel>
+      <PortModel>
+        <Name>zdfxvb</Name>
+        <PortId>PI-221</PortId>
+        <LengthOfStay>1</LengthOfStay>
+        <Trips>
+          <TripModel>
+            <NameOfActivity>cv zc z\c</NameOfActivity>
+            <ActivityId>AI-7103</ActivityId>
+            <Cost>123</Cost>
+          </TripModel>
+        </Trips>
+      </PortModel>
     </Ports>
     <Passengers>
       <PassengerModel>
@@ -76,6 +100,11 @@
         <FirstName>wedfv</FirstName>
         <LastName>rgb</LastName>
         <PassportNumber>PN-432</PassportNumber>
+      </PassengerModel>
+      <PassengerModel>
+        <FirstName>dfsda</FirstName>
+        <LastName>sdzfvc</LastName>
+        <PassportNumber>PN-12345</PassportNumber>
       </PassengerModel>
     </Passengers>
   </CruiseModel>
@@ -214,6 +243,12 @@
   <CruiseModel>
     <CruiseName>The CruiseLiner</CruiseName>
     <CruiseIdentifier>CI-197821</CruiseIdentifier>
+    <Ports />
+    <Passengers />
+  </CruiseModel>
+  <CruiseModel>
+    <CruiseName>sdfg</CruiseName>
+    <CruiseIdentifier>CI-197830</CruiseIdentifier>
     <Ports />
     <Passengers />
   </CruiseModel>

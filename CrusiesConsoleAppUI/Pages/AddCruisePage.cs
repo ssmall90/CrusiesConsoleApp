@@ -28,11 +28,13 @@ namespace CrusiesConsoleAppUI.Pages
             Console.Clear();
 
 
-            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add New Cruise Page"));
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add New Cruise"));
 
-            string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");
+            string cruiseName = SpectreHelper.GetValidName("Name","Cruise");
 
-            int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm", }, "Option");
+            AnsiConsole.MarkupLine("[bold yellow]Are You Sure You Would Like To Add This Cruise?[/]");
+
+            int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm", }, "An Option");
 
             switch (selectedOption)
             {
@@ -42,7 +44,7 @@ namespace CrusiesConsoleAppUI.Pages
 
                     _dataManager.AppendCruiseToXml(FilePathConstants.ConstructPath(), newCruise);
 
-                    SpectreHelper.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises", "green");
+                    SpectreHelper.ReturnToMainMenu($"Your Cruise Has Been Successfully Added To Your List of Cruises", "green");
                    
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
