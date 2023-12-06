@@ -12,10 +12,7 @@
                 string txtFileName = "LastUserNumber.txt";
 
                 string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
-                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);
-
-                Console.WriteLine(txtFilePath);
-                Console.ReadLine();
+                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName); // Only Suitable For Debugging
 
                 return txtFilePath;
 
