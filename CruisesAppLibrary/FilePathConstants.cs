@@ -3,7 +3,7 @@
     public static class FilePathConstants
     {
 
-        public static string ConstructPath()
+        public static string ConstructPath() // This Path Is Only Suitable For Debugging
         {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string fileName = "database.xml";
@@ -12,7 +12,7 @@
             return xmlFilePath;
         }
 
-        public static string ConstructTextFilePath(string fileName)
+        public static string ConstructTextFilePath(string fileName) // This Path Is Only Suitable For Debugging
         {
 
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
