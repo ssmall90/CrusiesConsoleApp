@@ -1,5 +1,4 @@
 ﻿using CruisesAppDataAccess;
-using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
@@ -36,6 +35,8 @@ namespace CrusiesConsoleAppUI.Pages
                 int selectedPort = SpectreHelper.GetSelection(_cruise.Ports, "The Port You Would Like To Remove");
 
                 Console.Clear();
+
+                AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader($"{_cruise.Ports[selectedPort - 1].Name}"));
 
                 AnsiConsole.Write(SpectreHelper.DisplayPort(_cruise.Ports[selectedPort - 1]));
 
