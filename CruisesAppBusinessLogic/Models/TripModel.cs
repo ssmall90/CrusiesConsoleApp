@@ -11,12 +11,13 @@
                 string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
                 string txtFileName = "LastTripNumber.txt";
 
-                //string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
-                //string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);// Only Suitable For Debugging
+                string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
+                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);// Only Suitable For Debugging
+                return txtFilePath;
 
-                string textFilePathPublished = Path.Combine(baseDirectory, "Text Files", txtFileName);
+                //string textFilePathPublished = Path.Combine(baseDirectory, "Text Files", txtFileName);
 
-                return textFilePathPublished;
+                //return textFilePathPublished;
             }
         }
 
