@@ -2,6 +2,7 @@
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 namespace CrusiesConsoleAppUI.Pages
 {
@@ -27,19 +28,26 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Passenger To Trip");
-            HelperMethods.HelperMethods.DisplayList(_port.Trips, "Trips");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Passenger To Trip"));
 
-            if(_port.Trips.Count > 0)
+
+
+
+            if (_port.Trips.Count > 0)
             {
-                int selectedTrip = HelperMethods.HelperMethods.GetItemInRange(1, _port.Trips.Count, "Which Trip Do You Want to Add the Passenger To?");
+                AnsiConsole.Write(SpectreHelper.DisplayTripTable(_port.Trips, $"{_port.Name} Trips"));
 
-                HelperMethods.HelperMethods.DisplayList(_cruise.Passengers, "Passengers");
+                int selectedTrip = SpectreHelper.GetSelection(_port.Trips, "Which Trip Would You Like To Add A Passenger To");
 
-                if(_cruise.Passengers.Count > 0)
+
+                if (_cruise.Passengers.Count > 0)
                 {
 
-                    int selectedPassenger = HelperMethods.HelperMethods.GetItemInRange(1, _port.Trips.Count, "Which Passenger Would you Like to Add to This Trip?");
+                    Console.Clear();
+                    AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_port.Trips[selectedTrip - 1].AttendingPassengers, $"Passengers Attending {_port.Trips[selectedTrip - 1].NameOfActivity}"));
+
+                    int selectedPassenger = SpectreHelper.GetSelection(_cruise.Passengers, $"Which Passenger Would You Like To Add To {_port.Trips[selectedTrip-1].NameOfActivity}");
+
                     bool alreadyOnTrip = false;
 
                     foreach (var passenger in _port.Trips[selectedTrip - 1].AttendingPassengers)
@@ -48,9 +56,10 @@ namespace CrusiesConsoleAppUI.Pages
                         if (_cruise.Passengers[selectedPassenger - 1].PassportNumber == passenger.PassportNumber)
                         {
                             alreadyOnTrip = true;
-                            Console.WriteLine($"The Selected Passenger {_cruise.Passengers[selectedPassenger - 1].FirstName} is Already Booked On This Trip \n\rPress Enter To Return To Previous Menu");
-                            Console.ReadKey();
-                            _page = PageFactory.CreateSelectPortToEditPage(_admin, _page, _cruise, _pageStore, _dataManager);
+
+                            SpectreHelper.ReturnToMainMenu($"The Selected Passenger {_cruise.Passengers[selectedPassenger - 1].FirstName} is Already Booked On This Trip", "red3");
+
+                            _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                             _page.DisplayContent();
                             break;
 
@@ -62,7 +71,11 @@ namespace CrusiesConsoleAppUI.Pages
                     {
                         _dataManager.AddPassengerToTrip(FilePathConstants.ConstructPath(), _cruise.CruiseIdentifier, _port.PortId, _port.Trips[selectedTrip - 1].ActivityId, _cruise.Passengers[selectedPassenger - 1]);
                         _port.Trips[selectedTrip - 1].AttendingPassengers.Add(_cruise.Passengers[selectedPassenger - 1]);
-                        HelperMethods.HelperMethods.ReturnToMainMenu("Passenger Has Been Added To Trip");
+
+                        Console.Clear();
+                        AnsiConsole.Write(SpectreHelper.DisplayPassengerTable(_port.Trips[selectedTrip - 1].AttendingPassengers, SpectreHelper.DisplayHeader($"Passengers Attending {_port.Trips[selectedTrip - 1].NameOfActivity}")));
+                        SpectreHelper.ReturnToMainMenu("The Passenger Has Been Added To Trip", "green");
+
                         _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                         _page.DisplayContent();
 
@@ -70,7 +83,7 @@ namespace CrusiesConsoleAppUI.Pages
                 }
                 else
                 {
-                    HelperMethods.HelperMethods.ReturnToMainMenu("There Are No Passengers Booked Onto This Cruise");
+                    SpectreHelper.ReturnToMainMenu("There Are No Passengers Booked Onto This Cruise", "red3");
                     _page = _pageStore.CurrentPage;
                     _page.DisplayContent();
                 }
@@ -78,7 +91,7 @@ namespace CrusiesConsoleAppUI.Pages
             }
             else
             {
-                HelperMethods.HelperMethods.ReturnToMainMenu("The Selected Port Does Not Have Any Trips");
+                SpectreHelper.ReturnToMainMenu("The Selected Port Does Not Have Any Trips", "red3");
                 _page = _pageStore.CurrentPage;
                 _page.DisplayContent();
             }

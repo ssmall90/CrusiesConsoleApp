@@ -1,4 +1,9 @@
-﻿namespace CrusiesConsoleAppUI.HelperMethods
+﻿
+
+using CrusiesConsoleAppUI.Models;
+using Spectre.Console;
+
+namespace CrusiesConsoleAppUI.HelperMethods
 {
     public static class HelperMethods
     {
@@ -21,7 +26,7 @@
 
                 Console.WriteLine($"{message}\r\n\r\nPlease Enter A Number Between {pMin} And {pMax} Inclusive.");
 
-                string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine()!;
 
                 Console.WriteLine("");
 
@@ -156,7 +161,7 @@
 
                 Console.WriteLine($"Please Enter the {nameType} for the {model} You Would Like to Add");
 
-                string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine()!;
 
                 Console.WriteLine("");
 
@@ -175,7 +180,7 @@
             return result;
         }
 
-        public static int GetValidInt(string message)
+        public static int GetValidInt(string message, int range)
         {
             bool isValid = false;
 
@@ -186,7 +191,7 @@
 
                 Console.WriteLine($"{message}");
 
-                string userInput = Console.ReadLine();
+                string userInput = Console.ReadLine()!;
 
                 Console.WriteLine("");
 
@@ -227,7 +232,7 @@
             {
                 Console.WriteLine("Press Y to confirm or N to cancel");
 
-                string userInput = Console.ReadLine().ToLower();
+                string userInput = Console.ReadLine()!.ToLower();
 
                 Console.WriteLine("");
 

@@ -7,6 +7,39 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Text Files\LastCruiseId.txt" />
+    <None Remove="Text Files\LastPassportNumber.txt" />
+    <None Remove="Text Files\LastPortNumber.txt" />
+    <None Remove="Text Files\LastTripNumber.txt" />
+    <None Remove="Text Files\LastUserNumber.txt" />
+    <None Remove="Xml Files\Database.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Xml Files\Database.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Text Files\LastCruiseId.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text Files\LastPassportNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text Files\LastPortNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text Files\LastTripNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Text Files\LastUserNumber.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CruisesAppBusinessLogic\CruisesAppBusinessLogic.csproj" />
   </ItemGroup>
 

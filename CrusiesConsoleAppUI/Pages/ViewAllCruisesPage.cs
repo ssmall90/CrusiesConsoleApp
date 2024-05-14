@@ -1,6 +1,7 @@
 ﻿using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -22,11 +23,15 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("View All Cruises");
-            HelperMethods.HelperMethods.DisplayList(_admin.Cruises,"Cruises");
-            Console.WriteLine($"{_admin.Cruises.Count + 1}: Return To Main Menu");
 
-            int selectedCruise = HelperMethods.HelperMethods.GetItemInRange(1, _admin.Cruises.Count + 1, "Which Cruise Would You Like To View/Edit?");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("View All Cruises"));
+
+            AnsiConsole.Write(SpectreHelper.DisplayCruiseTable(_admin.Cruises , "Cruises"));
+
+            AnsiConsole.WriteLine();
+
+            int selectedCruise = SpectreHelper.GetSelection(_admin.Cruises, "Cruise");
+
 
             if (selectedCruise > 0 && selectedCruise <= _admin.Cruises.Count)
             {

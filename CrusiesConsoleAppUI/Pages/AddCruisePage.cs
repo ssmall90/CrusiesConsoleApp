@@ -3,6 +3,7 @@ using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -25,26 +26,34 @@ namespace CrusiesConsoleAppUI.Pages
         public void DisplayContent()
         {
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Cruise");
 
-            string cruiseName = HelperMethods.HelperMethods.GetValidName("Name","Cruise");
 
-            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add New Cruise"));
 
-            switch(HelperMethods.HelperMethods.GetItemInRange(1,2,"Are You Sure You Want To Add This Cruise?"))
+            string cruiseName = SpectreHelper.GetValidName("Name","Cruise");
+
+            AnsiConsole.MarkupLine("[bold yellow]Are You Sure You Would Like To Add This Cruise?[/]");
+
+            int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm", }, "An Option");
+
+            switch (selectedOption)
             {
                 case 1:
                     CruiseModel newCruise = ModelFactory.CreateCruise(cruiseName);
                     _admin.AddCruise(newCruise);
+
                     _dataManager.AppendCruiseToXml(FilePathConstants.ConstructPath(), newCruise);
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Been Successfully Added to {_admin.DisplayName}'s List of Cruises");
+
+                    SpectreHelper.ReturnToMainMenu($"Your Cruise Has Been Successfully Added To Your List of Cruises", "green");
+                   
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
 
                     break;
 
                 case 2:
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Cruise Has Not Been Added to {_admin.DisplayName}'s List of Cruises");
+                    SpectreHelper.ReturnToMainMenu($"Your Cruise Has Not Been Added to {_admin.DisplayName}'s List of Cruises","red3");
+                   
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
                     break;

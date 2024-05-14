@@ -3,6 +3,7 @@ using CrusiesAppDataAccess.Factory;
 using CrusiesConsoleAppUI.Factory;
 using CrusiesConsoleAppUI.Models;
 using CrusiesConsoleAppUI.Services;
+using Spectre.Console;
 
 
 namespace CrusiesConsoleAppUI.Pages
@@ -28,15 +29,15 @@ namespace CrusiesConsoleAppUI.Pages
         {
 
             Console.Clear();
-            HelperMethods.HelperMethods.DisplayPageHeader("Add Port");
+            AnsiConsole.MarkupLine(SpectreHelper.DisplayHeader("Add Port"));
 
-            string portName = HelperMethods.HelperMethods.GetValidName("Name", "Port");
-            int lengthOfStay = HelperMethods.HelperMethods.GetValidInt("Enter the Duration of the Stay at This Port");
+            string portName = SpectreHelper.GetValidName("Name", "Port");
+            int lengthOfStay = SpectreHelper.GetValidInt("Enter the Duration of the Stay at This Port", 14);
 
-            HelperMethods.HelperMethods.DisplayEditingOptions("confirmOrCancel");
+            int selectedOption = SpectreHelper.GetSelection(new List<string> { "Confirm" }, "Option");
 
 
-            switch (HelperMethods.HelperMethods.GetItemInRange(1, 2, $"Are you sure you would like to add {portName} to {_cruise.CruiseName}?"))
+            switch (selectedOption)
             {
                 case 1:
 
@@ -45,21 +46,24 @@ namespace CrusiesConsoleAppUI.Pages
 
                     _dataManager.AddPortToCruise(FilePathConstants.ConstructPath(),_cruise, newPort);
 
-                    HelperMethods.HelperMethods.ReturnToMainMenu($"Your Port Has Been Successfully Added to {_cruise.CruiseName}");
+                    SpectreHelper.ReturnToMainMenu($"Your Port Has Been Successfully Added to {_cruise.CruiseName}","green");
+                    
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _page.DisplayContent();
+
                     break;
 
                 case 2:
+                    SpectreHelper.ReturnToMainMenu($"Action Aborted", "red3");
+
                     _page = PageFactory.CreateHomePage(_admin, _page, _pageStore, _dataManager);
                     _pageStore.CurrentPage = _page;
                     _page.DisplayContent();
+
                     break;
 
             }
 
-            //Console.WriteLine($"Enter the Name of The Port You Would Like to Add to {_cruise.CruiseName}");
-            //Console.ReadLine();
         }
         
 

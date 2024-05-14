@@ -12,16 +12,15 @@
                 string txtFileName = "LastUserNumber.txt";
 
                 string parentDirectory = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(baseDirectory)?.FullName!)?.FullName!)?.FullName!)?.FullName!)?.FullName!;
-                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName);
+                string txtFilePath = Path.Combine(parentDirectory, "CruisesAppLibrary", "Text Files", txtFileName); // Only Suitable For Debugging
 
                 return txtFilePath;
+
+                //string textFilePathPublished = Path.Combine(baseDirectory, "Text Files", txtFileName);
+
+                //return textFilePathPublished;
+
             }
-        }
-
-
-        public static int NextUserId
-        {
-            get { return _nextId; }
         }
 
         public string Id { get; set; }

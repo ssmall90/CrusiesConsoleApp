@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CruisesConsoleAppSchema"
+    targetNamespace="http://tempuri.org/CruisesConsoleAppSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/CruisesConsoleAppSchema.xsd"
+    xmlns:mstns="http://tempuri.org/CruisesConsoleAppSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="Cruises">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CruiseModel" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="CruiseName"/>
+							<xs:element type="xs:byte" name="CruiseIdentifier"/>
+							<xs:element name="Ports">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PortModel" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element type="xs:string" name="Name"/>
+													<xs:element type="xs:byte" name="PortId"/>
+													<xs:element type="xs:byte" name="LengthOfStay"/>
+													<xs:element name="Trips">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="TripModel" maxOccurs="unbounded" minOccurs="0">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element type="xs:string" name="NameOfActivity"/>
+																			<xs:element type="xs:short" name="ActivityId"/>
+																			<xs:element type="xs:short" name="Cost"/>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Passengers">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="PassengerModel" maxOccurs="unbounded" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element type="xs:string" name="FirstName"/>
+													<xs:element type="xs:string" name="LastName"/>
+													<xs:element type="xs:string" name="PassportNumber"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
